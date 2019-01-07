@@ -55,7 +55,7 @@ class Header extends Component {
         {user ? (
           <div className="logged-in-header">
             <Link to="/">
-              <img src={logo} width={100} height={30} mode="fit" />
+              <img src={logo} width={100} height={25} mode="fit" alt="logo" />
             </Link>
 
             <div className="links">
@@ -80,7 +80,7 @@ class Header extends Component {
         ) : (
           <div className="logged-out-header">
             <Link to="/">
-              <img src={logo} width={130} height={30} mode="fit" />
+              <img src={logo} width={150} height={40} mode="fit" alt="logo" />
             </Link>
             <button className="toggle-symbol" onClick={this.toggle}>
               ☰

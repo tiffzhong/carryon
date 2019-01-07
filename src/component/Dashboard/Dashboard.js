@@ -11,15 +11,17 @@ class Dashboard extends Component {
   }
 
   render() {
-    console.log("dashboard props", this.props.blogpostsList);
+    // console.log(
+    //   "dashboard props",
+    //   this.props.blogpostsList.length ? this.props.blogpostsList : "fetching"
+    // );
     let { blogpostsList } = this.props;
     let displayBlogPosts = blogpostsList.map(blogpost => {
       return (
-        <div>
-          <Link to="/blogpost">
-            <button className="add-new">Create a new post</button>
-          </Link>
-          <BlogPost {...blogpost} id={blogpost.id} />
+        <div className="dashboard-container">
+          <div className="blogpost-container">
+            <BlogPost {...blogpost} id={blogpost.id} />
+          </div>
         </div>
       );
     });
@@ -27,6 +29,11 @@ class Dashboard extends Component {
       <div className="dashboard-container">
         <div className="dashboard-banner">
           <h2>Dashboard</h2>
+        </div>
+        <div className="create-new">
+          <Link to="/blogpost">
+            <button className="add-new">Create a new post</button>
+          </Link>
         </div>
         {displayBlogPosts}
       </div>

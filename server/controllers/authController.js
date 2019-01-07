@@ -39,13 +39,13 @@ module.exports = {
             picture: users[0].picture,
             auth0_id: users[0].auth0_id
           };
-          res.redirect("/");
+          res.redirect("/dashboard");
         } else {
           return db
             .create_user([user.name, user.email, user.picture, user.sub])
             .then(newUsers => {
               req.session.user = newUsers[0];
-              res.redirect("/");
+              res.redirect("/dashboard");
             });
         }
       });
@@ -64,6 +64,6 @@ module.exports = {
 
   logout: (req, res) => {
     req.session.destroy();
-    res.send();
+    res.send().redirect("/");
   }
 };

@@ -46,7 +46,7 @@ app.get("/api/abquote/:id", profileController.readQuotes);
 
 //Dashboard Tab for Blogposts
 app.get("/api/blogposts", blogpostContoller.getAllBlogPosts);
-app.get("/api/blogposts/:id", blogpostContoller.getBlogPost);
+app.get("/api/blogpost/:id", blogpostContoller.getBlogPost);
 app.post("/api/blogpost", blogpostContoller.createBlogPost);
 app.put("/api/blogpost/:id", blogpostContoller.updateBlogPost);
 app.delete("/api/blogpost/:id", blogpostContoller.deleteBlogPost);

@@ -15,7 +15,7 @@ export default (
     <Route path="/dashboard" component={Dashboard} />
     <Route path="/profile" component={Profile} />
     <Route path="/post/:postid" component={BlogPost} />
-    <Route path="/blogpost" component={BlogForm} />
+    <Route path="/blogpost/:postid" component={BlogForm} />
     <Route path="/shop" component={StoreProducts} />
     <Route path="/admin" component={Admin} />
   </Switch>
