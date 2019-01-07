@@ -20,7 +20,7 @@ export default function blogpostReducer(state = INITIAL_STATE, action) {
       return { ...state, user: action.payload };
     case SET_ADMIN:
       return { ...state, admin: action.payload };
-    case `${SET_BLOGPOSTS}_PENDING`:
+    case `${SET_BLOGPOSTS}_FULFILLED`:
       console.log("action", action.payload);
       return { ...state, blogpostsList: action.payload };
     case CREATE_BLOGPOST:

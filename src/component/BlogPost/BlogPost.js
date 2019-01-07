@@ -14,8 +14,8 @@ class BlogPost extends Component {
   componentDidMount() {
     let blogpost = {};
     if (navigator.onLine) {
-      blogpost = this.props.props.blogpostsList.find(
-        post => post.id === this.props.props.match.params.id
+      blogpost = this.props.blogpostsList.find(
+        post => post.id === this.props.match.params.id
       );
     } else {
       blogpost = JSON.parse(localStorage.getItem("blogposts")).find(

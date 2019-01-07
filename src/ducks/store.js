@@ -1,7 +1,8 @@
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
+import reduxPromiseMiddleware from "redux-promise-middleware";
 import blogpostReducer from "../ducks/blogpostReducer";
 
 export default createStore(
   blogpostReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  applyMiddleware(reduxPromiseMiddleware())
 );
