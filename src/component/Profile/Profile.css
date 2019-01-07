@@ -1,0 +1,19 @@
+.profile-banner {
+  background-image: url("./north.jpg");
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto 0px;
+  padding: 20px;
+  width: 100%;
+  min-height: 250px;
+  color: white;
+  font-size: 45px;
+}
+
+.profile-picture img {
+  height: 150px;
+  width: 150px;
+  border-radius: 30%;
+}

@@ -1,0 +1,1 @@
+select * from blogposts where id = $1;

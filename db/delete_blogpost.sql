@@ -1,0 +1,1 @@
+delete from blogposts where id = $1;

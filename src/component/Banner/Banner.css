@@ -1,0 +1,12 @@
+.banner-container {
+  background-image: url("./plane.jpg");
+  background-size: cover;
+  background-repeat: none;
+  width: 100%;
+  display: flex;
+  background-position: center;
+  background-attachment: fixed;
+  justify-content: center;
+  align-content: center;
+  padding: 150px 15px;
+}

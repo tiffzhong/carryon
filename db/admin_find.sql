@@ -1,0 +1,1 @@
+select * from admin where username = $1 limit 1;
