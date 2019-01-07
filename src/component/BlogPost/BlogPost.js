@@ -12,21 +12,21 @@ class BlogPost extends Component {
     };
   }
   componentDidMount() {
-    let blogpost = {};
-    if (navigator.onLine) {
-      blogpost = this.props.blogpostsList.find(
-        post => post.id === this.props.match.params.id
-      );
-    } else {
-      blogpost = JSON.parse(localStorage.getItem("blogposts")).find(
-        post => post.id === this.props.props.match.params.id
-      );
-    }
-    this.setState({
-      blogpost,
-      images: blogpost.image_url
-    });
-  }
+  //   let blogpost = {};
+  //   if (navigator.onLine) {
+  //     blogpost = this.props.blogpostsList.find(
+  //       post => post.id === this.props.match.params.id
+  //     );
+  //   } else {
+  //     blogpost = JSON.parse(localStorage.getItem("blogposts")).find(
+  //       post => post.id === this.props.props.match.params.id
+  //     );
+  //   }
+  //   this.setState({
+  //     blogpost,
+  //     images: blogpost.image_url
+  //   });
+  // }
   render() {
     let { blogpost, images } = this.state;
     let { date, title, blurb, itinerary, user, id } = blogpost;
