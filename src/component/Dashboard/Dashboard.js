@@ -11,40 +11,37 @@ class Dashboard extends Component {
   }
 
   render() {
-    let { blogpostsList } = this.props;
-    let displayBlogPosts = blogpostsList.map(blogpost => {
-      return (
-        <div>
-          <Link to="blogpost">
-            <button className="add-new">Create a new post</button>
-          </Link>
-          <BlogPost {...blogpost} id={blogpost.id} />
-        </div>
-      );
-    });
+    console.log("dashboard props", this.props.blogpostsList);
+    //let { blogpostsList } = this.props;
+    // let displayBlogPosts = blogpostsList.map(blogpost => {
+    //   return (
+    //     <div>
+    //       <Link to="/blogpost">
+    //         <button className="add-new">Create a new post</button>
+    //       </Link>
+    //       <BlogPost {...blogpost} id={blogpost.id} />
+    //     </div>
+    //   );
+    // });
     return (
       <div className="dashboard-container">
         <div className="dashboard-banner">
           <h2>Dashboard</h2>
         </div>
-        {displayBlogPosts}
+        {/* {displayBlogPosts} */}
       </div>
     );
   }
 }
 
 const mapStateToProps = state => {
-  let { blogpostsList, admin } = state;
+  let { blogpostsList } = state;
   return {
-    blogpostsList,
-    admin
+    blogpostsList
   };
 };
 
-const mapDispatchToProps = {
-  getAll
-};
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  { getAll }
 )(Dashboard);

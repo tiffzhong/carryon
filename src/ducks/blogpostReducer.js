@@ -20,7 +20,8 @@ export default function blogpostReducer(state = INITIAL_STATE, action) {
       return { ...state, user: action.payload };
     case SET_ADMIN:
       return { ...state, admin: action.payload };
-    case SET_BLOGPOSTS:
+    case `${SET_BLOGPOSTS}_PENDING`:
+      console.log("action", action.payload);
       return { ...state, blogpostsList: action.payload };
     case CREATE_BLOGPOST:
       return { ...state };
@@ -33,7 +34,7 @@ export default function blogpostReducer(state = INITIAL_STATE, action) {
   }
 }
 
-//dispatching action
+//dispatching actions
 export function setUser(user) {
   return {
     type: SET_USER,
