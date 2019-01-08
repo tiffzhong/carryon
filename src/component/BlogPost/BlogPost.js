@@ -3,6 +3,7 @@ import "./BlogPost.css";
 import { Link } from "react-router-dom";
 import { deleteBlogPost } from "../../ducks/blogpostReducer";
 import { connect } from "react-redux";
+import moment from "moment";
 
 class BlogPost extends Component {
   render() {
@@ -12,7 +13,7 @@ class BlogPost extends Component {
     return (
       <div className="blogpost-container">
         <div className="title-container">
-          <p>{date ? date : "loading"}</p>
+          <p>{date ? moment(date).format("MMMM Do YYYY") : "loading"}</p>
 
           <h2>{title ? title : "loading"}</h2>
           <h6>by: {user.name ? user.name : "loading"}</h6>

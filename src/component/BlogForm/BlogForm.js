@@ -18,6 +18,7 @@ import axios from "axios";
 
 class BlogForm extends Component {
   componentDidMount() {
+    let date = moment().format("MMMM DD YYYY");
     if (this.props.match.params.postid) {
       axios
         .get(`/api/blogpost/${this.props.match.params.postid}`)
@@ -29,7 +30,7 @@ class BlogForm extends Component {
         .then(() => {
           this.setState({
             user: this.props.blogpost.user,
-            date: this.props.blogpost.date,
+            date: date,
             title: this.props.blogpost.title,
             image_url: this.props.blogpost.image_url,
             blurb: this.props.blogpost.blurb,
@@ -41,11 +42,11 @@ class BlogForm extends Component {
     }
   }
 
-  handleChange(e) {
+  handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
     });
-  }
+  };
 
   onSubmit(event) {
     event.preventDefault();
@@ -72,42 +73,36 @@ class BlogForm extends Component {
         <div className="blogform-banner">
           <h2>Edit</h2>
         </div>
-        <form onSubmit={event => this.onSubmit(event)}>
+        <div className="blogform">
+          <p>{moment(date).format("MMMM Do YYYY")}</p>
           <label>Title</label>
           <div className="title-field">
             <input
-              placeholder="title"
               name="title"
               type="text"
               value={title}
               onChange={event => this.handleChange(event)}
             />
           </div>
-
           <div className="blurb-field">
             <label>Blurb</label>
             <input
-              placeholder="blurb"
               name="blurb"
               type="text"
               value={blurb}
               onChange={event => this.handleChange(event)}
             />
           </div>
-
           <div className="itinerary-field">
             <label>Itinerary</label>
             <input
-              placeholder="itinerary"
               name="itinerary"
               type="text"
               value={itinerary}
               onChange={event => this.handleChange(event)}
             />
           </div>
-
           <label>Photos:</label>
-
           <Link to="/dashboard">
             <button
               onClick={() =>
@@ -117,7 +112,7 @@ class BlogForm extends Component {
               Edit
             </button>
           </Link>
-        </form>
+        </div>
       </div>
     );
   }

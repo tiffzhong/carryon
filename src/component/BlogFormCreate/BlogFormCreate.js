@@ -7,8 +7,8 @@ import moment from "moment";
 import request from "superagent";
 import Dropzone from "react-dropzone";
 
-// const CLOUDINARY_UPLOAD_URL = "https://api.cloudinary.com/v1_1/tiffz";
-// const CLOUDINARY_UPLOAD_PRESET = "carryon";
+const CLOUDINARY_UPLOAD_URL = "https://api.cloudinary.com/v1_1/tiffz/upload";
+const CLOUDINARY_UPLOAD_PRESET = "carryon";
 
 class BlogFormCreate extends Component {
   constructor(props) {
@@ -21,8 +21,8 @@ class BlogFormCreate extends Component {
       image_url: [],
       blurb: "",
       itinerary: "",
-      uploadedUrlOnCloudinary: "",
-      uploadedPhotos: []
+      uploadedFileCloudinaryUrl: "",
+      uploadedFiles: []
     };
   }
 
@@ -36,6 +36,35 @@ class BlogFormCreate extends Component {
     event.preventDefault();
   }
 
+  // ------------------START CLOUDINARY METHODS------------------
+  // dropImage = files => {
+  //   this.setState({
+  //     uploadedFiles: files
+  //   });
+  //   this.onDrop(files);
+  // };
+
+  onDrop = files => {
+    let upload = request
+      .post(CLOUDINARY_UPLOAD_URL)
+      .field("upload_preset", CLOUDINARY_UPLOAD_PRESET)
+      .field("uploadedFiles", files);
+    console.log("files", files);
+    console.log("upload", upload);
+    upload.end((err, res) => {
+      if (err) {
+        console.log(err);
+      }
+      if (res.body.secure_url !== "") {
+        console.log("res", res.body.secure_url);
+        this.setState({
+          uploadedFileCloudinaryUrl: res.body.secure_url
+        });
+      }
+    });
+  };
+  // ------------------END CLOUDINARY METHODS------------------
+
   render() {
     console.log("this.props.user.name", this.props);
     console.log("match", this.props.match.params);
@@ -47,19 +76,33 @@ class BlogFormCreate extends Component {
       image_url,
       blurb,
       itinerary,
-      uploadedPhotos
+      uploadedUrlOnCloudinary,
+      uploadedFiles
     } = this.state;
     const { createBlogPost } = this.props;
     let { id } = this.props.match.params;
 
+    let mappedCloudinaryPhotos = uploadedFiles.map(file => {
+      return (
+        <div>
+          {this.state.uploadedFileCloudinaryUrl === "" ? null : (
+            <div>
+              <p>{file.name} </p>
+            </div>
+          )}
+        </div>
+      );
+    });
     // const { user } = this.props;
     return (
       <div className="blogform-container">
         <div className="blogform-banner">
           <h2>Create</h2>
         </div>
-        <form onSubmit={event => this.onSubmit(event)}>
-          <label>Title</label>
+        <form className="form" onSubmit={event => this.onSubmit(event)}>
+          {moment().format("MMMM Do YYYY")}
+          <br />
+
           <div className="title-field">
             <input
               placeholder="title"
@@ -71,9 +114,8 @@ class BlogFormCreate extends Component {
           </div>
 
           <div className="blurb-field">
-            <label>Blurb</label>
             <input
-              placeholder="blurb"
+              placeholder="How was your trip?"
               name="blurb"
               type="text"
               value={blurb}
@@ -82,7 +124,6 @@ class BlogFormCreate extends Component {
           </div>
 
           <div className="itinerary-field">
-            <label>Itinerary</label>
             <input
               placeholder="itinerary"
               name="itinerary"
@@ -93,7 +134,35 @@ class BlogFormCreate extends Component {
           </div>
 
           <label>Photos:</label>
+          <div>
+            {/* <Dropzone
+              multiple={true}
+              accept="image/*"
+              onDrop={() => this.onDrop()}
+            >
+              <p>Drop an image or click to select a file to upload.</p>
+            </Dropzone> */}
+            <Dropzone onDrop={this.onDrop}>
+              {({ getRootProps, getInputProps, isDragActive }) => {
+                return (
+                  <div {...getRootProps()}>
+                    <input {...getInputProps()} />
+                    {isDragActive ? (
+                      <p>Drop files here...</p>
+                    ) : (
+                      <p>
+                        Try dropping some files here, or click to select files
+                        to upload.
+                      </p>
+                    )}
+                  </div>
+                );
+              }}
+            </Dropzone>
 
+            {mappedCloudinaryPhotos}
+          </div>
+          <br />
           <Link to="/dashboard">
             <button
               onClick={() =>
@@ -127,56 +196,3 @@ export default connect(
   mapStateToProps,
   { setUser, createBlogPost }
 )(BlogFormCreate);
-
-{
-  /* //------------------START CLOUDINARY METHODS------------------ 
-  // dropImage(files) {
-  //   this.setState({
-  //     uploadedPhotos: files
-  //   });
-  //   this.handleImageUpload(files);
-  // }
-
-  // handleImageUpload(files) {
-  //   let upload = request
-  //     .post(CLOUDINARY_UPLOAD_URL)
-  //     .field("upload_preset", CLOUDINARY_UPLOAD_PRESET)
-  //     .field("uploadedFiles", files);
-
-  //   upload.end((err, res) => {
-  //     if (err) {
-  //       console.log(err);
-  //     }
-  //     if (res.body.secure_url !== "" || res.body.secure_url !== undefined) {
-  //       let image_url = res.body.secure_url,
-  //         uploadedUrlOnCloudinary = res.body.secure_url;
-
-  //       this.setState({
-  //         ...this.state,
-  //         image_url,
-  //         uploadedUrlOnCloudinary
-  //       });
-  //     }
-  //   });
-  // }
-  //------------------EDN CLOUDINARY METHODS------------------ */
-}
-
-{
-  //IGNORE--------------------
-  /* <Dropzone
-              multiple={true}
-              accept="image/*"
-              onDrop={this.dropImage.bind(this)}
-            >
-              {!this.state.uploadedUrlOnCloudinary && <p>Drop Images Here </p>}
-              <div>
-                {this.state.uploadedUrlOnCloudinary === "" ? null : (
-                  <div>
-                    <p>{this.state.uploadedPhotos.name}</p>
-                  </div>
-                )}
-              </div>
-            </Dropzone>
-            {cloudinaryPhotos} */
-}

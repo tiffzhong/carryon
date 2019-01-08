@@ -3,43 +3,12 @@ import "./Admin.css";
 import axios from "axios";
 
 class Admin extends Component {
-  constructor() {
-    super();
-    this.state = {
-      user: null,
-      username: null,
-      password: null
-    };
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  login = () => {
-    const username = this.state.username;
-    const password = this.state.password;
-    axios
-      .post("/api/login", {
-        username: username,
-        password: password
-      })
-      .then(response => {
-        this.setState({ user: response.data });
-      })
-      .catch(error => {
-        this.setState({ message: this.getMessage(error) });
-        console.log(error);
-      });
-    this.setState({ message: null });
+  state = {
+    user: null,
+    showRegister: false,
+    message: null,
+    fetchedDataMessage: null
   };
-  logout = () => {
-    axios.post("/api/logout").then(res => {
-      console.log(res);
-      this.setState({ user: null });
-    });
-  };
-
-  handleChange(key, e) {
-    this.setState({ [key]: e.target.value });
-  }
 
   getMessage = error =>
     error.response
@@ -48,30 +17,114 @@ class Admin extends Component {
         : JSON.stringify(error.response.data, null, 2)
       : error.message;
 
+  register = () => {
+    this.setState({ message: null });
+    const username = this.refs.username.value;
+    const password = this.refs.password.value;
+    axios
+      .post("/admin/register", {
+        username,
+        password
+      })
+      .then(response => {
+        this.setState({ user: response.data });
+      })
+      .catch(error => {
+        this.setState({
+          message: "Something went wrong w register: " + error
+        });
+      });
+  };
+
+  login = () => {
+    this.setState({ message: null });
+    const username = this.refs.username.value;
+    const password = this.refs.password.value;
+    axios
+      .post("/admin/login", {
+        username,
+        password
+      })
+      .then(response => {
+        this.setState({ user: response.data });
+      })
+      .catch(error => {
+        this.setState({
+          message: "Something went wrong w login: " + this.getMessage(error)
+        });
+      });
+  };
+
+  logout = () => {
+    axios
+      .post("/admin/logout")
+      .then(response => {
+        this.setState({ user: null });
+      })
+      .catch(error => {
+        this.setState({
+          message: "Something went wrong w logout: " + this.getMessage(error)
+        });
+      });
+  };
+
   render() {
-    return this.state.user ? (
-      <div className="admin">
-        <h2>Hello, Admin</h2>
-        <h4>Users: </h4>
-        <h4>Products </h4>
-        <button className="logout" onClick={this.logout}>
-          Logout
-        </button>
+    const { user, showRegister, message } = this.state;
+
+    const inputFields = (
+      <div>
+        Username: <input ref="username" /> Password:{" "}
+        <input type="password" ref="password" />{" "}
       </div>
-    ) : (
-      <div className="admin">
-        <h1>Admin Login</h1>
-        <p>{this.state.message && this.state.message}</p>
-        UserName:
-        <input onChange={e => this.handleChange("username", e)} />
-        Password:
-        <input
-          onChange={e => this.handleChange("password", e)}
-          type="password"
-        />
-        <button onClick={this.login}>Log in</button>
+    );
+
+    return (
+      <div className="App">
+        <div className="login-banner" />
+        {!user && (
+          <div>
+            <a
+              href="javascript:void(0)"
+              onClick={() => this.setState({ showRegister: false })}
+            >
+              Login
+            </a>{" "}
+            <a
+              href="javascript:void(0)"
+              onClick={() => this.setState({ showRegister: true })}
+            >
+              Register
+            </a>
+            <div className="login-or-register">
+              {showRegister && (
+                <div>
+                  <h3>Register</h3>
+                  {inputFields}
+                  <button onClick={this.register}>Register</button>
+                </div>
+              )}
+              {!showRegister && (
+                <div>
+                  <h3>Log in</h3>
+                  {inputFields}
+                  <button onClick={this.login}>Log in</button>
+                </div>
+              )}
+              {message}
+            </div>
+          </div>
+        )}
+        {user && (
+          <div className="user-info">
+            <h2>Hello, Admin!</h2>
+            <h4>Users: </h4>
+            <h4>Products </h4>
+            <button onClick={this.logout}>Log out</button>
+          </div>
+        )}
       </div>
     );
   }
 }
+
 export default Admin;

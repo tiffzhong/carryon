@@ -1,0 +1,13 @@
+.login-banner {
+  background-image: url("./crab.jpg");
+  color: white;
+  font-size: 45px;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto 0px;
+  padding: 20px;
+  width: 100%;
+  min-height: 250px;
+}

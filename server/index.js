@@ -52,9 +52,9 @@ app.put("/api/blogpost/:id", blogpostContoller.updateBlogPost);
 app.delete("/api/blogpost/:id", blogpostContoller.deleteBlogPost);
 
 //Admin
-app.post("/api/register", adminController.register);
-app.post("/api/login", adminController.login);
-app.post("/api/logout", adminController.logout);
+app.post("/admin/register", adminController.register);
+app.post("/admin/login", adminController.login);
+app.post("/admin/logout", adminController.logout);
 
 const PORT = 4000;
 app.listen(PORT, () => {

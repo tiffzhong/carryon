@@ -1,5 +1,4 @@
 import axios from "axios";
-
 const INITIAL_STATE = {
   user: null,
   blogpostsList: [],
@@ -46,13 +45,6 @@ export function setUser(user) {
   };
 }
 
-export function admin(admin) {
-  return {
-    type: SET_ADMIN,
-    payload: admin
-  };
-}
-
 export function getAll() {
   return {
     type: SET_BLOGPOSTS,
@@ -85,7 +77,7 @@ export function createBlogPost(
     type: CREATE_BLOGPOST,
     payload: axios
       .post("/api/blogpost", {
-        date,
+        date: date,
         title,
         image_url,
         blurb,
