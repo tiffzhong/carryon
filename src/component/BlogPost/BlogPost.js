@@ -15,7 +15,7 @@ class BlogPost extends Component {
           <p>{date ? date : "loading"}</p>
 
           <h2>{title ? title : "loading"}</h2>
-          <h6>by: {user ? user : "loading"}</h6>
+          <h6>by: {user.name ? user.name : "loading"}</h6>
         </div>
         <div className="blurb-container">
           <p>{blurb ? blurb : "loading"}</p>

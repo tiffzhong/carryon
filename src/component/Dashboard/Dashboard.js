@@ -31,7 +31,7 @@ class Dashboard extends Component {
           <h2>Dashboard</h2>
         </div>
         <div className="create-new">
-          <Link to="/blogpost">
+          <Link to="/new">
             <button className="add-new">Create a new post</button>
           </Link>
         </div>

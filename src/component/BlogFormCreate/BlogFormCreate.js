@@ -1,44 +1,29 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import "./BlogForm.css";
-import {
-  setUser,
-  createBlogPost,
-  editBlogPost,
-  getOne
-} from "../../ducks/blogpostReducer";
+import "./BlogFormCreate.css";
+import { setUser, createBlogPost } from "../../ducks/blogpostReducer";
 import moment from "moment";
 import request from "superagent";
 import Dropzone from "react-dropzone";
-import axios from "axios";
 
 // const CLOUDINARY_UPLOAD_URL = "https://api.cloudinary.com/v1_1/tiffz";
 // const CLOUDINARY_UPLOAD_PRESET = "carryon";
 
-class BlogForm extends Component {
-  componentDidMount() {
-    if (this.props.match.params.postid) {
-      axios
-        .get(`/api/blogpost/${this.props.match.params.postid}`)
-        .then(res => {
-          console.log("res.data", res.data);
-          //red.data returns an array of one
-          return this.props.getOne(res.data);
-        })
-        .then(() => {
-          this.setState({
-            user: this.props.blogpost.user,
-            date: this.props.blogpost.date,
-            title: this.props.blogpost.title,
-            image_url: this.props.blogpost.image_url,
-            blurb: this.props.blogpost.blurb,
-            itinerary: this.props.blogpost.itinerary
-          });
-          console.log("hellllllooooooo", this.props.blogpost);
-        })
-        .catch(error => console.log("error in getting 1", error));
-    }
+class BlogFormCreate extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      user: null,
+      date: null,
+      title: "",
+      image_url: [],
+      blurb: "",
+      itinerary: "",
+      uploadedUrlOnCloudinary: "",
+      uploadedPhotos: []
+    };
   }
 
   handleChange(e) {
@@ -52,9 +37,9 @@ class BlogForm extends Component {
   }
 
   render() {
-    // console.log("this.props.user.name", this.props);
-    // console.log("match", this.props.match.params);
-    // console.log("props", this.props);
+    console.log("this.props.user.name", this.props);
+    console.log("match", this.props.match.params);
+    console.log("props", this.props);
     const {
       user,
       date,
@@ -63,14 +48,15 @@ class BlogForm extends Component {
       blurb,
       itinerary,
       uploadedPhotos
-    } = this.props.blogpost;
-    const { editBlogPost } = this.props;
+    } = this.state;
+    const { createBlogPost } = this.props;
     let { id } = this.props.match.params;
 
+    // const { user } = this.props;
     return (
       <div className="blogform-container">
         <div className="blogform-banner">
-          <h2>Edit</h2>
+          <h2>Create</h2>
         </div>
         <form onSubmit={event => this.onSubmit(event)}>
           <label>Title</label>
@@ -111,10 +97,18 @@ class BlogForm extends Component {
           <Link to="/dashboard">
             <button
               onClick={() =>
-                editBlogPost(date, title, image_url, blurb, itinerary, user, id)
+                createBlogPost(
+                  date,
+                  title,
+                  image_url,
+                  blurb,
+                  itinerary,
+                  user,
+                  id
+                )
               }
             >
-              Edit
+              Post Blogpost
             </button>
           </Link>
         </form>
@@ -124,17 +118,15 @@ class BlogForm extends Component {
 }
 
 const mapStateToProps = state => {
-  let { blogpostsList, blogpost, user } = state;
+  let { blogpost } = state;
   return {
-    blogpostsList,
-    blogpost,
-    user
+    blogpost
   };
 };
 export default connect(
   mapStateToProps,
-  { setUser, createBlogPost, editBlogPost, getOne }
-)(BlogForm);
+  { setUser, createBlogPost }
+)(BlogFormCreate);
 
 {
   /* //------------------START CLOUDINARY METHODS------------------ 

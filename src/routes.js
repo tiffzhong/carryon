@@ -8,6 +8,7 @@ import BlogForm from "./component/BlogForm/BlogForm";
 import StoreProducts from "./component/StoreProducts/StoreProducts";
 import Profile from "./component/Profile/Profile";
 import Admin from "./component/Admin/Admin";
+import BlogFormCreate from "./component/BlogFormCreate/BlogFormCreate";
 
 export default (
   <Switch>
@@ -16,6 +17,7 @@ export default (
     <Route path="/profile" component={Profile} />
     <Route path="/post/:postid" component={BlogPost} />
     <Route path="/blogpost/:postid" component={BlogForm} />
+    <Route path="/new" component={BlogFormCreate} />
     <Route path="/shop" component={StoreProducts} />
     <Route path="/admin" component={Admin} />
   </Switch>

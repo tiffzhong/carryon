@@ -17,9 +17,14 @@ module.exports = {
   getBlogPost: (req, res) => {
     const database = req.app.get("db");
     let { id } = req.params;
-    database.get_blogpost(id).then(blogpost => {
-      res.status(200).send(blogpost);
-    });
+    database
+      .get_blogpost(id)
+      .then(blogpost => {
+        res.status(200).send(blogpost[0]);
+      })
+      .catch(err => {
+        console.log("error in get blog blogpost", err);
+      });
   },
 
   createBlogPost: (req, res) => {
