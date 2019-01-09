@@ -11,3 +11,37 @@
   width: 100%;
   min-height: 250px;
 }
+.add-new {
+  background-color: #3b5249;
+  border: 2px solid black;
+  width: 100px;
+  font-weight: bold;
+  height: 30px;
+  color: white;
+  margin: 20px auto;
+  left: 10px;
+}
+
+.dashboard-container {
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.blogposts-container {
+  max-width: 70%;
+  display: flex;
+}
+.your-trips {
+  margin: 10px;
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+}
+
+.your-feed {
+  margin: 10px;
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+}

@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import Dropzone from "react-dropzone";
 import "./Cloudinary.css";
+import request from "superagent";
 // import "./Cloudinary.css";
+
 const CLOUDINARY_UPLOAD_PRESET = "carryon";
 const CLOUDINARY_UPLOAD_URL =
   "https://api.cloudinary.com/v1_1/tiffz/image/upload";
@@ -12,6 +14,7 @@ class Cloudinary extends Component {
 
     this.state = {
       files: [],
+      image_url: [],
       cloudinaryUrl: ""
     };
   }
@@ -24,7 +27,32 @@ class Cloudinary extends Component {
         })
       )
     });
+    this.handleImageUpload(files);
   };
+
+  handleImageUpload(files) {
+    let upload = request
+      .post(CLOUDINARY_UPLOAD_URL)
+      .field("upload_preset", CLOUDINARY_UPLOAD_PRESET)
+      .field("file", files);
+
+    upload.end((err, response) => {
+      console.log("SHOW RESPONSE FOR UPLOAD", response);
+      if (err) {
+        console.log("error w upload", err);
+      }
+      if (response.body) {
+        let image_url = response.body.secure_url,
+          cloudinaryUrl = response.body.secure_url;
+
+        this.setState({
+          ...this.state,
+          image_url,
+          cloudinaryUrl
+        });
+      }
+    });
+  }
 
   componentWillUnmount() {
     this.state.files.forEach(file => URL.revokeObjectURL(file.preview));
@@ -33,30 +61,6 @@ class Cloudinary extends Component {
   clear = () => {
     this.setState({ files: [], cloudinaryUrl: "" });
   };
-
-  // handleImageUpload(files) {
-  //   let upload = request
-  //     .post(CLOUDINARY_UPLOAD_URL)
-  //     .field("upload_preset", CLOUDINARY_UPLOAD_PRESET)
-  //     .field("file", files);
-
-  //   upload.end((err, response) => {
-  //     if (
-  //       response.body.secure_url !== "" ||
-  //       response.body.secure_url !== undefined
-  //     ) {
-  //       let uploadedFiles = response.body.secure_url,
-  //         uploadedFileCloudinaryUrl = response.body.secure_url;
-
-  //       this.setState({
-  //         ...this.state,
-  //         uploadedFiles
-  //       });
-  //     } else {
-  //       console.log(err);
-  //     }
-  //   });
-  // }
 
   render() {
     console.log("files", this.state.files);

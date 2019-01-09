@@ -1,14 +1,13 @@
 module.exports = {
   //USERS BLOGPOSTS
-  getAllBlogPosts: (req, res) => {
+  getMyBlogPosts: (req, res) => {
     const database = req.app.get("db");
-    const { id } = req.params;
-    console.log(id, "id we are querererereygin");
+    const { auth0_id } = req.params;
+    console.log(auth0_id, "id we are querererereygin");
     database
-      .get_blogposts(id)
+      .get_my_blogposts(auth0_id)
       .then(blogposts => {
-        console.log(blogposts, "-----------------");
-
+        console.log(auth0_id, blogposts, "-----------------");
         res.status(200).send(blogposts);
       })
       .catch(error => {
@@ -20,12 +19,11 @@ module.exports = {
   },
 
   //GET EVERYONES IN THE DATA BASE
-  getFullBlogPosts: (req, res) => {
+  getAllBlogPosts: (req, res) => {
     const database = req.app.get("db");
     database
-      .get_full_blogposts()
+      .get_all_blogposts()
       .then(blogposts => {
-        console.log(blogposts, "FULL BLOG 000000000000000000000000000");
         res.status(200).send(blogposts);
       })
       .catch(error => {

@@ -8,29 +8,24 @@ import request from "superagent";
 import Dropzone from "react-dropzone";
 import Cloudinary from "../Cloudinary/Cloudinary";
 
-// const CLOUDINARY_UPLOAD_URL = "https://api.cloudinary.com/v1_1/tiffz/upload";
-// const CLOUDINARY_UPLOAD_PRESET = "carryon";
+const CLOUDINARY_UPLOAD_PRESET = "carryon";
+const CLOUDINARY_UPLOAD_URL =
+  "https://api.cloudinary.com/v1_1/tiffz/image/upload";
 
 class BlogFormCreate extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      date: moment().format("MMMM Do YYYY"),
+      date: moment().format("MMMM Do YYYY h:mm a"),
       title: "",
       image_url: [],
       blurb: "",
-      itinerary: ""
-      // uploadedFileCloudinaryUrl: "",
-      // uploadedFiles: []
+      itinerary: "",
+      files: [],
+      image_url: [],
+      cloudinaryUrl: ""
     };
-
-    // date,
-    // title,
-    // image_url,
-    // blurb,
-    // itinerary,
-    // user.auth0_id
   }
 
   handleChange(e) {
@@ -43,35 +38,48 @@ class BlogFormCreate extends Component {
     event.preventDefault();
   }
 
-  // ------------------START CLOUDINARY METHODS------------------
-  // dropImage = files => {
-  //   this.setState({
-  //     uploadedFiles: files
-  //   });
-  //   this.onDrop(files);
-  // };
+  onDrop = files => {
+    this.setState({
+      files: files.map(file =>
+        Object.assign(file, {
+          preview: URL.createObjectURL(file)
+        })
+      )
+    });
+    this.handleImageUpload(files);
+  };
 
-  // onDrop = files => {
-  //   let upload = request
-  //     .post(CLOUDINARY_UPLOAD_URL)
-  //     .field("upload_preset", CLOUDINARY_UPLOAD_PRESET)
-  //     .field("uploadedFiles", files);
-  //   console.log("files", files);
-  //   console.log("upload", upload);
-  //   upload.end((err, res) => {
-  //     if (err) {
-  //       console.log(err);
-  //     }
-  //     if (res.body.secure_url !== "") {
-  //       console.log("res", res.body.secure_url);
-  //       this.setState({
-  //         uploadedFileCloudinaryUrl: res.body.secure_url,
-  //         uploadedFiles: files
-  //       });
-  //     }
-  //   });
-  // };
-  // ------------------END CLOUDINARY METHODS------------------
+  handleImageUpload(files) {
+    let upload = request
+      .post(CLOUDINARY_UPLOAD_URL)
+      .field("upload_preset", CLOUDINARY_UPLOAD_PRESET)
+      .field("file", files);
+
+    upload.end((err, response) => {
+      console.log("SHOW RESPONSE FOR UPLOAD", response);
+      if (err) {
+        console.log("error w upload", err);
+      }
+      if (response.body) {
+        let image_url = response.body.secure_url,
+          cloudinaryUrl = response.body.secure_url;
+
+        this.setState({
+          ...this.state,
+          image_url,
+          cloudinaryUrl
+        });
+      }
+    });
+  }
+
+  componentWillUnmount() {
+    this.state.files.forEach(file => URL.revokeObjectURL(file.preview));
+  }
+
+  clear = () => {
+    this.setState({ files: [], cloudinaryUrl: "" });
+  };
 
   render() {
     console.log("this.props.user", this.props.user);
@@ -80,19 +88,14 @@ class BlogFormCreate extends Component {
     const { date, title, image_url, blurb, itinerary } = this.state;
     const { createBlogPost, user } = this.props;
     let { id } = this.props.match.params;
+    console.log("files", this.state.files);
+    const { files } = this.state;
+    const thumbs = files.map(file => (
+      <div className="thumb">
+        <img src={file.preview} alt="preview" />
+      </div>
+    ));
 
-    // let mappedCloudinaryPhotos = uploadedFiles.map(file => {
-    //   return (
-    //     <div>
-    //       {uploadedFileCloudinaryUrl === "" ? null : (
-    //         <div>
-    //           <p>{file.name} </p>
-    //         </div>
-    //       )}
-    //     </div>
-    //   );
-    // });
-    // const { user } = this.props;
     return (
       <div className="blogform-container">
         <div className="blogform-banner">
@@ -113,7 +116,7 @@ class BlogFormCreate extends Component {
           </div>
 
           <div className="blurb-field">
-            <input
+            <textarea
               placeholder="How was your trip?"
               name="blurb"
               type="text"
@@ -123,7 +126,7 @@ class BlogFormCreate extends Component {
           </div>
 
           <div className="itinerary-field">
-            <input
+            <textarea
               placeholder="itinerary"
               name="itinerary"
               type="text"
@@ -134,33 +137,19 @@ class BlogFormCreate extends Component {
 
           <label>Photos:</label>
           <div>
-            {/* <Dropzone
-              multiple={true}
+            <Dropzone
+              className="drooopzone"
               accept="image/*"
-              onDrop={() => this.onDrop()}
+              onDrop={this.onDrop.bind(this)}
             >
-              <p>Drop an image or click to select a file to upload.</p>
-            </Dropzone> */}
-            {/* <Dropzone onDrop={this.onDrop}>
-              {({ getRootProps, getInputProps, isDragActive }) => {
-                return (
-                  <div {...getRootProps()}>
-                    <input {...getInputProps()} />
-                    {isDragActive ? (
-                      <p>Drop files here...</p>
-                    ) : (
-                      <p>
-                        Try dropping some files here, or click to select files
-                        to upload.
-                      </p>
-                    )}
-                  </div>
-                );
-              }}
+              {({ getRootProps, getInputProps }) => (
+                <div {...getRootProps()}>
+                  <input {...getInputProps()} />
+                  <p>Drop files here</p>
+                </div>
+              )}
             </Dropzone>
-
-            {mappedCloudinaryPhotos} */}
-            <Cloudinary />
+            {thumbs}
           </div>
           <br />
           <Link to="/dashboard">

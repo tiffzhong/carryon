@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import "./BlogForm.css";
+import "./BlogFormEdit.css";
 import {
   setUser,
   createBlogPost,
@@ -16,7 +16,7 @@ import axios from "axios";
 // const CLOUDINARY_UPLOAD_URL = "https://api.cloudinary.com/v1_1/tiffz";
 // const CLOUDINARY_UPLOAD_PRESET = "carryon";
 
-class BlogForm extends Component {
+class BlogFormEdit extends Component {
   constructor(props) {
     super(props);
 
@@ -29,7 +29,7 @@ class BlogForm extends Component {
     };
   }
   componentDidMount() {
-    let date = moment().format("MMMM DD YYYY");
+    let date = moment().format("MMMM DD YYYY, h:mm a");
     if (this.props.match.params.postid) {
       axios
         .get(`/api/blogpost/${this.props.match.params.postid}`)
@@ -139,7 +139,7 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   { setUser, createBlogPost, editBlogPost, getOne }
-)(BlogForm);
+)(BlogFormEdit);
 
 {
   /* //------------------START CLOUDINARY METHODS------------------ 

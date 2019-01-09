@@ -1,15 +1,16 @@
 import axios from "axios";
 const INITIAL_STATE = {
   user: null,
-  blogpostsList: [],
-  blogpost: [],
-  fullBlogposts: []
+  //  myBlogposts: [],
+  allBlogposts: [],
+  blogpost: []
 };
 
 const SET_USER = "SET_USER";
-const SET_BLOGPOSTS = "SET_BLOGPOSTS";
-const GET_FULL_BLOGPOSTS = "GET_FULL_BLOGPOSTS";
+//const GET_MY_BLOGPOSTS = "GET_MY_BLOGPOSTS";
+const GET_ALL_BLOGPOSTS = "GET_ALL_BLOGPOSTS";
 const GET_BLOGPOST = "GET_BLOGPOST";
+
 const CREATE_BLOGPOST = "CREATE_BLOGPOST";
 const DELETE_BLOGPOST = "DELETE_BLOGPOST";
 const EDIT_BLOGPOST = "EDIT_BLOGPOST";
@@ -19,11 +20,11 @@ export default function blogpostReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case SET_USER:
       return { ...state, user: action.payload };
-    case `${SET_BLOGPOSTS}_FULFILLED`:
-      console.log("action.payload set_blogposts", action.payload);
-      return { ...state, blogpostsList: action.payload };
-    case `${GET_FULL_BLOGPOSTS}_FULFILLED`:
-      return { ...state, fullBlogposts: action.payload };
+    // case `${GET_MY_BLOGPOSTS}_FULFILLED`:
+    //   console.log("action.payload get_my_blogposts", action.payload);
+    //   return { ...state, myBlogposts: action.payload };
+    case `${GET_ALL_BLOGPOSTS}_FULFILLED`:
+      return { ...state, allBlogposts: action.payload };
     case GET_BLOGPOST:
       return { ...state, blogpost: action.payload };
     case `${CREATE_BLOGPOST}_FULFILLED`:
@@ -46,31 +47,30 @@ export function setUser(user) {
   };
 }
 
-// export function getAll(notId) {
-//   console.log(INITIAL_STATE.user);
-
+// export function getMyBlogposts(notId) {
 //   return {
-//     type: SET_BLOGPOSTS,
+//     type: GET_MY_BLOGPOSTS,
 //     payload: axios
 //       .get(`/api/blogposts/${notId}`)
 //       .then(res => {
+//         console.log(res.data, "NOIDIDIDIDID");
 //         return res.data;
 //       })
-//       .catch(error => console.log("Error in getAll", error))
+//       .catch(error => console.log("Error in getMyBlogposts", error))
 //   };
 // }
 
 // INITIAL_STATE.user != null ? INITIAL_STATE.user.auth0_id : 0
 
-export function getFullBlogPosts() {
+export function getAllBlogposts() {
   return {
-    type: GET_FULL_BLOGPOSTS,
+    type: GET_ALL_BLOGPOSTS,
     payload: axios
       .get("/api/blogposts")
       .then(res => {
         return res.data;
       })
-      .catch(error => console.log("Error in getAll", error))
+      .catch(error => console.log("Error in getAllBlogposts", error))
   };
 }
 

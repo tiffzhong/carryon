@@ -3,35 +3,66 @@ import "./Dashboard.css";
 import BlogPost from "../BlogPost/BlogPost";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { getFullBlogPosts } from "../../ducks/blogpostReducer";
+import { getAllBlogposts } from "../../ducks/blogpostReducer";
 
 class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
       user: "",
-      post: []
+      posts: []
     };
   }
 
   componentDidMount() {
-    this.props.getFullBlogPosts().then(post => {
-      console.log(post, "posterrrururururur");
+    this.props.getAllBlogposts().then(post => {
       this.setState({
-        post: this.props.fullBlogposts
+        posts: this.props.allBlogposts
       });
     });
   }
+  // this.props.getMyBlogposts().then(myPosts => {
+  //   console.log(myPosts, "MINE");
+  //   this.setState({
+  //     myPosts: myPosts
+  //   });
+  // });
+
+  // componentDidUpdate = prevProps => {
+  //   if (prevProps.user !== this.props.user) {
+  //     this.getTheStuff(this.state.user.auth0_id);
+  //     this.setState({
+  //       user: this.props.user
+  //     });
+  //   }
+  // };
+
+  // getTheStuff = notId => {
+  //   console.log(notId, "asldkfjapioseuhfpioasdhjfpkajsdhfplkj");
+  //   this.props.getAll(notId);
+  // };
 
   render() {
     console.log(this.props.user, "dashboard props");
 
-    ///GETTING MY POSTS ONLY!!!
-    let { blogpostsList, fullBlogposts } = this.props;
-    console.log(blogpostsList, "info from reducer");
+    // this.state.user > 0 && this.getTheStuff(this.state.user.auth0_id);
+
+    // if (this.state.user) {
+    //   this.getTheStuff(this.props.user.auth0_id0);
+    // }
+
+    // console.log(
+    //   "dashboard props",
+    //   this.props.blogpostsList.length ? this.props.blogpostsList : "fetching"
+    // );
+
+    // -------
+
+    ///GETTING MY BLOGPOSTS ONLY!!!
+    let { allBlogposts } = this.props;
     let displayMyBlogPosts =
-      fullBlogposts.length > 0 &&
-      fullBlogposts.filter(myBlogpost => {
+      allBlogposts.length > 0 &&
+      allBlogposts.filter(myBlogpost => {
         console.log("FILTERRRR returning asldkfaksl;d", myBlogpost);
         return myBlogpost.auth0_id === this.props.user.auth0_id;
       });
@@ -50,10 +81,10 @@ class Dashboard extends Component {
         );
       });
 
-    ///GEETTING EVERYONES POSTS
+    ///GETTING ALL BLOGPOSTS
     let displayBlogPosts =
-      fullBlogposts.length > 0 &&
-      fullBlogposts.map(blogpost => {
+      allBlogposts.length > 0 &&
+      allBlogposts.map(blogpost => {
         return (
           <div className="dashboard-container">
             <div className="blogpost-container">
@@ -72,11 +103,17 @@ class Dashboard extends Component {
             <button className="add-new">Create a new post</button>
           </Link>
         </div>
-        {displayBlogPosts}
 
-        <div>
-          <p>------------------------------only tiffs</p>
-          {allOfMyBlogposts}
+        <div className="blogposts-container">
+          <div className="your-trips">
+            <h4>Your Trips</h4>
+            {allOfMyBlogposts}
+          </div>
+
+          <div className="your-feed">
+            <h4>Your Feed</h4>
+            {displayBlogPosts}
+          </div>
         </div>
       </div>
     );
@@ -84,15 +121,14 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = state => {
-  let { blogpostsList, user, fullBlogposts } = state;
+  let { user, allBlogposts } = state;
   return {
-    blogpostsList,
     user,
-    fullBlogposts
+    allBlogposts
   };
 };
 
 export default connect(
   mapStateToProps,
-  { getFullBlogPosts }
+  { getAllBlogposts }
 )(Dashboard);
