@@ -1,9 +1,31 @@
 module.exports = {
+  //USERS BLOGPOSTS
   getAllBlogPosts: (req, res) => {
     const database = req.app.get("db");
+    const { id } = req.params;
+    console.log(id, "id we are querererereygin");
     database
-      .get_blogposts()
+      .get_blogposts(id)
       .then(blogposts => {
+        console.log(blogposts, "-----------------");
+
+        res.status(200).send(blogposts);
+      })
+      .catch(error => {
+        res
+          .status(500)
+          .send({ errorMessage: "Something wrong w get blogposts" });
+        console.log(error);
+      });
+  },
+
+  //GET EVERYONES IN THE DATA BASE
+  getFullBlogPosts: (req, res) => {
+    const database = req.app.get("db");
+    database
+      .get_full_blogposts()
+      .then(blogposts => {
+        console.log(blogposts, "FULL BLOG 000000000000000000000000000");
         res.status(200).send(blogposts);
       })
       .catch(error => {

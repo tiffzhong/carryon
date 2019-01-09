@@ -1,0 +1,1 @@
+select * from blogposts ORDER BY date asc;

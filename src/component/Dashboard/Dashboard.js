@@ -3,30 +3,65 @@ import "./Dashboard.css";
 import BlogPost from "../BlogPost/BlogPost";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { getAll } from "../../ducks/blogpostReducer";
+import { getFullBlogPosts } from "../../ducks/blogpostReducer";
 
 class Dashboard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: "",
+      post: []
+    };
+  }
+
   componentDidMount() {
-    this.props.getAll();
+    this.props.getFullBlogPosts().then(post => {
+      console.log(post, "posterrrururururur");
+      this.setState({
+        post: this.props.fullBlogposts
+      });
+    });
   }
 
   render() {
-    // console.log(
-    //   "dashboard props",
-    //   this.props.blogpostsList.length ? this.props.blogpostsList : "fetching"
-    // );
-    let { blogpostsList } = this.props;
+    console.log(this.props.user, "dashboard props");
+
+    ///GETTING MY POSTS ONLY!!!
+    let { blogpostsList, fullBlogposts } = this.props;
     console.log(blogpostsList, "info from reducer");
-    let displayBlogPosts = blogpostsList.map(blogpost => {
-      console.log(blogpost, "blogpost content");
-      return (
-        <div className="dashboard-container">
-          <div className="blogpost-container">
-            <BlogPost {...blogpost} id={blogpost.id} />
+    let displayMyBlogPosts =
+      fullBlogposts.length > 0 &&
+      fullBlogposts.filter(myBlogpost => {
+        console.log("FILTERRRR returning asldkfaksl;d", myBlogpost);
+        return myBlogpost.auth0_id === this.props.user.auth0_id;
+      });
+
+    let allOfMyBlogposts =
+      displayMyBlogPosts.length > 0 &&
+      displayMyBlogPosts.map(onlyMyBlogposts => {
+        console.log(onlyMyBlogposts, "PLEASE WORK");
+
+        return (
+          <div className="dashboard-container">
+            <div className="blogpost-container">
+              <BlogPost {...onlyMyBlogposts} id={onlyMyBlogposts.id} />
+            </div>
           </div>
-        </div>
-      );
-    });
+        );
+      });
+
+    ///GEETTING EVERYONES POSTS
+    let displayBlogPosts =
+      fullBlogposts.length > 0 &&
+      fullBlogposts.map(blogpost => {
+        return (
+          <div className="dashboard-container">
+            <div className="blogpost-container">
+              <BlogPost {...blogpost} id={blogpost.id} />
+            </div>
+          </div>
+        );
+      });
     return (
       <div className="dashboard-container">
         <div className="dashboard-banner">
@@ -38,19 +73,26 @@ class Dashboard extends Component {
           </Link>
         </div>
         {displayBlogPosts}
+
+        <div>
+          <p>------------------------------only tiffs</p>
+          {allOfMyBlogposts}
+        </div>
       </div>
     );
   }
 }
 
 const mapStateToProps = state => {
-  let { blogpostsList } = state;
+  let { blogpostsList, user, fullBlogposts } = state;
   return {
-    blogpostsList
+    blogpostsList,
+    user,
+    fullBlogposts
   };
 };
 
 export default connect(
   mapStateToProps,
-  { getAll }
+  { getFullBlogPosts }
 )(Dashboard);

@@ -3,12 +3,12 @@ const INITIAL_STATE = {
   user: null,
   blogpostsList: [],
   blogpost: [],
-  admin: {}
+  fullBlogposts: []
 };
 
 const SET_USER = "SET_USER";
-const SET_ADMIN = "SET_ADMIN";
 const SET_BLOGPOSTS = "SET_BLOGPOSTS";
+const GET_FULL_BLOGPOSTS = "GET_FULL_BLOGPOSTS";
 const GET_BLOGPOST = "GET_BLOGPOST";
 const CREATE_BLOGPOST = "CREATE_BLOGPOST";
 const DELETE_BLOGPOST = "DELETE_BLOGPOST";
@@ -19,11 +19,11 @@ export default function blogpostReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case SET_USER:
       return { ...state, user: action.payload };
-    case SET_ADMIN:
-      return { ...state, admin: action.payload };
     case `${SET_BLOGPOSTS}_FULFILLED`:
-      console.log("action", action.payload);
+      console.log("action.payload set_blogposts", action.payload);
       return { ...state, blogpostsList: action.payload };
+    case `${GET_FULL_BLOGPOSTS}_FULFILLED`:
+      return { ...state, fullBlogposts: action.payload };
     case GET_BLOGPOST:
       return { ...state, blogpost: action.payload };
     case `${CREATE_BLOGPOST}_FULFILLED`:
@@ -39,15 +39,32 @@ export default function blogpostReducer(state = INITIAL_STATE, action) {
 
 //dispatching actions
 export function setUser(user) {
+  console.log(user, "this is set user");
   return {
     type: SET_USER,
     payload: user
   };
 }
 
-export function getAll() {
+// export function getAll(notId) {
+//   console.log(INITIAL_STATE.user);
+
+//   return {
+//     type: SET_BLOGPOSTS,
+//     payload: axios
+//       .get(`/api/blogposts/${notId}`)
+//       .then(res => {
+//         return res.data;
+//       })
+//       .catch(error => console.log("Error in getAll", error))
+//   };
+// }
+
+// INITIAL_STATE.user != null ? INITIAL_STATE.user.auth0_id : 0
+
+export function getFullBlogPosts() {
   return {
-    type: SET_BLOGPOSTS,
+    type: GET_FULL_BLOGPOSTS,
     payload: axios
       .get("/api/blogposts")
       .then(res => {
