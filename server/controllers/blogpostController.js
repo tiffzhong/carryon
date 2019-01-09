@@ -29,9 +29,27 @@ module.exports = {
 
   createBlogPost: (req, res) => {
     const database = req.app.get("db");
-    let { id, date, title, image_url, blurb, itinerary } = req.body;
+    let { date, title, image_url, blurb, itinerary, user, id } = req.body;
+    console.log(
+      date,
+      title,
+      image_url,
+      blurb,
+      itinerary,
+      user,
+      id,
+      `----------------------------------------------`
+    );
     database
-      .create_blogpost([id, date, title, `{${image_url}}`, blurb, itinerary])
+      .create_blogpost([
+        id,
+        date,
+        title,
+        `{${image_url}}`,
+        blurb,
+        itinerary,
+        user
+      ])
       .then(() => res.status(200).send())
       .catch(err => {
         console.log("error in creat blogpost", err);

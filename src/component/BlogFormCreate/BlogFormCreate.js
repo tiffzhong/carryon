@@ -6,24 +6,31 @@ import { setUser, createBlogPost } from "../../ducks/blogpostReducer";
 import moment from "moment";
 import request from "superagent";
 import Dropzone from "react-dropzone";
+import Cloudinary from "../Cloudinary/Cloudinary";
 
-const CLOUDINARY_UPLOAD_URL = "https://api.cloudinary.com/v1_1/tiffz/upload";
-const CLOUDINARY_UPLOAD_PRESET = "carryon";
+// const CLOUDINARY_UPLOAD_URL = "https://api.cloudinary.com/v1_1/tiffz/upload";
+// const CLOUDINARY_UPLOAD_PRESET = "carryon";
 
 class BlogFormCreate extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      user: null,
-      date: null,
+      date: moment().format("MMMM Do YYYY"),
       title: "",
       image_url: [],
       blurb: "",
-      itinerary: "",
-      uploadedFileCloudinaryUrl: "",
-      uploadedFiles: []
+      itinerary: ""
+      // uploadedFileCloudinaryUrl: "",
+      // uploadedFiles: []
     };
+
+    // date,
+    // title,
+    // image_url,
+    // blurb,
+    // itinerary,
+    // user.auth0_id
   }
 
   handleChange(e) {
@@ -44,55 +51,47 @@ class BlogFormCreate extends Component {
   //   this.onDrop(files);
   // };
 
-  onDrop = files => {
-    let upload = request
-      .post(CLOUDINARY_UPLOAD_URL)
-      .field("upload_preset", CLOUDINARY_UPLOAD_PRESET)
-      .field("uploadedFiles", files);
-    console.log("files", files);
-    console.log("upload", upload);
-    upload.end((err, res) => {
-      if (err) {
-        console.log(err);
-      }
-      if (res.body.secure_url !== "") {
-        console.log("res", res.body.secure_url);
-        this.setState({
-          uploadedFileCloudinaryUrl: res.body.secure_url
-        });
-      }
-    });
-  };
+  // onDrop = files => {
+  //   let upload = request
+  //     .post(CLOUDINARY_UPLOAD_URL)
+  //     .field("upload_preset", CLOUDINARY_UPLOAD_PRESET)
+  //     .field("uploadedFiles", files);
+  //   console.log("files", files);
+  //   console.log("upload", upload);
+  //   upload.end((err, res) => {
+  //     if (err) {
+  //       console.log(err);
+  //     }
+  //     if (res.body.secure_url !== "") {
+  //       console.log("res", res.body.secure_url);
+  //       this.setState({
+  //         uploadedFileCloudinaryUrl: res.body.secure_url,
+  //         uploadedFiles: files
+  //       });
+  //     }
+  //   });
+  // };
   // ------------------END CLOUDINARY METHODS------------------
 
   render() {
-    console.log("this.props.user.name", this.props);
+    console.log("this.props.user", this.props.user);
     console.log("match", this.props.match.params);
-    console.log("props", this.props);
-    const {
-      user,
-      date,
-      title,
-      image_url,
-      blurb,
-      itinerary,
-      uploadedUrlOnCloudinary,
-      uploadedFiles
-    } = this.state;
-    const { createBlogPost } = this.props;
+    console.log("state", this.state, this.state.date, "is date working");
+    const { date, title, image_url, blurb, itinerary } = this.state;
+    const { createBlogPost, user } = this.props;
     let { id } = this.props.match.params;
 
-    let mappedCloudinaryPhotos = uploadedFiles.map(file => {
-      return (
-        <div>
-          {this.state.uploadedFileCloudinaryUrl === "" ? null : (
-            <div>
-              <p>{file.name} </p>
-            </div>
-          )}
-        </div>
-      );
-    });
+    // let mappedCloudinaryPhotos = uploadedFiles.map(file => {
+    //   return (
+    //     <div>
+    //       {uploadedFileCloudinaryUrl === "" ? null : (
+    //         <div>
+    //           <p>{file.name} </p>
+    //         </div>
+    //       )}
+    //     </div>
+    //   );
+    // });
     // const { user } = this.props;
     return (
       <div className="blogform-container">
@@ -142,7 +141,7 @@ class BlogFormCreate extends Component {
             >
               <p>Drop an image or click to select a file to upload.</p>
             </Dropzone> */}
-            <Dropzone onDrop={this.onDrop}>
+            {/* <Dropzone onDrop={this.onDrop}>
               {({ getRootProps, getInputProps, isDragActive }) => {
                 return (
                   <div {...getRootProps()}>
@@ -160,7 +159,8 @@ class BlogFormCreate extends Component {
               }}
             </Dropzone>
 
-            {mappedCloudinaryPhotos}
+            {mappedCloudinaryPhotos} */}
+            <Cloudinary />
           </div>
           <br />
           <Link to="/dashboard">
@@ -172,8 +172,8 @@ class BlogFormCreate extends Component {
                   image_url,
                   blurb,
                   itinerary,
-                  user,
-                  id
+                  user.name,
+                  user.auth0_id
                 )
               }
             >
@@ -187,11 +187,13 @@ class BlogFormCreate extends Component {
 }
 
 const mapStateToProps = state => {
-  let { blogpost } = state;
+  let { blogpost, user } = state;
   return {
-    blogpost
+    blogpost,
+    user
   };
 };
+
 export default connect(
   mapStateToProps,
   { setUser, createBlogPost }

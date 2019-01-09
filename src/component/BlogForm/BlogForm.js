@@ -17,6 +17,17 @@ import axios from "axios";
 // const CLOUDINARY_UPLOAD_PRESET = "carryon";
 
 class BlogForm extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      date: null,
+      title: "",
+      image_url: "",
+      blurb: "",
+      itinerary: ""
+    };
+  }
   componentDidMount() {
     let date = moment().format("MMMM DD YYYY");
     if (this.props.match.params.postid) {
@@ -62,8 +73,7 @@ class BlogForm extends Component {
       title,
       image_url,
       blurb,
-      itinerary,
-      uploadedPhotos
+      itinerary
     } = this.props.blogpost;
     const { editBlogPost } = this.props;
     let { id } = this.props.match.params;

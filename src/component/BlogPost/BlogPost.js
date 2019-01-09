@@ -7,16 +7,16 @@ import moment from "moment";
 
 class BlogPost extends Component {
   render() {
-    let { date, title, image_url, blurb, itinerary, user, id } = this.props;
+    let { date, title, image_url, blurb, itinerary, name, id } = this.props;
     let { deleteBlogPost } = this.props;
-    // console.log(this.props);
+    console.log(this.props);
     return (
       <div className="blogpost-container">
         <div className="title-container">
-          <p>{date ? moment(date).format("MMMM Do YYYY") : "loading"}</p>
+          <p>{date ? date : "loading"}</p>
 
           <h2>{title ? title : "loading"}</h2>
-          <h6>by: {user.name ? user.name : "loading"}</h6>
+          <h6>by: {name ? name : "loading"}</h6>
         </div>
         <div className="blurb-container">
           <p>{blurb ? blurb : "loading"}</p>

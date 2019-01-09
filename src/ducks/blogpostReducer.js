@@ -64,6 +64,14 @@ export function getOne(id) {
   };
 }
 
+// date,
+// title,
+// image_url,
+// blurb,
+// itinerary,
+// user.name,
+// user.auth0_id
+
 export function createBlogPost(
   date,
   title,
@@ -77,7 +85,7 @@ export function createBlogPost(
     type: CREATE_BLOGPOST,
     payload: axios
       .post("/api/blogpost", {
-        date: date,
+        date,
         title,
         image_url,
         blurb,

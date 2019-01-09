@@ -16,7 +16,9 @@ class Dashboard extends Component {
     //   this.props.blogpostsList.length ? this.props.blogpostsList : "fetching"
     // );
     let { blogpostsList } = this.props;
+    console.log(blogpostsList, "info from reducer");
     let displayBlogPosts = blogpostsList.map(blogpost => {
+      console.log(blogpost, "blogpost content");
       return (
         <div className="dashboard-container">
           <div className="blogpost-container">
