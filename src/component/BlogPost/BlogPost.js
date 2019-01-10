@@ -10,6 +10,11 @@ class BlogPost extends Component {
     let { date, title, image_url, blurb, itinerary, name, id } = this.props;
     let { deleteBlogPost } = this.props;
     console.log(this.props);
+
+    const allImages = image_url.map(imageId => {
+      console.log(imageId, "ASLDKFJ;ASLKDJ;LSKDF;SDF");
+      return <img src={imageId} alt="imageid" />;
+    });
     return (
       <div className="blogpost-container">
         <div className="title-container">
@@ -21,13 +26,11 @@ class BlogPost extends Component {
         <div className="blurb-container">
           <p>{blurb ? blurb : "loading"}</p>
         </div>
-        <div className="images-container">
-          <img src={image_url[0]} alt={title} />
-          <img src={image_url[1]} alt={title} />
-        </div>
+        <div className="images-container">{allImages}</div>
         <div className="itinerary-container">
           <h5>Itinerary: {itinerary ? itinerary : "loading"}</h5>
         </div>
+
         <button className="delete-button" onClick={() => deleteBlogPost(id)}>
           delete
         </button>

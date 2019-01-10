@@ -6,7 +6,6 @@ import { setUser, createBlogPost } from "../../ducks/blogpostReducer";
 import moment from "moment";
 import request from "superagent";
 import Dropzone from "react-dropzone";
-import Cloudinary from "../Cloudinary/Cloudinary";
 
 const CLOUDINARY_UPLOAD_PRESET = "carryon";
 const CLOUDINARY_UPLOAD_URL =
@@ -23,8 +22,7 @@ class BlogFormCreate extends Component {
       blurb: "",
       itinerary: "",
       files: [],
-      image_url: [],
-      cloudinaryUrl: ""
+      cloudinaryUrl: []
     };
   }
 
@@ -50,26 +48,32 @@ class BlogFormCreate extends Component {
   };
 
   handleImageUpload(files) {
-    let upload = request
-      .post(CLOUDINARY_UPLOAD_URL)
-      .field("upload_preset", CLOUDINARY_UPLOAD_PRESET)
-      .field("file", files);
+    console.log(files, "files uploading");
+    const eachFileUrl = files.forEach(file => {
+      let upload = request
+        .post(CLOUDINARY_UPLOAD_URL)
+        .field("upload_preset", CLOUDINARY_UPLOAD_PRESET)
+        .field("file", file);
 
-    upload.end((err, response) => {
-      console.log("SHOW RESPONSE FOR UPLOAD", response);
-      if (err) {
-        console.log("error w upload", err);
-      }
-      if (response.body) {
-        let image_url = response.body.secure_url,
-          cloudinaryUrl = response.body.secure_url;
+      upload.end((err, response) => {
+        console.log("SHOW RESPONSE FOR UPLOAD", response);
+        if (err) {
+          console.log("error w upload", err);
+        }
+        if (response.body) {
+          let image_url = this.state.image_url.concat(),
+            cloudinaryUrl = this.state.cloudinaryUrl.concat();
 
-        this.setState({
-          ...this.state,
-          image_url,
-          cloudinaryUrl
-        });
-      }
+          image_url.push(response.body.secure_url);
+          cloudinaryUrl.push(response.body.secure_url);
+
+          this.setState({
+            ...this.state,
+            image_url,
+            cloudinaryUrl
+          });
+        }
+      });
     });
   }
 
@@ -82,17 +86,14 @@ class BlogFormCreate extends Component {
   };
 
   render() {
-    console.log("this.props.user", this.props.user);
-    console.log("match", this.props.match.params);
-    console.log("state", this.state, this.state.date, "is date working");
+    console.log("state", this.state);
     const { date, title, image_url, blurb, itinerary } = this.state;
     const { createBlogPost, user } = this.props;
-    let { id } = this.props.match.params;
-    console.log("files", this.state.files);
+
     const { files } = this.state;
     const thumbs = files.map(file => (
       <div className="thumb">
-        <img src={file.preview} alt="preview" />
+        <img src={file.preview} width={200} alt="preview" />
       </div>
     ));
 
@@ -137,11 +138,7 @@ class BlogFormCreate extends Component {
 
           <label>Photos:</label>
           <div>
-            <Dropzone
-              className="drooopzone"
-              accept="image/*"
-              onDrop={this.onDrop.bind(this)}
-            >
+            <Dropzone onDrop={this.onDrop.bind(this)} accept="image/*" multiple>
               {({ getRootProps, getInputProps }) => (
                 <div {...getRootProps()}>
                   <input {...getInputProps()} />
@@ -149,6 +146,7 @@ class BlogFormCreate extends Component {
                 </div>
               )}
             </Dropzone>
+
             {thumbs}
           </div>
           <br />

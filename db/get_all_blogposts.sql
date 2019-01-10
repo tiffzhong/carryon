@@ -1,1 +1,1 @@
-select * from blogposts ORDER BY date asc;
+select * from blogposts ORDER BY date desc;

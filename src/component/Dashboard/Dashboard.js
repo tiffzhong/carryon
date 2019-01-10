@@ -21,42 +21,9 @@ class Dashboard extends Component {
       });
     });
   }
-  // this.props.getMyBlogposts().then(myPosts => {
-  //   console.log(myPosts, "MINE");
-  //   this.setState({
-  //     myPosts: myPosts
-  //   });
-  // });
-
-  // componentDidUpdate = prevProps => {
-  //   if (prevProps.user !== this.props.user) {
-  //     this.getTheStuff(this.state.user.auth0_id);
-  //     this.setState({
-  //       user: this.props.user
-  //     });
-  //   }
-  // };
-
-  // getTheStuff = notId => {
-  //   console.log(notId, "asldkfjapioseuhfpioasdhjfpkajsdhfplkj");
-  //   this.props.getAll(notId);
-  // };
 
   render() {
     console.log(this.props.user, "dashboard props");
-
-    // this.state.user > 0 && this.getTheStuff(this.state.user.auth0_id);
-
-    // if (this.state.user) {
-    //   this.getTheStuff(this.props.user.auth0_id0);
-    // }
-
-    // console.log(
-    //   "dashboard props",
-    //   this.props.blogpostsList.length ? this.props.blogpostsList : "fetching"
-    // );
-
-    // -------
 
     ///GETTING MY BLOGPOSTS ONLY!!!
     let { allBlogposts } = this.props;
@@ -113,6 +80,10 @@ class Dashboard extends Component {
           <div className="your-feed">
             <h4>Your Feed</h4>
             {displayBlogPosts}
+          </div>
+
+          <div className="your-feed">
+            <h4>Notifications</h4>
           </div>
         </div>
       </div>
