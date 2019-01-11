@@ -1,3 +1,12 @@
+const axios = require("axios");
+const cloudinary = require("cloudinary");
+
+cloudinary.config({
+  cloud_name: "tiffz",
+  api_key: "152969667534373",
+  api_secret: "KUiyfnNgFdvX3S1cV-DuoRcj8nE"
+});
+
 module.exports = {
   //USERS BLOGPOSTS
   // getMyBlogPosts: (req, res) => {
@@ -98,5 +107,20 @@ module.exports = {
     const database = req.app.get("db");
     let { id } = req.params;
     database.delete_blogpost(id).then(() => res.status(200).send());
+  },
+
+  deletePictureWhenCreate: (req, res) => {
+    let { publicId } = req.body;
+    cloudinary.v2.api.delete_resources([publicId], function(error, result) {
+      res.status(200).send(result);
+    });
+    console.log("deleteisrunning");
+    // axios
+    //   .delete(
+    //     `https://api.cloudinary.com/v1_1/tiffz/delete_by_token/${publicId}/${deleteImage}`
+    //   )
+    //   .then(response => {
+    //     res.status(200).send(response);
+    //   });
   }
 };

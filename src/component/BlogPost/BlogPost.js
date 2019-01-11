@@ -7,18 +7,31 @@ import moment from "moment";
 
 class BlogPost extends Component {
   render() {
-    let { date, title, image_url, blurb, itinerary, name, id } = this.props;
-    let { deleteBlogPost } = this.props;
     console.log(this.props);
+    let {
+      date,
+      title,
+      image_url,
+      blurb,
+      itinerary,
+      name,
+      id,
+      user
+    } = this.props;
+    let { deleteBlogPost, auth } = this.props;
+    console.log("JUST ID", auth, name, user);
 
     const allImages = image_url.map(imageId => {
       console.log(imageId, "ASLDKFJ;ASLKDJ;LSKDF;SDF");
       return <img src={imageId} alt="imageid" />;
     });
+
     return (
       <div className="blogpost-container">
         <div className="title-container">
-          <p>{date ? date : "loading"}</p>
+          <p>
+            {date ? moment(date).format("MMMM Do YYYY h:mm:ss a") : "loading"}
+          </p>
 
           <h2>{title ? title : "loading"}</h2>
           <h6>by: {name ? name : "loading"}</h6>
@@ -31,12 +44,19 @@ class BlogPost extends Component {
           <h5>Itinerary: {itinerary ? itinerary : "loading"}</h5>
         </div>
 
-        <button className="delete-button" onClick={() => deleteBlogPost(id)}>
-          delete
-        </button>
-        <Link to={`/blogpost/${id}`}>
-          <button className="edit-button">Edit</button>
-        </Link>
+        {user.auth0_id === auth ? (
+          <div>
+            <button
+              className="delete-button"
+              onClick={() => deleteBlogPost(id)}
+            >
+              delete
+            </button>
+            <Link to={`/blogpost/${id}`}>
+              <button className="edit-button">Edit</button>
+            </Link>
+          </div>
+        ) : null}
       </div>
     );
   }

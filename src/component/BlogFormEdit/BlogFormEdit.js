@@ -13,21 +13,24 @@ import request from "superagent";
 import Dropzone from "react-dropzone";
 import axios from "axios";
 
-// const CLOUDINARY_UPLOAD_URL = "https://api.cloudinary.com/v1_1/tiffz";
-// const CLOUDINARY_UPLOAD_PRESET = "carryon";
+const CLOUDINARY_UPLOAD_URL = "https://api.cloudinary.com/v1_1/tiffz";
+const CLOUDINARY_UPLOAD_PRESET = "carryon";
 
 class BlogFormEdit extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      date: null,
+      date: moment().format(),
       title: "",
-      image_url: "",
+      image_url: [],
       blurb: "",
-      itinerary: ""
+      itinerary: "",
+      files: [],
+      cloudinaryUrl: []
     };
   }
+
   componentDidMount() {
     let date = moment().format("MMMM DD YYYY, h:mm a");
     if (this.props.match.params.postid) {

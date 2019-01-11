@@ -52,6 +52,7 @@ app.post("/api/blogpost", blogpostContoller.createBlogPost);
 app.put("/api/blogpost/:id", blogpostContoller.updateBlogPost);
 app.delete("/api/blogpost/:id", blogpostContoller.deleteBlogPost);
 
+app.post("/api/image/blogpost", blogpostContoller.deletePictureWhenCreate);
 //Admin
 app.post("/admin/register", adminController.register);
 app.post("/admin/login", adminController.login);

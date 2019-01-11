@@ -6,6 +6,7 @@ import { setUser, createBlogPost } from "../../ducks/blogpostReducer";
 import moment from "moment";
 import request from "superagent";
 import Dropzone from "react-dropzone";
+import axios from "axios";
 
 const CLOUDINARY_UPLOAD_PRESET = "carryon";
 const CLOUDINARY_UPLOAD_URL =
@@ -16,13 +17,14 @@ class BlogFormCreate extends Component {
     super(props);
 
     this.state = {
-      date: moment().format("MMMM Do YYYY h:mm a"),
+      date: moment().format(),
       title: "",
       image_url: [],
       blurb: "",
       itinerary: "",
       files: [],
-      cloudinaryUrl: []
+      cloudinaryUrl: [],
+      publicId: []
     };
   }
 
@@ -47,6 +49,36 @@ class BlogFormCreate extends Component {
     this.handleImageUpload(files);
   };
 
+  clear = id => {
+    // image_url,
+    // cloudinaryUrl,
+    // publicId
+    console.log(id, "IDLKSAJDLKFJASLF");
+    let body = {
+      publicId: this.state.publicId[id]
+    };
+    axios.post("/api/image/blogpost", body).then(response => {
+      console.log("idASDFK;OSDFLK;SDJFLK;J", id);
+      let newImageUrl = this.state.image_url;
+      let newCloudinaryURL = this.state.cloudinaryUrl;
+      let newPublicId = this.state.publicId;
+      let newFile = this.state.files;
+
+      newImageUrl.splice(id, 1);
+      newCloudinaryURL.splice(id, 1);
+      newPublicId.splice(id, 1);
+      newFile.splice(id, 1);
+
+      this.setState({
+        image_url: newImageUrl,
+        cloudinaryUrl: newCloudinaryURL,
+        publicId: newPublicId,
+        files: newFile
+      });
+      console.log(response, "res from THE CLOUDDDDD");
+    });
+  };
+
   handleImageUpload(files) {
     console.log(files, "files uploading");
     const eachFileUrl = files.forEach(file => {
@@ -62,40 +94,43 @@ class BlogFormCreate extends Component {
         }
         if (response.body) {
           let image_url = this.state.image_url.concat(),
-            cloudinaryUrl = this.state.cloudinaryUrl.concat();
+            cloudinaryUrl = this.state.cloudinaryUrl.concat(),
+            publicId = this.state.publicId.concat();
 
           image_url.push(response.body.secure_url);
           cloudinaryUrl.push(response.body.secure_url);
+          publicId.push(response.body.public_id);
 
           this.setState({
             ...this.state,
             image_url,
-            cloudinaryUrl
+            cloudinaryUrl,
+            publicId
           });
         }
       });
     });
   }
 
-  componentWillUnmount() {
-    this.state.files.forEach(file => URL.revokeObjectURL(file.preview));
-  }
-
-  clear = () => {
-    this.setState({ files: [], cloudinaryUrl: "" });
-  };
+  // componentWillUnmount() {
+  //   this.state.files.forEach(file => URL.revokeObjectURL(file.preview));
+  // }
 
   render() {
     console.log("state", this.state);
     const { date, title, image_url, blurb, itinerary } = this.state;
     const { createBlogPost, user } = this.props;
+    const { files, cloudinaryUrl, publicId } = this.state;
 
-    const { files } = this.state;
-    const thumbs = files.map(file => (
-      <div className="thumb">
-        <img src={file.preview} width={200} alt="preview" />
-      </div>
-    ));
+    console.log("SEE", image_url, cloudinaryUrl, publicId, files);
+    const thumbs = files.map((file, i) => {
+      return (
+        <div className="thumb">
+          <img src={file.preview} width={200} alt="preview" id={i} />
+          <button onClick={() => this.clear(i)}>X</button>
+        </div>
+      );
+    });
 
     return (
       <div className="blogform-container">
@@ -103,7 +138,9 @@ class BlogFormCreate extends Component {
           <h2>Create</h2>
         </div>
         <form className="form" onSubmit={event => this.onSubmit(event)}>
-          {moment().format("MMMM Do YYYY")}
+          <p value={date} onChange={event => this.handleChange(event)}>
+            {moment().format("MMMM Do YYYY h:mm:ss")}
+          </p>
           <br />
 
           <div className="title-field">
@@ -138,7 +175,7 @@ class BlogFormCreate extends Component {
 
           <label>Photos:</label>
           <div>
-            <Dropzone onDrop={this.onDrop.bind(this)} accept="image/*" multiple>
+            <Dropzone onDrop={this.onDrop} accept="image/*" multiple>
               {({ getRootProps, getInputProps }) => (
                 <div {...getRootProps()}>
                   <input {...getInputProps()} />

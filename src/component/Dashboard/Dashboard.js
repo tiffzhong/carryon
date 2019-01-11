@@ -4,6 +4,7 @@ import BlogPost from "../BlogPost/BlogPost";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getAllBlogposts } from "../../ducks/blogpostReducer";
+import Notifications from "./Notifications";
 
 class Dashboard extends Component {
   constructor(props) {
@@ -15,13 +16,16 @@ class Dashboard extends Component {
   }
 
   componentDidMount() {
+    this.grabUser();
+  }
+
+  grabUser = () => {
     this.props.getAllBlogposts().then(post => {
       this.setState({
         posts: this.props.allBlogposts
       });
     });
-  }
-
+  };
   render() {
     console.log(this.props.user, "dashboard props");
 
@@ -42,7 +46,11 @@ class Dashboard extends Component {
         return (
           <div className="dashboard-container">
             <div className="blogpost-container">
-              <BlogPost {...onlyMyBlogposts} id={onlyMyBlogposts.id} />
+              <BlogPost
+                {...onlyMyBlogposts}
+                auth={this.props.user.auth0_id}
+                id={onlyMyBlogposts.id}
+              />
             </div>
           </div>
         );
@@ -82,8 +90,9 @@ class Dashboard extends Component {
             {displayBlogPosts}
           </div>
 
-          <div className="your-feed">
+          <div className="your-notifications">
             <h4>Notifications</h4>
+            <Notifications />
           </div>
         </div>
       </div>
