@@ -41,11 +41,13 @@ app.get("/auth/callback", authController.login);
 app.get("/auth/user-data", authController.getUser);
 app.post("/auth/logout", authController.logout);
 
-//Profile Tab
+//Profile
 app.get("/api/abquote/:id", profileController.readQuotes);
+app.get("/api/profile/:id", profileController.getProfile);
+app.post("/api/profile", profileController.createProfile);
+// app.put("/api/profile/:id", profileController.editProfile);
 
 //Dashboard Tab for Blogposts
-// app.get("/api/blogposts/:id", blogpostContoller.getMyBlogPosts);
 app.get("/api/blogposts", blogpostContoller.getAllBlogPosts);
 app.get("/api/blogpost/:id", blogpostContoller.getBlogPost);
 app.post("/api/blogpost", blogpostContoller.createBlogPost);

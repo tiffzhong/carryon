@@ -1,6 +1,7 @@
 .profile-banner {
   background-image: url("./north.jpg");
   background-size: cover;
+  z-index: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,6 +13,20 @@
   font-size: 45px;
 }
 
+.profile-banner2 {
+  background-image: url("./deer.jpg");
+  background-size: cover;
+  z-index: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto 0px;
+  padding: 20px;
+  width: 100%;
+  min-height: 250px;
+  color: white;
+  font-size: 45px;
+}
 .profile-picture img {
   height: 150px;
   width: 150px;

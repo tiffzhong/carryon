@@ -49,6 +49,7 @@ class Header extends Component {
   };
 
   render() {
+    console.log("LEMMESEEEEE", this.props);
     const { user } = this.props;
     return (
       <header>
@@ -63,7 +64,7 @@ class Header extends Component {
                 <button onClick={this.toggle}>☰</button>
               </div>
               <ul className={this.state.toggle ? "show" : "hide"}>
-                <Link to="/profile">
+                <Link to={`/profile/${user.id}`}>
                   <li>Profile</li>
                 </Link>
                 <Link to="/dashboard">

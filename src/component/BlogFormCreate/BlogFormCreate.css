@@ -1,6 +1,7 @@
 .blogform-banner {
   background-image: url("./hava.jpg");
   color: white;
+  z-index: 0;
   font-size: 45px;
   background-size: cover;
   display: flex;

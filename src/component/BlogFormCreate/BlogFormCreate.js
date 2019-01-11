@@ -50,15 +50,10 @@ class BlogFormCreate extends Component {
   };
 
   clear = id => {
-    // image_url,
-    // cloudinaryUrl,
-    // publicId
-    console.log(id, "IDLKSAJDLKFJASLF");
     let body = {
       publicId: this.state.publicId[id]
     };
     axios.post("/api/image/blogpost", body).then(response => {
-      console.log("idASDFK;OSDFLK;SDJFLK;J", id);
       let newImageUrl = this.state.image_url;
       let newCloudinaryURL = this.state.cloudinaryUrl;
       let newPublicId = this.state.publicId;
@@ -112,9 +107,9 @@ class BlogFormCreate extends Component {
     });
   }
 
-  // componentWillUnmount() {
-  //   this.state.files.forEach(file => URL.revokeObjectURL(file.preview));
-  // }
+  componentWillUnmount() {
+    this.state.files.forEach(file => URL.revokeObjectURL(file.preview));
+  }
 
   render() {
     console.log("state", this.state);
@@ -141,7 +136,6 @@ class BlogFormCreate extends Component {
           <p value={date} onChange={event => this.handleChange(event)}>
             {moment().format("MMMM Do YYYY h:mm:ss")}
           </p>
-          <br />
 
           <div className="title-field">
             <input

@@ -70,7 +70,7 @@ header button {
   }
 
   header ul {
-    position: fixed;
+    position: absolute;
     left: 0;
     flex-direction: column;
     width: 100%;
@@ -78,7 +78,7 @@ header button {
     transition: padding-top 0.3s, padding-bottom 0.3s;
     /* transition: 0.3s; */
     /* makes the menu bar move down */
-    z-index: -1;
+    z-index: 5;
     /* comes from under the header bar */
   }
   header li {

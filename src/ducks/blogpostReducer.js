@@ -20,9 +20,6 @@ export default function blogpostReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case SET_USER:
       return { ...state, user: action.payload };
-    // case `${GET_MY_BLOGPOSTS}_FULFILLED`:
-    //   console.log("action.payload get_my_blogposts", action.payload);
-    //   return { ...state, myBlogposts: action.payload };
     case `${GET_ALL_BLOGPOSTS}_FULFILLED`:
       return { ...state, allBlogposts: action.payload };
     case GET_BLOGPOST:
@@ -40,27 +37,11 @@ export default function blogpostReducer(state = INITIAL_STATE, action) {
 
 //dispatching actions
 export function setUser(user) {
-  console.log(user, "this is set user");
   return {
     type: SET_USER,
     payload: user
   };
 }
-
-// export function getMyBlogposts(notId) {
-//   return {
-//     type: GET_MY_BLOGPOSTS,
-//     payload: axios
-//       .get(`/api/blogposts/${notId}`)
-//       .then(res => {
-//         console.log(res.data, "NOIDIDIDIDID");
-//         return res.data;
-//       })
-//       .catch(error => console.log("Error in getMyBlogposts", error))
-//   };
-// }
-
-// INITIAL_STATE.user != null ? INITIAL_STATE.user.auth0_id : 0
 
 export function getAllBlogposts() {
   return {
@@ -80,14 +61,6 @@ export function getOne(id) {
     payload: id
   };
 }
-
-// date,
-// title,
-// image_url,
-// blurb,
-// itinerary,
-// user.name,
-// user.auth0_id
 
 export function createBlogPost(
   date,
@@ -125,15 +98,7 @@ export function deleteBlogPost(id) {
   };
 }
 
-export function editBlogPost(
-  date,
-  title,
-  image_url,
-  blurb,
-  itinerary,
-  user,
-  id
-) {
+export function editBlogPost(date, title, image_url, blurb, itinerary, id) {
   return {
     type: EDIT_BLOGPOST,
     payload: axios
@@ -142,9 +107,7 @@ export function editBlogPost(
         title,
         image_url,
         blurb,
-        itinerary,
-        user,
-        id
+        itinerary
       })
       .then(() => (window.location.pathname = "/dashboard"))
       .catch(error => console.log("error in editing blogpost", error))

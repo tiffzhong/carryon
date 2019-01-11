@@ -8,25 +8,6 @@ cloudinary.config({
 });
 
 module.exports = {
-  //USERS BLOGPOSTS
-  // getMyBlogPosts: (req, res) => {
-  //   const database = req.app.get("db");
-  //   const { auth0_id } = req.params;
-  //   console.log(auth0_id, "id we are querererereygin");
-  //   database
-  //     .get_my_blogposts(auth0_id)
-  //     .then(blogposts => {
-  //       console.log(auth0_id, blogposts, "-----------------");
-  //       res.status(200).send(blogposts);
-  //     })
-  //     .catch(error => {
-  //       res
-  //         .status(500)
-  //         .send({ errorMessage: "Something wrong w get blogposts" });
-  //       console.log(error);
-  //     });
-  // },
-
   //GET EVERYONES IN THE DATA BASE
   getAllBlogPosts: (req, res) => {
     const database = req.app.get("db");
@@ -46,6 +27,7 @@ module.exports = {
   getBlogPost: (req, res) => {
     const database = req.app.get("db");
     let { id } = req.params;
+    console.log("showmeiD", id);
     database
       .get_blogpost(id)
       .then(blogpost => {
@@ -81,24 +63,25 @@ module.exports = {
       ])
       .then(() => res.status(200).send())
       .catch(err => {
-        console.log("error in creat blogpost", err);
+        console.log("error in create blogpost", err);
       });
   },
   updateBlogPost: (req, res) => {
     const database = req.app.get("db");
-    let { user_id, date, title, image_url, blurb, itinerary } = req.body;
+    let { date, title, image_url, blurb, itinerary } = req.body;
     let { id } = req.params;
+    console.log(
+      date,
+      title,
+      image_url,
+      blurb,
+      itinerary,
+      id,
+      "$$$$$$$$$$$$$$$$$$$$$$$$$$"
+    );
 
     database
-      .update_blogpost([
-        id,
-        user_id,
-        date,
-        title,
-        `{${image_url}}`,
-        blurb,
-        itinerary
-      ])
+      .update_blogpost([id, date, title, `{${image_url}}`, blurb, itinerary])
       .then(() => res.status(200).send())
       .catch(error => console.log("Error in updating blogpost", error));
   },

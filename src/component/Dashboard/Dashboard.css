@@ -1,5 +1,6 @@
 .dashboard-banner {
   background-image: url("./tori.jpg");
+  z-index: 0;
   color: white;
   font-size: 45px;
   background-size: cover;
@@ -23,6 +24,7 @@
 }
 
 .dashboard-container {
+  display: flex;
   justify-content: flex-start;
   align-items: flex-start;
 }

@@ -7,7 +7,7 @@ import moment from "moment";
 
 class BlogPost extends Component {
   render() {
-    console.log(this.props);
+    console.log("%%%%%%%%%%%%%%%%%%%%", this.props);
     let {
       date,
       title,
@@ -19,7 +19,6 @@ class BlogPost extends Component {
       user
     } = this.props;
     let { deleteBlogPost, auth } = this.props;
-    console.log("JUST ID", auth, name, user);
 
     const allImages = image_url.map(imageId => {
       console.log(imageId, "ASLDKFJ;ASLKDJ;LSKDF;SDF");

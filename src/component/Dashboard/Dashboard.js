@@ -34,7 +34,7 @@ class Dashboard extends Component {
     let displayMyBlogPosts =
       allBlogposts.length > 0 &&
       allBlogposts.filter(myBlogpost => {
-        console.log("FILTERRRR returning asldkfaksl;d", myBlogpost);
+        console.log("FILTERRRR returning asldkfaksl;d", myBlogpost.auth0_id);
         return myBlogpost.auth0_id === this.props.user.auth0_id;
       });
 
@@ -69,33 +69,36 @@ class Dashboard extends Component {
         );
       });
     return (
-      <div className="dashboard-container">
+      <>
         <div className="dashboard-banner">
           <h2>Dashboard</h2>
         </div>
-        <div className="create-new">
-          <Link to="/new">
-            <button className="add-new">Create a new post</button>
-          </Link>
+
+        <div className="dashboard-container">
+          <div className="create-new">
+            <Link to="/new">
+              <button className="add-new">Create a new post</button>
+            </Link>
+          </div>
+
+          <div className="blogposts-container">
+            <div className="your-trips">
+              <h4>Your Trips</h4>
+              {allOfMyBlogposts}
+            </div>
+
+            <div className="your-feed">
+              <h4>Your Feed</h4>
+              {displayBlogPosts}
+            </div>
+
+            <div className="your-notifications">
+              <h4>Notifications</h4>
+              <Notifications />
+            </div>
+          </div>
         </div>
-
-        <div className="blogposts-container">
-          <div className="your-trips">
-            <h4>Your Trips</h4>
-            {allOfMyBlogposts}
-          </div>
-
-          <div className="your-feed">
-            <h4>Your Feed</h4>
-            {displayBlogPosts}
-          </div>
-
-          <div className="your-notifications">
-            <h4>Notifications</h4>
-            <Notifications />
-          </div>
-        </div>
-      </div>
+      </>
     );
   }
 }

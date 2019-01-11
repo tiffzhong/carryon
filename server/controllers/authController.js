@@ -32,8 +32,10 @@ module.exports = {
       const user = response.data;
       const db = req.app.get("db");
       return db.get_user(user.sub).then(users => {
+        console.log("user info", users);
         if (users.length) {
           req.session.user = {
+            id: users[0].id,
             name: users[0].name,
             email: users[0].email,
             picture: users[0].picture,

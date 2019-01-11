@@ -1,8 +1,8 @@
 update blogposts
-set user_id=$2, 
- date = $3,
- title = $4, 
- image_url=$5, 
- blurb=$6, 
- itinerary=$7
+set 
+ date = $2,
+ title = $3, 
+ image_url=$4, 
+ blurb=$5, 
+ itinerary=$6
 where id = $1;
