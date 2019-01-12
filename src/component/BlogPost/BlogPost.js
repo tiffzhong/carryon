@@ -32,7 +32,9 @@ class BlogPost extends Component {
             {date ? moment(date).format("MMMM Do YYYY h:mm:ss a") : "loading"}
           </p>
 
-          <h2>{title ? title : "loading"}</h2>
+          <Link to={`/post/${id}`}>
+            <h2>{title ? title : "loading"}</h2>
+          </Link>
           <h6>by: {name ? name : "loading"}</h6>
         </div>
         <div className="blurb-container">

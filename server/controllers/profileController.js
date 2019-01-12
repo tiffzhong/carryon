@@ -9,12 +9,20 @@ module.exports = {
   getProfile: (req, res) => {
     const database = req.app.get("db");
     let { id } = req.params;
+    // let { auth0_id } = req.params;
     console.log("SHOW REQ.Param", req.params);
     database
       .profile_all_info([id])
       .then(profile => {
-        console.log(profile, "PROFILE");
-        res.status(200).send(profile[0]);
+        if (profile.length > 0) {
+          res.status(200).send(profile[0]);
+        } else {
+          console.log("the good shit is running", id);
+          database.bad_user([id]).then(user => {
+            console.log(user, "from get user");
+            res.status(200).send(user[0]);
+          });
+        }
       })
       .catch(error => {
         console.log("error in get_profile", error);
@@ -23,11 +31,11 @@ module.exports = {
 
   createProfile: (req, res) => {
     const database = req.app.get("db");
-    let { about_me, twitter, instagram } = req.body;
-    console.log(about_me, twitter, instagram, "@@@@@@@@@@@@@@");
+    let { city, about, twitter, instagram } = req.body;
+    console.log(city, about, twitter, instagram, "@@@@@@@@@@@@@@");
 
     database
-      .profile_create([about_me, twitter, instagram])
+      .profile_create([city, about, twitter, instagram])
       .then(() => res.status(200).send())
       .catch(error => {
         console.log("error in profile_create", error);

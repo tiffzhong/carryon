@@ -29,7 +29,6 @@ class BlogFormEdit extends Component {
   }
 
   componentDidMount() {
-    console.log("POSTID#################", this.props);
     if (this.props.match.params.postid) {
       axios
         .get(`/api/blogpost/${this.props.match.params.postid}`)
@@ -47,7 +46,6 @@ class BlogFormEdit extends Component {
             blurb: this.props.blogpost.blurb,
             itinerary: this.props.blogpost.itinerary
           });
-          console.log("hellllllooooooo", this.props.blogpost);
         })
         .catch(error => console.log("error in getting 1", error));
     }

@@ -46,6 +46,7 @@ module.exports = {
           return db
             .create_user([user.name, user.email, user.picture, user.sub])
             .then(newUsers => {
+              console.log();
               req.session.user = newUsers[0];
               res.redirect("/dashboard");
             });

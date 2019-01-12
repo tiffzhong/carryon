@@ -1,13 +1,11 @@
 import axios from "axios";
 const INITIAL_STATE = {
   user: null,
-  //  myBlogposts: [],
   allBlogposts: [],
   blogpost: []
 };
 
 const SET_USER = "SET_USER";
-//const GET_MY_BLOGPOSTS = "GET_MY_BLOGPOSTS";
 const GET_ALL_BLOGPOSTS = "GET_ALL_BLOGPOSTS";
 const GET_BLOGPOST = "GET_BLOGPOST";
 

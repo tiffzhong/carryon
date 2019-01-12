@@ -3,7 +3,7 @@ import "./Profile.css";
 import axios from "axios";
 import { connect } from "react-redux";
 import { setUser } from "../../ducks/blogpostReducer";
-import { Link } from "react-router-dom";
+import ProfileModal from "./ProfileModal";
 
 class Profile extends Component {
   constructor(props) {
@@ -12,12 +12,22 @@ class Profile extends Component {
     this.state = {
       name: "",
       picture: "",
-      aboutMe: "",
+      city: "",
+      about: "",
       twitter: "",
       instagram: "",
-      quote: []
+      quote: [],
+      id: null,
+      display: false
     };
   }
+  showModal = () => {
+    this.setState({ display: true });
+  };
+  hideModal = () => {
+    this.setState({ display: false });
+  };
+
   componentDidMount() {
     this.setProfile();
     this.newQuote();
@@ -39,27 +49,34 @@ class Profile extends Component {
     axios.get(`/api/profile/${this.props.match.params.id}`).then(res => {
       console.log("setprofile response data", res.data);
       this.setState({
+        id: res.data.id,
         name: res.data.name,
         picture: res.data.picture,
-        aboutMe: res.data.about_me,
+        city: res.data.city,
+        about: res.data.about,
         twitter: res.data.twitter,
         instagram: res.data.instagram
       });
     });
   };
 
-  createProfile = (about_me, twitter, instagram) => {
-    axios
-      .post("/api/profile", { about_me, twitter, instagram })
-      .then(() => (window.location.pathname = "/profile"))
-      .catch(error => error, "error in createprofile");
-  };
-
   render() {
     const { user } = this.props;
-    console.log(this.props.match, "MATCHHH");
+    console.log(this.props, "i wanna see");
+    const profileInformation = (
+      <ProfileModal
+        display={this.state.display}
+        city={this.state.city}
+        about={this.state.about}
+        twitter={this.state.twitter}
+        instagram={this.state.instagram}
+        hideModal={this.hideModal}
+      />
+    );
     return (
       <>
+        {this.state.display ? profileInformation : null}
+
         <div className="profile-banner">
           <h2>Profile</h2>
         </div>
@@ -68,20 +85,38 @@ class Profile extends Component {
             <div className="profile-picture">
               <img src={this.state.picture} alt="provided by auth0" />
               <h1>Welcome back, {this.state.name}!</h1>
-              <h5>About Me: {this.state.aboutMe}</h5>
-              <h6>Twitter: {this.state.twitter}</h6>
-              <h6>instagram: {this.state.instagram}</h6>
+              <h5>
+                <button onClick={this.showModal}>+</button>
+                {this.state.city ? this.state.city : "Current City"}
+                <br />
+                About Me:
+                {this.state.about
+                  ? this.state.about
+                  : "Write some details about yourself"}
+              </h5>
+              <h6>
+                Twitter:
+                {this.state.twitter ? this.state.twitter : "Add Twitter"}
+              </h6>
+              <h6>
+                Instagram:
+                {this.state.instagram ? this.state.instagram : "Add Instagram"}
+              </h6>
+
+              {/* <Link to={`/editprofile/${this.props.match.params.id}`}>
+                <button>Create Profile</button>
+              </Link>
               <Link to={`/editprofile/${this.props.match.params.id}`}>
                 <button>Edit Profile</button>
-              </Link>
+              </Link> */}
             </div>
           ) : (
             <div className="profile-picture">
-              <img
-                src="https://ebus.ca/wp-content/uploads/2017/08/profile-placeholder.jpg"
-                alt=""
-              />
-              <h2>Welcome! Please Sign In to see your profile</h2>
+              <img src={this.state.picture} alt="provided by auth0" />
+              <h1>{this.state.name}</h1>
+              <h5>About Me: {this.state.about}</h5>
+              <h6>Twitter: {this.state.twitter}</h6>
+              <h6>instagram: {this.state.instagram}</h6>
             </div>
           )}
 
