@@ -76,7 +76,6 @@ class Profile extends Component {
     return (
       <>
         {this.state.display ? profileInformation : null}
-
         <div className="profile-banner">
           <h2>Profile</h2>
         </div>
@@ -85,8 +84,10 @@ class Profile extends Component {
             <div className="profile-picture">
               <img src={this.state.picture} alt="provided by auth0" />
               <h1>Welcome back, {this.state.name}!</h1>
+              <button type="button" onClick={this.showModal}>
+                +
+              </button>
               <h5>
-                <button onClick={this.showModal}>+</button>
                 {this.state.city ? this.state.city : "Current City"}
                 <br />
                 About Me:

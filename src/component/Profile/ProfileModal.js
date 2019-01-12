@@ -9,15 +9,14 @@ class ProfileModal extends Component {
       city: "",
       about: "",
       twitter: "",
-      instagram: "",
-      display: false
+      instagram: ""
     };
   }
 
   createProfile = () => {
     const { city, about, twitter, instagram } = this.props;
     axios
-      .post("/api/profile", { about, twitter, instagram })
+      .post("/api/profile", { city, about, twitter, instagram })
       .then(res => {})
       .catch(error => error, "error in createprofile");
   };
@@ -31,10 +30,14 @@ class ProfileModal extends Component {
 
   render() {
     const { city, about, twitter, instagram } = this.props;
+    const showHideClassName = this.props.display
+      ? "modal display-block"
+      : "modal display-none";
+
     return (
       <>
-        <div className="profile-modal">
-          <form onSubmit={event => this.onSubmit(event)}>
+        <div className={showHideClassName}>
+          <form className="modal-form" onSubmit={event => this.onSubmit(event)}>
             Current City:{" "}
             <input
               placeholder="Add Current City"
@@ -67,13 +70,21 @@ class ProfileModal extends Component {
               type="text"
               value={instagram}
             />
+            <button
+              onClick={() => {
+                this.createProfile(city, about, twitter, instagram);
+                this.editProfile();
+              }}
+            >
+              Save Changes
+            </button>
+            <button
+              className="modal-close-button"
+              onClick={this.props.hideModal}
+            >
+              X
+            </button>
           </form>
-          <button onClick={() => this.createProfile(about, twitter, instagram)}>
-            Save Changes
-          </button>
-          <button className="modal-close-button" onClick={this.props.hideModal}>
-            X
-          </button>
         </div>
       </>
     );

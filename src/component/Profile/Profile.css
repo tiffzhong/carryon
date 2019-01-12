@@ -18,3 +18,29 @@
   width: 150px;
   border-radius: 30%;
 }
+
+.modal {
+  position: fixed;
+  top: 0;
+  width: 60%;
+  padding: 10px;
+}
+
+.modal-form {
+  position: fixed;
+  background: rgba(56, 56, 56, 0.432);
+  border: 2px solid black;
+  width: 80%;
+  height: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.display-block {
+  display: block;
+}
+
+.display-none {
+  display: none;
+}
