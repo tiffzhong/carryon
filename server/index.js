@@ -44,8 +44,8 @@ app.post("/auth/logout", authController.logout);
 //Profile
 app.get("/api/abquote/:id", profileController.readQuotes);
 app.get("/api/profile/:id", profileController.getProfile);
-app.post("/api/profile", profileController.createProfile);
-app.put("/api/profile", profileController.editProfile);
+// app.post("/api/profile", profileController.createProfile);
+app.put("/api/profile/:user_id", profileController.editProfile);
 
 //Dashboard Tab for Blogposts
 app.get("/api/blogposts", blogpostContoller.getAllBlogPosts);

@@ -1,3 +1,6 @@
+.profile-page {
+  background-color: rgb(240, 240, 240);
+}
 .profile-banner {
   background-image: url("./north.jpg");
   background-size: cover;
@@ -21,9 +24,24 @@
   align-items: center;
   flex-wrap: wrap;
   flex-direction: column;
-  width: 70%;
+  width: 100%;
 }
-
+.greeting {
+  justify-content: center;
+}
+.huge-container {
+  width: 80%;
+}
+.full-profile {
+  display: flex;
+  width: 100%;
+}
+.profile-left-side {
+  width: 50%;
+}
+.profile-right-side {
+  width: 30%;
+}
 .image-and-city {
   display: flex;
   justify-content: flex-start;
@@ -40,7 +58,7 @@
   border-radius: 30%;
 }
 .about-me {
-  width: 100%;
+  width: 80%;
   font-size: 18px;
 }
 button {
@@ -50,25 +68,118 @@ button {
 .modal {
   position: fixed;
   top: 0;
-  width: 60%;
-  padding: 10px;
+  padding: 20px;
 }
 
 .modal-form {
   position: fixed;
-  background: rgba(56, 56, 56, 0.432);
+  background: white;
   border: 2px solid black;
-  width: 80%;
+  width: 70%;
   height: auto;
   top: 50%;
   left: 50%;
+  padding: 10px;
   transform: translate(-50%, -50%);
 }
 
+.modal-form input {
+  font-size: 14px;
+  color: rgb(56, 56, 56);
+  height: 20px;
+  width: 95%;
+  border: 1px solid rgb(99, 99, 99);
+  padding: 5px;
+  margin: 5px auto;
+}
+.modal-form textarea {
+  height: 100px;
+  font-size: 12px;
+  width: 95%;
+  border: 1px solid rgb(99, 99, 99);
+}
+
+.cancel-button {
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.cancel-button button {
+  width: 100px;
+  border-radius: 5%;
+  border: 1px solid #7fb25b;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.35);
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0px auto;
+}
+
+.create-edit {
+  justify-content: center;
+  align-items: center;
+  /* padding: 10px; */
+}
+.create-edit button {
+  width: 100px;
+  border-radius: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  background-color: #7fb25b;
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.35);
+}
 .display-block {
   display: block;
 }
 
 .display-none {
   display: none;
+}
+.ab-container {
+  padding: 10px;
+  width: 80%;
+
+  font-size: 13px;
+  font-weight: bold;
+}
+.his-quote {
+  font-size: 13px;
+  font-weight: bold;
+}
+.his-name {
+  font-size: 10px;
+}
+@media (max-width: 700px) {
+  .profile-container {
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 90%;
+  }
+  .huge-container {
+    width: 90%;
+    flex-wrap: wrap;
+  }
+  .full-profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .profile-left-side {
+    width: 70%;
+  }
+  .profile-right-side {
+    width: 70%;
+  }
 }

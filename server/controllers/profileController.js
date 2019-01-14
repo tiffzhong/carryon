@@ -28,27 +28,29 @@ module.exports = {
       });
   },
 
-  createProfile: (req, res) => {
-    const database = req.app.get("db");
-    let { city, about, twitter, instagram } = req.body;
-    let { user_id } = req.params;
-    console.log(req.body, "BODDDYYY");
-    database
-      .profile_create([city, about, twitter, instagram])
-      .then(() => res.status(200).send())
-      .catch(error => {
-        console.log("error in profile_create", error);
-      });
-  },
+  // createProfile: (req, res) => {
+  //   const database = req.app.get("db");
+  //   let { city, about, twitter, instagram } = req.body;
+  //   let { user_id } = req.params;
+  //   console.log(req.body, "BODDDYYY");
+  //   database
+  //     .profile_create([city, about, twitter, instagram])
+  //     .then(() => res.status(200).send())
+  //     .catch(error => {
+  //       console.log("error in profile_create", error);
+  //     });
+  // },
 
   editProfile: (req, res) => {
     const database = req.app.get("db");
     let { city, about, twitter, instagram } = req.body;
     const { user_id } = req.params;
-    console.log(city, about, twitter, instagram, "$$$$$$$");
     database
       .profile_update([user_id, city, about, twitter, instagram])
-      .then(() => res.status(200).send())
+      .then(() => {
+        res.status(200).send();
+      })
+
       .catch(error => console.log("Error in profile_update", error));
   }
 };

@@ -46,7 +46,12 @@ module.exports = {
           return db
             .create_user([user.name, user.email, user.picture, user.sub])
             .then(newUsers => {
-              console.log();
+              db.profile_create([
+                "Add your current city",
+                "Write some details about yourself",
+                "Add Twitter",
+                "Add Instagram"
+              ]);
               req.session.user = newUsers[0];
               res.redirect("/dashboard");
             });

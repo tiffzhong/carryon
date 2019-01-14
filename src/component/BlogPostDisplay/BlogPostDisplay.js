@@ -8,7 +8,7 @@ import moment from "moment";
 class BlogPostDisplay extends Component {
   render() {
     let { date, title, image_url, name, id, user } = this.props;
-    console.log(this.props.auth, "show me auth");
+
     let { deleteBlogPost, auth } = this.props;
 
     const firstImage = image_url.map(imageOne => {
@@ -18,26 +18,24 @@ class BlogPostDisplay extends Component {
       <>
         <div className="display-container">
           <div className="display-date">
-            <p>
-              {date ? moment(date).format("MMMM Do YYYY h:mm:ss a") : "loading"}
-            </p>
+            {date ? moment(date).format("MMMM Do YYYY h:mm:ss a") : "loading"}
           </div>
           <div className="display-title">
-            <Link to={`/post/${id}`}>
-              <h2>{title ? title : "loading"}</h2>
-            </Link>
+            <Link to={`/post/${id}`}>{title ? title : "loading"}</Link>
           </div>
-          <div className="display-user">by: {name ? name : "loading"}</div>
+          <div className="display-user">
+            by: <Link to={`/profile/${id}`}>{name ? name : "loading"}</Link>
+          </div>
           <div className="display-image">
             {firstImage[0] ? firstImage[0] : "loading"}
           </div>
           {user.auth0_id === auth ? (
-            <div>
+            <div className="buttons-container1">
               <button
                 className="delete-button"
                 onClick={() => deleteBlogPost(id)}
               >
-                delete
+                Delete
               </button>
               <Link to={`/blogpost/${id}`}>
                 <button className="edit-button">Edit</button>
@@ -45,6 +43,7 @@ class BlogPostDisplay extends Component {
             </div>
           ) : null}
         </div>
+        ---
       </>
     );
   }

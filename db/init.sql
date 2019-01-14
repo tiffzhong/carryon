@@ -57,3 +57,20 @@ values
 
 select * from blogposts order by date desc;
 select * from blogposts where auth0_id='github|39362114' ORDER BY date desc;
+
+
+drop table if exists users_info;
+
+create table users_info(
+user_id serial primary key,
+city text,
+about text,
+twitter text,
+instagram text
+);
+
+insert into users_info(user_id, city, about, twitter, instagram)
+values(1, 'San Francisco', 'Hello my name is Tiffany and I love to travel', 'twitter.com/tiffz__', 'instagram.com/tiffz_')
+
+
+select * from users_info;

@@ -153,11 +153,12 @@ class BlogFormEdit extends Component {
         <div className="blogform-banner1">
           <h2>Edit</h2>
         </div>
-        <div className="blogform-container">
-          <div className="blogform">
+
+        <div className="edit-blogform-container">
+          <div className="edit-blogform">
             <p>{moment().format("MMMM Do YYYY h:mm:ss")}</p>
-            <label>Title</label>
-            <div className="title-field">
+
+            <div className="edit-title-field">
               <input
                 name="title"
                 type="text"
@@ -165,7 +166,8 @@ class BlogFormEdit extends Component {
                 onChange={event => this.handleChange(event)}
               />
             </div>
-            <div className="blurb-field">
+
+            <div className="edit-blurb-field">
               <textarea
                 placeholder="How was your trip?"
                 name="blurb"
@@ -174,7 +176,8 @@ class BlogFormEdit extends Component {
                 onChange={event => this.handleChange(event)}
               />
             </div>
-            <div className="itinerary-field">
+
+            <div className="edit-itinerary-field">
               <textarea
                 placeholder="itinerary"
                 name="itinerary"
@@ -183,19 +186,20 @@ class BlogFormEdit extends Component {
                 onChange={event => this.handleChange(event)}
               />
             </div>
-            <label>Photos:</label>
-            <div>
+
+            <div className="photo-area-edit">
               <Dropzone onDrop={this.onDrop} accept="image/*" multiple>
                 {({ getRootProps, getInputProps }) => (
                   <div {...getRootProps()}>
                     <input {...getInputProps()} />
-                    <p>Drop files here</p>
+                    <span>Click or Drop Your Photos Here!</span>
                   </div>
                 )}
               </Dropzone>
-
               {thumbs}
             </div>
+          </div>
+          <div className="post-button-edit">
             <Link to="/dashboard">
               <button
                 onClick={() =>

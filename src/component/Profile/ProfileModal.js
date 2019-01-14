@@ -22,16 +22,22 @@ class ProfileModal extends Component {
     });
   }
 
-  createProfile = () => {
-    const { city, about, twitter, instagram } = this.props;
+  // createProfile = () => {
+  //   const { city, about, twitter, instagram } = this.props;
+  //   axios
+  //     .post("/api/profile", { city, about, twitter, instagram })
+  //     .then(res => {})
+  //     .catch(error => error, "error in createprofile");
+  // };
+  editProfile = (user_id, city, about, twitter, instagram) => {
+    console.log(this.props.user_id, "userid");
     axios
-      .post("/api/profile", { city, about, twitter, instagram })
-      .then(res => {})
-      .catch(error => error, "error in createprofile");
-  };
-  editProfile = (city, about, twitter, instagram) => {
-    axios
-      .put("/api/profile", { city, about, twitter, instagram })
+      .put(`/api/profile/${this.props.user_id}`, {
+        city: this.state.city,
+        about: this.state.about,
+        twitter: this.state.twitter,
+        instgram: this.state.instagram
+      })
       .then(() => {})
       .catch(error => error, "error in edit profile");
   };
@@ -46,6 +52,7 @@ class ProfileModal extends Component {
   render() {
     const { city, about, twitter, instagram } = this.props;
     console.log(this.props, "let me see props");
+    console.log(this.state, "let me see stateeeeee");
     const showHideClassName = this.props.display
       ? "modal display-block"
       : "modal display-none";
@@ -54,7 +61,8 @@ class ProfileModal extends Component {
       <>
         <div className={showHideClassName}>
           <form className="modal-form" onSubmit={event => this.onSubmit(event)}>
-            Current City:{" "}
+            Current City:
+            <br />
             <input
               placeholder="Add Current City"
               value={this.state.city}
@@ -62,7 +70,9 @@ class ProfileModal extends Component {
               onChange={event => this.handleChange(event)}
               type="text"
             />
+            <br />
             About Me:
+            <br />
             <textarea
               placeholder="Write some details about yourself"
               name="about"
@@ -70,7 +80,9 @@ class ProfileModal extends Component {
               onChange={event => this.handleChange(event)}
               type="text"
             />
-            Twitter Link:
+            <br />
+            Twitter:
+            <br />
             <input
               placeholder="Add Twitter"
               name="twitter"
@@ -78,7 +90,9 @@ class ProfileModal extends Component {
               type="text"
               value={this.state.twitter}
             />
+            <br />
             Instagram:
+            <br />
             <input
               placeholder="Add Instagram"
               name="instagram"
@@ -86,30 +100,23 @@ class ProfileModal extends Component {
               type="text"
               value={this.state.instagram}
             />
-            <button
-              onClick={() => {
-                this.createProfile(
-                  this.state.city,
-                  this.state.about,
-                  this.state.twitter,
-                  this.state.instagram
-                );
-                this.editProfile(
-                  this.state.city,
-                  this.state.about,
-                  this.state.twitter,
-                  this.state.instagram
-                );
-              }}
-            >
-              Save Changes
-            </button>
-            <button
-              className="modal-close-button"
-              onClick={this.props.hideModal}
-            >
-              X
-            </button>
+            <br />
+            <div className="buttons-container">
+              <div className="cancel-button">
+                <button onClick={this.props.hideModal}>Cancel</button>
+              </div>
+
+              <div className="create-edit">
+                <button
+                  onClick={() => {
+                    this.props.hideModal();
+                    this.editProfile();
+                  }}
+                >
+                  Save
+                </button>
+              </div>
+            </div>
           </form>
         </div>
       </>

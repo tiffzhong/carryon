@@ -1,4 +1,4 @@
-update users_info
+update users_info 
 set
 city = $2,
 about = $3,

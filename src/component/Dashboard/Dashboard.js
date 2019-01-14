@@ -3,7 +3,7 @@ import "./Dashboard.css";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getAllBlogposts } from "../../ducks/blogpostReducer";
-import Notifications from "./Notifications";
+import News from "./News";
 import BlogPostDisplay from "../BlogPostDisplay/BlogPostDisplay";
 
 class Dashboard extends Component {
@@ -69,28 +69,28 @@ class Dashboard extends Component {
           <h2>Dashboard</h2>
         </div>
 
-        <div className="dashboard-container">
-          <div className="create-new">
-            <Link to="/new">
-              <button className="add-new">Create a new post</button>
-            </Link>
+        <div className="create-new">
+          <Link to="/new">
+            <button>New Post</button>
+          </Link>
+        </div>
+        <div>
+          <input placeholder="search for posts" />
+        </div>
+        <div className="ALL-POSTS-CONTAINER">
+          <div className="your-trips">
+            Your Trips
+            {allOfMyBlogposts}
           </div>
 
-          <div className="blogposts-container">
-            <div className="your-trips">
-              <h4>Your Trips</h4>
-              {allOfMyBlogposts}
-            </div>
+          <div className="your-feed">
+            Feed
+            {displayBlogPosts}
+          </div>
 
-            <div className="your-feed">
-              <h4>Your Feed</h4>
-              {displayBlogPosts}
-            </div>
-
-            <div className="your-notifications">
-              <h4>Notifications</h4>
-              <Notifications />
-            </div>
+          <div className="your-news">
+            World Wide News
+            <News />
           </div>
         </div>
       </>

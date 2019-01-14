@@ -12,46 +12,73 @@
   width: 100%;
   min-height: 250px;
 }
-.add-new {
-  background-color: #3b5249;
-  border: 2px solid black;
-  width: 100px;
-  font-weight: bold;
+.create-new {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 5px 0 0 0;
+  margin: 5px 0 0 0;
   height: 30px;
-  color: white;
-  margin: 20px auto;
-  left: 10px;
 }
-
-.dashboard-container {
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
+.create-new button {
+  background-color: #7fb25b;
+  font-weight: bold;
+  font-size: 18px;
+  border-radius: 5%;
+  width: 100%;
+  margin: 10px;
+  padding: 5px;
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.35);
 }
-.blogposts-container {
-  max-width: 70%;
+.ALL-POSTS-CONTAINER {
   display: flex;
+  width: 100%;
+  margin: 0 auto;
 }
 .your-trips {
+  flex-direction: column;
   margin: 10px;
-  display: inline-flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-content: flex-start;
+  padding: 20px;
+  font-weight: bold;
+  font-size: 30px;
 }
 
 .your-feed {
+  flex-direction: column;
   margin: 10px;
-  display: inline-flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-content: flex-start;
+  padding: 20px;
+  font-weight: bold;
+  font-size: 30px;
+}
+.your-news {
+  width: 30%;
+  flex-direction: column;
+  margin: 10px;
+  padding: 20px;
+  font-weight: bold;
+  font-size: 30px;
 }
 
-.your-notifications {
+.news-api img {
+  width: 50%;
+  width: 200px;
+}
+.news-api .article-title {
+  font-size: 20px;
+}
+.news-api .article-date {
+  font-size: 12px;
+}
+
+.news-api .article-description {
+  font-size: 12px;
+}
+.BLAH {
+  display: flex;
+  flex-direction: column;
   margin: 10px;
-  display: inline-flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-content: flex-start;
+  padding: 20px;
+  font-weight: bold;
+  font-size: 30px;
 }

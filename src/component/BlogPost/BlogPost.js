@@ -76,17 +76,17 @@ class BlogPost extends Component {
           <div className="blurb-container">
             <p>{blurb ? blurb : "loading"}</p>
           </div>
-          <div className="images-container">{allImages}</div>
           <div className="itinerary-container">
             <h5>Itinerary: {itinerary ? itinerary : "loading"}</h5>
           </div>
+          <div className="blogpost-images-container">{allImages}</div>
 
           <div>
-            {/* {this.props.blogpost.auth0_id === this.state.auth0_id ? (
+            {this.props.blogpost.auth0_id === this.state.auth0_id ? (
               <Link to={`/blogpost/${this.props.match.params.postid}`}>
                 <button className="edit-button">Edit</button>
               </Link>
-            ) : null} */}
+            ) : null}
           </div>
 
           <button onClick={() => history.goBack()}>Go Back</button>

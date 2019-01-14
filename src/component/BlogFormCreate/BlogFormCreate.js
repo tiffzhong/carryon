@@ -116,8 +116,6 @@ class BlogFormCreate extends Component {
     const { date, title, image_url, blurb, itinerary } = this.state;
     const { createBlogPost, user } = this.props;
     const { files, cloudinaryUrl, publicId } = this.state;
-
-    console.log("SEE", image_url, cloudinaryUrl, publicId, files);
     const thumbs = files.map((file, i) => {
       return (
         <div className="thumb">
@@ -128,78 +126,83 @@ class BlogFormCreate extends Component {
     });
 
     return (
-      <div className="blogform-container">
+      <>
         <div className="blogform-banner">
           <h2>Create</h2>
         </div>
-        <form className="form" onSubmit={event => this.onSubmit(event)}>
-          <p value={date} onChange={event => this.handleChange(event)}>
-            {moment().format("MMMM Do YYYY h:mm:ss")}
-          </p>
+        <div className="create-blogform-container">
+          <div className="create-blogform-form">
+            <form onSubmit={event => this.onSubmit(event)}>
+              <p value={date} onChange={event => this.handleChange(event)}>
+                {moment().format("MMMM Do YYYY h:mm:ss")}
+              </p>
 
-          <div className="title-field">
-            <input
-              placeholder="title"
-              name="title"
-              type="text"
-              value={title}
-              onChange={event => this.handleChange(event)}
-            />
+              <div className="create-title-field">
+                <input
+                  placeholder="Title"
+                  name="title"
+                  type="text"
+                  value={title}
+                  onChange={event => this.handleChange(event)}
+                />
+              </div>
+
+              <div className="create-blurb-field">
+                <textarea
+                  placeholder="How was your trip?"
+                  name="blurb"
+                  type="text"
+                  value={blurb}
+                  onChange={event => this.handleChange(event)}
+                />
+              </div>
+
+              <div className="create-itinerary-field">
+                <textarea
+                  placeholder="Itinerary"
+                  name="itinerary"
+                  type="text"
+                  value={itinerary}
+                  onChange={event => this.handleChange(event)}
+                />
+              </div>
+
+              <div className="photo-area-create">
+                <Dropzone onDrop={this.onDrop} accept="image/*" multiple>
+                  {({ getRootProps, getInputProps }) => (
+                    <div {...getRootProps()}>
+                      <input {...getInputProps()} />
+                      <span>Click or Drop Your Photos Here!</span>
+                    </div>
+                  )}
+                </Dropzone>
+
+                {thumbs}
+              </div>
+
+              <div className="post-button-create">
+                <Link to="/dashboard">
+                  <button
+                    onClick={() =>
+                      createBlogPost(
+                        date,
+                        title,
+                        image_url,
+                        blurb,
+                        itinerary,
+                        user.name,
+                        user.auth0_id
+                      )
+                    }
+                  >
+                    Post
+                  </button>
+                </Link>
+              </div>
+            </form>
           </div>
-
-          <div className="blurb-field">
-            <textarea
-              placeholder="How was your trip?"
-              name="blurb"
-              type="text"
-              value={blurb}
-              onChange={event => this.handleChange(event)}
-            />
-          </div>
-
-          <div className="itinerary-field">
-            <textarea
-              placeholder="itinerary"
-              name="itinerary"
-              type="text"
-              value={itinerary}
-              onChange={event => this.handleChange(event)}
-            />
-          </div>
-
-          <label>Photos:</label>
-          <div>
-            <Dropzone onDrop={this.onDrop} accept="image/*" multiple>
-              {({ getRootProps, getInputProps }) => (
-                <div {...getRootProps()}>
-                  <input {...getInputProps()} />
-                  <p>Drop files here</p>
-                </div>
-              )}
-            </Dropzone>
-
-            {thumbs}
-          </div>
-          <br />
-          <Link to="/dashboard">
-            <button
-              onClick={() =>
-                createBlogPost(
-                  date,
-                  title,
-                  image_url,
-                  blurb,
-                  itinerary,
-                  user.name,
-                  user.auth0_id
-                )
-              }
-            >
-              Post Blogpost
-            </button>
-          </Link>
-        </form>
-      </div>
+        </div>
+      </>
     );
   }
 }

@@ -19,9 +19,11 @@ class Profile extends Component {
       instagram: "",
       quote: [],
       id: null,
-      display: false
+      display: false,
+      posts: []
     };
   }
+
   showModal = () => {
     this.setState({ display: true });
   };
@@ -31,12 +33,20 @@ class Profile extends Component {
 
   componentDidMount() {
     this.setProfile();
+    this.getPostsToShowOnProfile();
     this.newQuote();
     axios.get("/auth/user-data").then(response => {
       this.props.setUser(response.data.user);
     });
   }
 
+  getPostsToShowOnProfile = () => {
+    this.props.getAllBlogposts().then(post => {
+      this.setState({
+        posts: this.props.allBlogposts
+      });
+    });
+  };
   newQuote = id => {
     let randomid = Math.floor(Math.random() * (32 - 1) + 1);
     axios.get(`/api/abquote/${randomid}`).then(res => {
@@ -62,10 +72,12 @@ class Profile extends Component {
   };
 
   render() {
+    console.log(this.state, "STATEUREURUERUERE");
     const { user } = this.props;
 
     const profileInformation = (
       <ProfileModal
+        user_id={this.state.id}
         display={this.state.display}
         city={this.state.city}
         about={this.state.about}
@@ -75,8 +87,8 @@ class Profile extends Component {
       />
     );
 
+    console.log(this.props.allBlogposts, "display PROPSSSSSS");
     let { allBlogposts } = this.props;
-    console.log(allBlogposts, "display");
     let displayMyBlogPosts =
       allBlogposts.length > 0 &&
       allBlogposts.filter(myBlogpost => {
@@ -86,9 +98,8 @@ class Profile extends Component {
     let allOfMyBlogposts =
       displayMyBlogPosts.length > 0 &&
       displayMyBlogPosts.map(onlyMyBlogposts => {
-        console.log(onlyMyBlogposts);
+        return <BlogPostDisplay {...onlyMyBlogposts} />;
       });
-    console.log(allOfMyBlogposts, "ONLY MINE");
     return (
       <div className="profile-page">
         {this.state.display ? profileInformation : null}
@@ -99,44 +110,52 @@ class Profile extends Component {
 
         <div className="profile-container">
           {user ? (
-            <div className="full-profile">
-              <div className="profile-left-side">
-                <div className="greeting">
-                  <h1>Welcome back, {this.state.name}!</h1>
+            <div className="huge-container">
+              <div className="greeting">
+                <h1>Welcome back, {this.state.name}!</h1>
+              </div>
+              <div className="full-profile">
+                <div className="profile-left-side">
+                  <h2>Your Profile:</h2>
+                  <div className="image-and-city">
+                    <img src={this.state.picture} alt="provided by auth0" />
+
+                    <span onClick={this.showModal}>
+                      +
+                      {this.state.city
+                        ? this.state.city
+                        : "Add your current city"}
+                    </span>
+                  </div>
+
+                  <div className="about-me">
+                    <span onClick={this.showModal}>
+                      +
+                      {this.state.about
+                        ? this.state.about
+                        : "Write some details about yourself"}
+                    </span>
+                  </div>
+
+                  <div className="twitter">
+                    <span onClick={this.showModal}>
+                      +{this.state.twitter ? this.state.twitter : "Add Twitter"}
+                    </span>
+                  </div>
+                  <div className="insta">
+                    <span onClick={this.showModal}>
+                      +
+                      {this.state.instagram
+                        ? this.state.instagram
+                        : "Add Instagram"}
+                    </span>
+                  </div>
                 </div>
 
-                <div className="image-and-city">
-                  <img src={this.state.picture} alt="provided by auth0" />
-                  <h5>
-                    <button onClick={this.showModal}>+</button>
-                    {this.state.city
-                      ? this.state.city
-                      : "Add your current city"}
-                  </h5>
-                </div>
-
-                <div className="about-me">
-                  <button onClick={this.showModal}>+</button>
-                  {this.state.about
-                    ? this.state.about
-                    : "Write some details about yourself"}
-                </div>
-
-                <div className="social-media-links">
-                  <h6>
-                    <button onClick={this.showModal}>+</button>
-                    {this.state.twitter ? this.state.twitter : "Add Twitter"}
-                  </h6>
-                  <h6>
-                    <button onClick={this.showModal}>+</button>
-                    {this.state.instagram
-                      ? this.state.instagram
-                      : "Add Instagram"}
-                  </h6>
+                <div className="profile-right-side">
+                  <h2>Your Blogposts:</h2> {allOfMyBlogposts}
                 </div>
               </div>
-
-              <div className="profile-right-side">All Blogposts:</div>
             </div>
           ) : (
             <div className="profile-picture">
@@ -147,9 +166,10 @@ class Profile extends Component {
               <h6>instagram: {this.state.instagram}</h6>
             </div>
           )}
-
-          <h5>{this.state.quote}</h5>
-          <h6>-Anthony Bourdain</h6>
+          <div className="ab-container">
+            <div className="his-quote">{this.state.quote}</div>
+            <div className="his-name">-Anthony Bourdain</div>
+          </div>
         </div>
       </div>
     );
@@ -157,10 +177,11 @@ class Profile extends Component {
 }
 
 function mapStateToProps(state) {
+  let { user, allBlogposts, blogpost } = state;
   return {
-    user: state.user,
-    blogpost: state.blogpost,
-    allBlogposts: state.allBlogposts
+    user,
+    blogpost,
+    allBlogposts
   };
 }
 export default connect(
