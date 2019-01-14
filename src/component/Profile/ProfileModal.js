@@ -13,6 +13,15 @@ class ProfileModal extends Component {
     };
   }
 
+  componentDidMount() {
+    this.setState({
+      city: this.props.city,
+      about: this.props.about,
+      twitter: this.props.twitter,
+      instagram: this.props.instagram
+    });
+  }
+
   createProfile = () => {
     const { city, about, twitter, instagram } = this.props;
     axios
@@ -20,16 +29,23 @@ class ProfileModal extends Component {
       .then(res => {})
       .catch(error => error, "error in createprofile");
   };
+  editProfile = (city, about, twitter, instagram) => {
+    axios
+      .put("/api/profile", { city, about, twitter, instagram })
+      .then(() => {})
+      .catch(error => error, "error in edit profile");
+  };
 
-  handleChange(event) {
-    this.setState({ [event.target.value]: event.target.value });
-  }
-  onSubmit(event) {
+  handleChange = event => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
+  onSubmit = event => {
     event.preventDefault();
-  }
+  };
 
   render() {
     const { city, about, twitter, instagram } = this.props;
+    console.log(this.props, "let me see props");
     const showHideClassName = this.props.display
       ? "modal display-block"
       : "modal display-none";
@@ -41,18 +57,18 @@ class ProfileModal extends Component {
             Current City:{" "}
             <input
               placeholder="Add Current City"
+              value={this.state.city}
               name="city"
               onChange={event => this.handleChange(event)}
               type="text"
-              value={city}
             />
             About Me:
             <textarea
               placeholder="Write some details about yourself"
               name="about"
+              value={this.state.about}
               onChange={event => this.handleChange(event)}
               type="text"
-              value={about}
             />
             Twitter Link:
             <input
@@ -60,7 +76,7 @@ class ProfileModal extends Component {
               name="twitter"
               onChange={event => this.handleChange(event)}
               type="text"
-              value={twitter}
+              value={this.state.twitter}
             />
             Instagram:
             <input
@@ -68,12 +84,22 @@ class ProfileModal extends Component {
               name="instagram"
               onChange={event => this.handleChange(event)}
               type="text"
-              value={instagram}
+              value={this.state.instagram}
             />
             <button
               onClick={() => {
-                this.createProfile(city, about, twitter, instagram);
-                this.editProfile();
+                this.createProfile(
+                  this.state.city,
+                  this.state.about,
+                  this.state.twitter,
+                  this.state.instagram
+                );
+                this.editProfile(
+                  this.state.city,
+                  this.state.about,
+                  this.state.twitter,
+                  this.state.instagram
+                );
               }}
             >
               Save Changes

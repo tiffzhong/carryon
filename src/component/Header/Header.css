@@ -47,7 +47,7 @@ header button {
     font-size: 24px;
     position: absolute;
     right: 10px;
-    padding: 0px 13px;
+    /* padding: 0px 13px; */
     display: flex;
     top: 12px;
     /* display: none; */
@@ -62,9 +62,7 @@ header button {
     font-size: 18px;
     text-transform: uppercase;
   }
-  header > div {
-    padding: 13px;
-  }
+
   header div ul {
     background: #5169ff;
   }
@@ -73,8 +71,9 @@ header button {
     position: absolute;
     left: 0;
     flex-direction: column;
+    margin-top: 25px;
     width: 100%;
-    padding: 20px 30px;
+    /* padding: 20px 30px; */
     transition: padding-top 0.3s, padding-bottom 0.3s;
     /* transition: 0.3s; */
     /* makes the menu bar move down */

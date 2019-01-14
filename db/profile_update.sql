@@ -1,7 +1,7 @@
 update users_info
 set
-city = $2
+city = $2,
 about = $3,
-twitter =  $4,
+twitter = $4,
 instagram = $5
-where profileId = $1
+where user_id = $1

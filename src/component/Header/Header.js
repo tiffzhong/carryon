@@ -4,7 +4,7 @@ import "./Header.css";
 import axios from "axios";
 import { connect } from "react-redux";
 import { setUser } from "../../ducks/blogpostReducer";
-import logo from "./logo1.png";
+import logo from "./logo.png";
 
 class Header extends Component {
   constructor(props) {
@@ -56,7 +56,7 @@ class Header extends Component {
         {user ? (
           <div className="logged-in-header">
             <Link to="/">
-              <img src={logo} width={100} height={25} mode="fit" alt="logo" />
+              <img src={logo} width={60} mode="fit" alt="logo" />
             </Link>
 
             <div className="links">
