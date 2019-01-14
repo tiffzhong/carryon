@@ -10,13 +10,15 @@ class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: "",
       posts: []
     };
   }
 
   componentDidMount() {
     this.grabUser();
+  }
+  redirectToLandingPage() {
+    window.location.pathname = "/";
   }
 
   grabUser = () => {
@@ -27,6 +29,7 @@ class Dashboard extends Component {
     });
   };
   render() {
+    console.log(this.props.user, "USER");
     ///GETTING MY BLOGPOSTS ONLY!!!
     let { allBlogposts } = this.props;
     let displayMyBlogPosts =
@@ -65,34 +68,40 @@ class Dashboard extends Component {
       });
     return (
       <>
-        <div className="dashboard-banner">
-          <h2>Dashboard</h2>
-        </div>
+        {this.props.user ? (
+          <>
+            <div className="dashboard-banner">
+              <h2>Dashboard</h2>
+            </div>
 
-        <div className="create-new">
-          <Link to="/new">
-            <button>New Post</button>
-          </Link>
-        </div>
-        <div>
-          <input placeholder="search for posts" />
-        </div>
-        <div className="ALL-POSTS-CONTAINER">
-          <div className="your-trips">
-            Your Trips
-            {allOfMyBlogposts}
-          </div>
+            <div className="create-new">
+              <Link to="/new">
+                <button>New Post</button>
+              </Link>
+            </div>
+            <div>
+              <input placeholder="search for posts" />
+            </div>
+            <div className="ALL-POSTS-CONTAINER">
+              <div className="your-trips">
+                Your Trips
+                {allOfMyBlogposts}
+              </div>
 
-          <div className="your-feed">
-            Feed
-            {displayBlogPosts}
-          </div>
+              <div className="your-feed">
+                Feed
+                {displayBlogPosts}
+              </div>
 
-          <div className="your-news">
-            World Wide News
-            <News />
-          </div>
-        </div>
+              <div className="your-news">
+                World Wide News
+                <News />
+              </div>
+            </div>
+          </>
+        ) : (
+          this.redirectToLandingPage()
+        )}
       </>
     );
   }

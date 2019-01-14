@@ -48,49 +48,64 @@ class BlogPost extends Component {
         .catch(error => console.log("error in getting 1", error));
     }
   }
-
+  redirectToDashboard() {
+    window.location.pathname = "/";
+  }
   render() {
-    console.log(this.state, "STATE");
-    console.log(this.props.blogpost.auth0_id, "PROPS");
-    console.log(this.state.auth0_id, "STATE");
-    console.log(this.props, "Trying to see Props");
+    // console.log(this.state, "STATE");
+    // console.log(this.props.blogpost.auth0_id, "PROPS");
+    // console.log(this.state.auth0_id, "STATE");
+    console.log(this.props.user, "Trying to see Props");
     let { date, title, image_url, blurb, itinerary, name } = this.state;
-    let { history } = this.props;
-    const allImages = image_url.map(imageId => {
-      return <img src={imageId} alt="imageid" />;
-    });
+    let { history, user } = this.props;
+    const allImages =
+      image_url &&
+      image_url.map(imageId => {
+        return <img src={imageId} alt="imageid" />;
+      });
 
     return (
       <>
-        <button onClick={() => history.goBack()}>Go Back</button>
-        <div className="single-blogpost-banner" />
-        <div className="single-blogpost-container">
-          <div className="title-container">
-            <h2>{title ? title : "loading"}</h2>
-            <p>
-              {date ? moment(date).format("MMMM Do YYYY h:mm:ss a") : "loading"}
-            </p>
+        {this.props.user ? (
+          <>
+            {" "}
+            <button onClick={() => history.goBack()}>Go Back</button>
+            <div className="single-blogpost-banner" />
+            <div className="single-blogpost-container">
+              <div className="title-container">
+                <h2>{title ? title : "loading"}</h2>
+                <p>
+                  {date
+                    ? moment(date).format("MMMM Do YYYY h:mm:ss a")
+                    : "loading"}
+                </p>
 
-            <h6>by: {name ? name : "loading"}</h6>
-          </div>
-          <div className="blurb-container">
-            <p>{blurb ? blurb : "loading"}</p>
-          </div>
-          <div className="itinerary-container">
-            <h5>Itinerary: {itinerary ? itinerary : "loading"}</h5>
-          </div>
-          <div className="blogpost-images-container">{allImages}</div>
+                <h6>by: {name ? name : "loading"}</h6>
+              </div>
+              <div className="blurb-container">
+                <p>{blurb ? blurb : "loading"}</p>
+              </div>
+              <div className="itinerary-container">
+                <h5>Itinerary: {itinerary ? itinerary : "loading"}</h5>
+              </div>
+              <div className="blogpost-images-container">{allImages}</div>
 
-          <div>
-            {this.props.blogpost.auth0_id === this.state.auth0_id ? (
-              <Link to={`/blogpost/${this.props.match.params.postid}`}>
-                <button className="edit-button">Edit</button>
-              </Link>
-            ) : null}
-          </div>
+              {user ? (
+                <div>
+                  {user.auth0_id === this.state.auth0_id ? (
+                    <Link to={`/blogpost/${this.props.match.params.postid}`}>
+                      <button className="edit-button">Edit</button>
+                    </Link>
+                  ) : null}
+                </div>
+              ) : null}
 
-          <button onClick={() => history.goBack()}>Go Back</button>
-        </div>
+              <button onClick={() => history.goBack()}>Go Back</button>
+            </div>
+          </>
+        ) : (
+          this.redirectToDashboard()
+        )}
       </>
     );
   }
