@@ -1,6 +1,23 @@
-.blogpost-container {
-  border: 1px solid black;
-}
 .images-container img {
   width: 200px;
+}
+
+.single-blogpost-banner {
+  background-color: white;
+  background-size: cover;
+  z-index: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 50px 0px;
+  width: 100%;
+  font-size: 45px;
+}
+
+.single-blogpost-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: column;
 }

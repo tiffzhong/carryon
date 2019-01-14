@@ -49,13 +49,12 @@ class Header extends Component {
   };
 
   render() {
-    console.log("LEMMESEEEEE", this.props);
     const { user } = this.props;
     return (
       <header>
         {user ? (
           <div className="logged-in-header">
-            <Link to="/">
+            <Link to="/dashboard">
               <img src={logo} width={60} mode="fit" alt="logo" />
             </Link>
 
@@ -81,7 +80,7 @@ class Header extends Component {
         ) : (
           <div className="logged-out-header">
             <Link to="/">
-              <img src={logo} width={150} height={40} mode="fit" alt="logo" />
+              <img src={logo} width={60} mode="fit" alt="logo" />
             </Link>
             <button className="toggle-symbol" onClick={this.toggle}>
               ☰

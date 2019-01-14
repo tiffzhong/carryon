@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import "./Dashboard.css";
-import BlogPost from "../BlogPost/BlogPost";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getAllBlogposts } from "../../ducks/blogpostReducer";
 import Notifications from "./Notifications";
+import BlogPostDisplay from "../BlogPostDisplay/BlogPostDisplay";
 
 class Dashboard extends Component {
   constructor(props) {
@@ -27,26 +27,21 @@ class Dashboard extends Component {
     });
   };
   render() {
-    console.log(this.props.user, "dashboard props");
-
     ///GETTING MY BLOGPOSTS ONLY!!!
     let { allBlogposts } = this.props;
     let displayMyBlogPosts =
       allBlogposts.length > 0 &&
       allBlogposts.filter(myBlogpost => {
-        console.log("FILTERRRR returning asldkfaksl;d", myBlogpost.auth0_id);
         return myBlogpost.auth0_id === this.props.user.auth0_id;
       });
 
     let allOfMyBlogposts =
       displayMyBlogPosts.length > 0 &&
       displayMyBlogPosts.map(onlyMyBlogposts => {
-        console.log(onlyMyBlogposts, "PLEASE WORK");
-
         return (
           <div className="dashboard-container">
             <div className="blogpost-container">
-              <BlogPost
+              <BlogPostDisplay
                 {...onlyMyBlogposts}
                 auth={this.props.user.auth0_id}
                 id={onlyMyBlogposts.id}
@@ -63,7 +58,7 @@ class Dashboard extends Component {
         return (
           <div className="dashboard-container">
             <div className="blogpost-container">
-              <BlogPost {...blogpost} id={blogpost.id} />
+              <BlogPostDisplay {...blogpost} id={blogpost.id} />
             </div>
           </div>
         );

@@ -12,13 +12,41 @@
   color: white;
   font-size: 45px;
 }
+.greeting {
+  display: flex;
+}
+.profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  width: 70%;
+}
 
-.profile-picture img {
+.image-and-city {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  flex-direction: row;
+  font-size: 20px;
+}
+.image-and-city h5 {
+  margin: 0 5px;
+}
+.image-and-city img {
   height: 150px;
   width: 150px;
   border-radius: 30%;
 }
-
+.about-me {
+  width: 100%;
+  font-size: 18px;
+}
+button {
+  border: none;
+  font-size: 16px;
+}
 .modal {
   position: fixed;
   top: 0;
