@@ -72,7 +72,9 @@ class Header extends Component {
                 <Link to="/shop">
                   <li>Shop</li>
                 </Link>
-
+                <Link to="/new">
+                  <li>New Post</li>
+                </Link>
                 <li onClick={() => this.logout()}>Logout</li>
               </ul>
             </div>

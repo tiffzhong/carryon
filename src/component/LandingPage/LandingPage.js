@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Banner from "../Banner/Banner";
+
 class LandingPage extends Component {
   constructor() {
     super();
@@ -7,7 +8,7 @@ class LandingPage extends Component {
 
   render() {
     return (
-      <div>
+      <div className="landing-page-container">
         <Banner />
       </div>
     );

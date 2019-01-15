@@ -39,13 +39,26 @@ class BlogFormCreate extends Component {
   }
 
   onDrop = files => {
-    this.setState({
-      files: files.map(file =>
+    if (this.state.files.length == 0 || this.state.files.length) {
+      // Copy Files array in state
+      var copy = this.state.files.slice();
+      var otherFiles = files.map(file =>
         Object.assign(file, {
           preview: URL.createObjectURL(file)
         })
-      )
-    });
+      );
+      // Combine copy and otherFiles array
+      let newArray = [...copy, ...otherFiles];
+      this.setState({
+        files: newArray
+      });
+      // } else {
+      //   let newFiles = this.state.files.slice();
+      //   newFiles.push(files);
+      //   this.setState({
+      //     files: newFiles
+      //   });
+    }
     this.handleImageUpload(files);
   };
 
@@ -116,7 +129,9 @@ class BlogFormCreate extends Component {
     const { date, title, image_url, blurb, itinerary } = this.state;
     const { createBlogPost, user } = this.props;
     const { files, cloudinaryUrl, publicId } = this.state;
-    const thumbs = files.map((file, i) => {
+
+    // const thumbs = [];
+    let thumbs = files.map((file, i) => {
       return (
         <div className="thumb">
           <img src={file.preview} width={200} alt="preview" id={i} />

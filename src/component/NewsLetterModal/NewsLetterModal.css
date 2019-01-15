@@ -1,0 +1,59 @@
+.modal {
+  position: fixed;
+  top: 0;
+  padding: 20px;
+}
+.display-block {
+  display: block;
+}
+
+.display-none {
+  display: none;
+}
+.button-pop-up {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+.button-pop-up button {
+  background-color: #2d3fb2;
+  border: none;
+  color: white;
+  width: 130px;
+  font-size: 9px;
+  border-radius: 25px;
+}
+.news-letter-modal {
+  position: fixed;
+  background: white;
+  border: 2px solid black;
+  width: 50%;
+  height: auto;
+  top: 50%;
+  left: 50%;
+  padding: 10px;
+  transform: translate(-50%, -50%);
+}
+.news-letter-modal input {
+  font-size: 14px;
+  color: rgb(56, 56, 56);
+  height: 20px;
+  width: 95%;
+  border: 1px solid rgb(99, 99, 99);
+  padding: 5px;
+  margin: 5px auto;
+}
+
+.news-letter-modal .x-button-modal {
+  right: 0;
+}
+.news-letter-modal .x-button-modal button {
+  background-color: #2d3fb2;
+  border: none;
+  width: 20px;
+  padding: 2px;
+  color: white;
+
+  font-size: 9px;
+  border-radius: 50%;
+}

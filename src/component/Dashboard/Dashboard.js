@@ -17,9 +17,9 @@ class Dashboard extends Component {
   componentDidMount() {
     this.grabUser();
   }
-  redirectToLandingPage() {
-    window.location.pathname = "/";
-  }
+  // redirectToLandingPage() {
+  //   window.location.pathname = "/";
+  // }
 
   grabUser = () => {
     this.props.getAllBlogposts().then(post => {
@@ -67,7 +67,7 @@ class Dashboard extends Component {
         );
       });
     return (
-      <>
+      <div className="the-entire-dashboard">
         {this.props.user ? (
           <>
             <div className="dashboard-banner">
@@ -79,8 +79,9 @@ class Dashboard extends Component {
                 <button>New Post</button>
               </Link>
             </div>
-            <div>
-              <input placeholder="search for posts" />
+            <div className="search-bar">
+              <input placeholder="search destinations" />
+              <button>Search</button>
             </div>
             <div className="ALL-POSTS-CONTAINER">
               <div className="your-trips">
@@ -99,10 +100,10 @@ class Dashboard extends Component {
               </div>
             </div>
           </>
-        ) : (
-          this.redirectToLandingPage()
-        )}
-      </>
+        ) : null
+        // this.redirectToLandingPage()
+        }
+      </div>
     );
   }
 }

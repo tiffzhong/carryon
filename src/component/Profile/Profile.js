@@ -5,7 +5,8 @@ import { connect } from "react-redux";
 import { setUser, getAllBlogposts } from "../../ducks/blogpostReducer";
 import ProfileModal from "./ProfileModal";
 import BlogPostDisplay from "../BlogPostDisplay/BlogPostDisplay";
-
+import twitter from "./twitter.png";
+import instagram from "./insta.png";
 class Profile extends Component {
   constructor(props) {
     super(props);
@@ -112,14 +113,13 @@ class Profile extends Component {
           {user ? (
             <div className="huge-container">
               <div className="greeting">
-                <h1>Welcome back, {this.state.name}!</h1>
+                <h1>Welcome back!</h1>
               </div>
               <div className="full-profile">
                 <div className="profile-left-side">
-                  <h2>Your Profile:</h2>
+                  <img src={this.state.picture} alt="provided by auth0" />
                   <div className="image-and-city">
-                    <img src={this.state.picture} alt="provided by auth0" />
-
+                    <p>{this.state.name}</p>
                     <span onClick={this.showModal}>
                       +
                       {this.state.city
@@ -127,34 +127,36 @@ class Profile extends Component {
                         : "Add your current city"}
                     </span>
                   </div>
+                </div>
 
-                  <div className="about-me">
-                    <span onClick={this.showModal}>
-                      +
-                      {this.state.about
-                        ? this.state.about
-                        : "Write some details about yourself"}
-                    </span>
-                  </div>
-
+                <div className="about-me">
+                  <span onClick={this.showModal}>
+                    +
+                    {this.state.about
+                      ? this.state.about
+                      : "Write some details about yourself"}
+                  </span>
+                </div>
+                <div className="social-media-icons">
                   <div className="twitter">
                     <span onClick={this.showModal}>
-                      +{this.state.twitter ? this.state.twitter : "Add Twitter"}
+                      <img src={twitter} />+
+                      {this.state.twitter ? this.state.twitter : "Add Twitter"}
                     </span>
                   </div>
                   <div className="insta">
                     <span onClick={this.showModal}>
-                      +
+                      <img src={instagram} />+
                       {this.state.instagram
                         ? this.state.instagram
                         : "Add Instagram"}
                     </span>
                   </div>
                 </div>
+              </div>
 
-                <div className="profile-right-side">
-                  <h2>Your Blogposts:</h2> {allOfMyBlogposts}
-                </div>
+              <div className="profile-right-side">
+                <h2>Latest Posts:</h2> {allOfMyBlogposts}
               </div>
             </div>
           ) : (

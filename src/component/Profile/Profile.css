@@ -2,6 +2,7 @@
   background-color: rgb(240, 240, 240);
 }
 .profile-banner {
+  padding-top: 50px;
   background-image: url("./north.jpg");
   background-size: cover;
   z-index: 0;
@@ -9,62 +10,104 @@
   justify-content: center;
   align-items: center;
   margin: auto 0px;
-  padding: 20px;
+
   width: 100%;
   min-height: 250px;
   color: white;
   font-size: 45px;
 }
-.greeting {
-  display: flex;
-}
+
 .profile-container {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  flex-direction: column;
   width: 100%;
+}
+.huge-container .greeting {
+  display: flex;
+  width: 100%;
+}
+.greeting h1 {
+  font-size: 40px;
+  font-weight: bold;
+  margin: 5px auto;
 }
 .greeting {
   justify-content: center;
 }
-.huge-container {
-  width: 80%;
-}
-.full-profile {
+
+.full-profile .profile-left-side {
   display: flex;
-  width: 100%;
+  width: 90%;
+  justify-content: center;
+  align-items: center;
+  padding: 0 30px;
 }
 .profile-left-side {
-  width: 50%;
-}
-.profile-right-side {
-  width: 30%;
+  width: 80%;
 }
 .image-and-city {
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-end;
-  flex-direction: row;
+  align-items: center;
+  flex-direction: column;
   font-size: 20px;
 }
-.image-and-city h5 {
-  margin: 0 5px;
+.image-and-city p {
+  font-size: 30px;
+  font-weight: bold;
+  margin: 10px 5px;
 }
-.image-and-city img {
-  height: 150px;
-  width: 150px;
-  border-radius: 30%;
+
+.image-and-city span {
+  font-size: 22px;
+  font-style: italic;
+  margin: 8px 0 0 0;
 }
+.profile-left-side img {
+  height: 180px;
+  width: 180px;
+  border-radius: 50%;
+}
+
 .about-me {
-  width: 80%;
+  display: flex;
+  justify-content: center;
+}
+
+.about-me span {
+  padding: 10px auto;
+  margin: 5px auto;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 90%;
   font-size: 18px;
 }
+.twitter {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 5px auto;
+  margin: 5px auto;
+}
+.social-media-icons {
+  flex-direction: column;
+}
+.social-media-icons img {
+  width: 40px;
+}
+
 button {
   border: none;
-  font-size: 16px;
+  font-size: 18px;
+  font-weight: bold;
 }
+
+.profile-right-side h2 {
+  border-top: 1px solid black;
+}
+
 .modal {
   position: fixed;
   top: 0;

@@ -9,6 +9,7 @@ import {
 import { connect } from "react-redux";
 import moment from "moment";
 import axios from "axios";
+import BlogPostSlick from "./BlogPostSlick";
 
 class BlogPost extends Component {
   constructor(props) {
@@ -48,30 +49,31 @@ class BlogPost extends Component {
         .catch(error => console.log("error in getting 1", error));
     }
   }
-  redirectToDashboard() {
-    window.location.pathname = "/";
-  }
+  // redirectToDashboard() {
+  //   window.location.pathname = "/dashboard";
+  // }
   render() {
     // console.log(this.state, "STATE");
     // console.log(this.props.blogpost.auth0_id, "PROPS");
     // console.log(this.state.auth0_id, "STATE");
-    console.log(this.props.user, "Trying to see Props");
+    console.log(this.props, "Trying to see Props");
     let { date, title, image_url, blurb, itinerary, name } = this.state;
-    let { history, user } = this.props;
-    const allImages =
-      image_url &&
-      image_url.map(imageId => {
-        return <img src={imageId} alt="imageid" />;
-      });
+    let { history, user, deleteBlogPost } = this.props;
+    // const allImages =
+    //   image_url &&
+    //   image_url.map(imageId => {
+    //     return <img src={imageId} alt="imageid" />;
+    //   });
 
     return (
       <>
         {this.props.user ? (
-          <>
-            {" "}
-            <button onClick={() => history.goBack()}>Go Back</button>
+          <div className="single-blogpost-background">
             <div className="single-blogpost-banner" />
             <div className="single-blogpost-container">
+              <div className="blogpost-images-container1">
+                <BlogPostSlick images={image_url} />
+              </div>
               <div className="title-container">
                 <h2>{title ? title : "loading"}</h2>
                 <p>
@@ -88,7 +90,7 @@ class BlogPost extends Component {
               <div className="itinerary-container">
                 <h5>Itinerary: {itinerary ? itinerary : "loading"}</h5>
               </div>
-              <div className="blogpost-images-container">{allImages}</div>
+              {/* <div className="blogpost-images-container">{allImages}</div> */}
 
               {user ? (
                 <div>
@@ -102,10 +104,10 @@ class BlogPost extends Component {
 
               <button onClick={() => history.goBack()}>Go Back</button>
             </div>
-          </>
-        ) : (
-          this.redirectToDashboard()
-        )}
+          </div>
+        ) : null
+        // this.redirectToDashboard()
+        }
       </>
     );
   }

@@ -74,3 +74,13 @@ values(1, 'San Francisco', 'Hello my name is Tiffany and I love to travel', 'twi
 
 
 select * from users_info;
+
+
+create table newsletter (
+newsletter_id serial primary key,
+email text
+);
+
+insert into newsletter(email) values ('tiff@gmail')
+
+select * from newsletter;

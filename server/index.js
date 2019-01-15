@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const session = require("express-session");
 const massive = require("massive");
-//const axios = require("axios");
+
 const dotenv = require("dotenv");
 const connect = require("connect-pg-simple");
 dotenv.config();
@@ -10,6 +10,7 @@ const authController = require("./controllers/authController");
 const profileController = require("./controllers/profileController");
 const blogpostContoller = require("./controllers/blogpostController");
 const adminController = require("./controllers/adminController");
+const clientController = require("./controllers/clientController");
 
 const app = express();
 app.use(bodyParser.json());
@@ -35,6 +36,9 @@ app.use(
     }
   })
 );
+
+//Nodemailer
+app.post("/api/email/newsletter", clientController.sendNewsLetter);
 
 //Auth
 app.get("/auth/callback", authController.login);
