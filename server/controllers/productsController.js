@@ -14,7 +14,7 @@ module.exports = {
       });
   },
 
-  getProduct: (req, res) => {
+  getOneProduct: (req, res) => {
     const database = req.app.get("db");
     let { product_id } = req.params;
     console.log("product_id", product_id);

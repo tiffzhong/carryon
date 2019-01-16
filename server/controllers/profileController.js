@@ -27,19 +27,6 @@ module.exports = {
       });
   },
 
-  // createProfile: (req, res) => {
-  //   const database = req.app.get("db");
-  //   let { city, about, twitter, instagram } = req.body;
-  //   let { user_id } = req.params;
-  //   console.log(req.body, "BODDDYYY");
-  //   database
-  //     .profile_create([city, about, twitter, instagram])
-  //     .then(() => res.status(200).send())
-  //     .catch(error => {
-  //       console.log("error in profile_create", error);
-  //     });
-  // },
-
   editProfile: (req, res) => {
     const database = req.app.get("db");
     let { city, about, twitter, instagram } = req.body;

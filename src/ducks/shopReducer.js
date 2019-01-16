@@ -3,11 +3,14 @@ import axios from "axios";
 const INITIAL_STATE = {
   products: [],
   shoppingCart: [],
-  total: 0
+  total: 0,
+  product: []
 };
 
 const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
+const GET_PRODUCT = "GET_PRODUCT";
 const CREATE_PRODUCT = "CREATE_PRODUCT";
+const DELETE_PRODUCT = "DELETE_PRODUCT";
 const EDIT_PRODUCT = "EDIT_PRODUCT";
 
 const GET_CART = "GET_CART";
@@ -18,7 +21,11 @@ export default function shopReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case GET_ALL_PRODUCTS:
       return { ...state, products: action.payload };
+    case GET_PRODUCT:
+      return { ...state, product: action.payload };
     case CREATE_PRODUCT:
+      return { ...state };
+    case DELETE_PRODUCT:
       return { ...state };
     case EDIT_PRODUCT:
       return { ...state };
@@ -45,7 +52,7 @@ export default function shopReducer(state = INITIAL_STATE, action) {
   }
 }
 
-export function getProducts() {
+export function getAllProducts() {
   return {
     type: GET_ALL_PRODUCTS,
     payload: axios
@@ -53,72 +60,74 @@ export function getProducts() {
       .then(response => {
         return response.data;
       })
-      .catch(err => console.log("Err in getProducts", err))
+      .catch(err => console.log("Err in getAllProducts", err))
   };
 }
-// export function createProduct(
-//   name,
-//   price,
-//   image,
-//   description,
-//   quantity,
-//   admin_id
-// ) {
-//   return {
-//     type: CREATE_PRODUCT,
-//     payload: axios
-//       .post("/api/products", {
-//         name,
-//         price,
-//         image,
-//         description,
-//         quantity,
-//         admin_id
-//       })
-//       .then(res => (window.location.pathname = "/shop"))
-//       .catch(err => console.log("Err in createProduct", err))
-//   };
-// }
-// export function editProduct(name, price, image, description, quantity) {
-//   console.log(name, price, description, quantity);
-//   return {
-//     type: EDIT_PRODUCT,
-//     payload: axios
-//       .put(`/api/products/${product_id}`, {
-//         name,
-//         price,
-//         image,
-//         description,
-//         quantity
-//       })
-//       .then(res => (window.location.pathname = "/products"))
-//       .catch(err => console.log("Err in edit product", err))
-//   };
-// }
-// export function setCart() {
-//   return {
-//     type: SET_CART,
-//     payload: axios
-//       .get("/api/user/cart")
-//       .then(res => res.data)
-//       .catch(err => console.log("Err in set cart", err))
-//   };
-// }
-// export function addToCart(product) {
-//   return {
-//     type: ADD_TO_CART,
-//     payload: axios
-//       .post("/api/user/cart", { product })
-//       .then(res => res.data)
-//       .catch(err => console.log("Err in addToCart", err))
-//   };
-// }
-// export function removeFromCart(id) {
-//   return {
-//     type: REMOVE_FROM_CART,
-//     payload: axios
-//       .delete(`/api/user/cart/${id}`)
-//       .then(res => res.data)
-//       .catch(err => console.log("Err in removeFromCart", err))
-//   };
-// }
+
+export function getOneProduct(product_id) {
+  return {
+    type: GET_PRODUCT,
+    payload: axios
+      .get("/api/product/product_id")
+      .then(res => {
+        return res.data;
+      })
+      .catch(err => console.log("error in getting 1 product", err))
+  };
+}
+
+export function createProduct(
+  product_id,
+  product_name,
+  product_price,
+  product_picture,
+  product_quantity
+) {
+  return {
+    type: CREATE_PRODUCT,
+    payload: axios
+      .post("/api/product", {
+        product_id,
+        product_name,
+        product_price,
+        product_picture,
+        product_quantity
+      })
+      .then(() => {
+        window.location.pathname = "/shop";
+      })
+      .catch(error => console.log("error in createproduct", error))
+  };
+}
+
+export function deleteProduct(product_id) {
+  return {
+    type: DELETE_PRODUCT,
+    payload: axios
+      .delete(`/api/product/${product_id}`)
+      .then(() => (window.location.pathname = "/shop"))
+      .catch(error => console.log("error in deleteing product", error))
+  };
+}
+
+export function editProduct(
+  product_id,
+  product_name,
+  product_price,
+  product_picture,
+  product_quantity
+) {
+  return {
+    type: EDIT_PRODUCT,
+    payload: axios
+      .put(`/api/product/${product_id}`, {
+        product_id,
+        product_name,
+        product_price,
+        product_picture,
+        product_quantity
+      })
+      .then(() => (window.location.pathname = "/shop"))
+      .catch(error => console.log("error in editing product", error))
+  };
+}
