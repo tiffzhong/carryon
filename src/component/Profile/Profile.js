@@ -139,26 +139,47 @@ class Profile extends Component {
               </div>
               <div className="social-media-icons">
                 <div className="twitter">
-                  <span onClick={this.showModal}>
-                    <img src={twitter} />+
-                    {this.state.twitter ? this.state.twitter : "Add Twitter"}
-                  </span>
+                  {/* <span onClick={this.showModal}> */}
+                  <a
+                    href={
+                      this.state.twitter
+                        ? this.state.twitter
+                        : "www.twitter.com"
+                    }
+                    target="_blank"
+                    rel="twitter"
+                  >
+                    <img src={twitter} alt="" />
+                  </a>
+                  {/* </span> */}
                 </div>
                 <div className="instagram">
-                  <span onClick={this.showModal}>
-                    <img src={instagram} />+
+                  {/* <span onClick={this.showModal}> */}
+                  <a
+                    href={
+                      this.state.instagram
+                        ? this.state.instagram
+                        : "www.instagram.com"
+                    }
+                    target="_blank"
+                    rel="instagram"
+                  >
+                    <img src={instagram} alt="" />
+                  </a>
+
+                  {/* <img src={instagram} />+
                     {this.state.instagram
                       ? this.state.instagram
-                      : "Add Instagram"}
-                  </span>
+                      : "Add Instagram"} */}
+                  {/* </span> */}
                 </div>
               </div>
 
               <div className="profile-right-side">
                 <div className="latest-post">
-                  <h2>Latest Posts:</h2>
-                  <div className="all-posts-on-profile">{allOfMyBlogposts}</div>
+                  <h2>Latest Posts</h2>
                 </div>
+                <div className="all-posts-on-profile">{allOfMyBlogposts}</div>
               </div>
             </div>
           ) : (

@@ -41,16 +41,7 @@ module.exports = {
   createBlogPost: (req, res) => {
     const database = req.app.get("db");
     let { date, title, image_url, blurb, itinerary, user, id } = req.body;
-    console.log(
-      date,
-      title,
-      image_url,
-      blurb,
-      itinerary,
-      user,
-      id,
-      `----------------------------------------------`
-    );
+    console.log(date, title, image_url, blurb, itinerary, user, id);
     database
       .create_blogpost([
         id,
@@ -97,7 +88,7 @@ module.exports = {
     cloudinary.v2.api.delete_resources([publicId], function(error, result) {
       res.status(200).send(result);
     });
-    console.log("deleteisrunning");
+
     // axios
     //   .delete(
     //     `https://api.cloudinary.com/v1_1/tiffz/delete_by_token/${publicId}/${deleteImage}`

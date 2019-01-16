@@ -10,15 +10,19 @@
   justify-content: center;
   align-items: center;
   margin: auto 0px;
-
   width: 100%;
   min-height: 250px;
   color: white;
-  font-size: 45px;
+}
+.profile-banner h2 {
+  font-family: "Arimo", sans-serif;
+  font-size: 60px;
+  font-weight: bold;
 }
 
 .profile-container {
   display: flex;
+  font-family: "Arimo", sans-serif;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
@@ -30,25 +34,24 @@
 .huge-container .greeting {
   display: flex;
   width: 100%;
+  justify-content: center;
 }
 .greeting h1 {
   font-size: 40px;
   font-weight: bold;
   margin: 5px auto;
 }
-.greeting {
-  justify-content: center;
-}
 
-.profile-left-side {
+.huge-container .profile-left-side {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 80%;
+
   /* padding: 0 100px; */
 }
-.image-and-city {
+.huge-container .profile-left-side .image-and-city {
   display: flex;
+  justify-content: center;
   align-items: center;
   flex-direction: column;
   font-size: 20px;
@@ -70,11 +73,13 @@
   border-radius: 50%;
 }
 
-.about-me {
-  width: 70%;
+.profile-container .about-me {
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-left: 100px;
+  padding-right: 100px;
   /* padding: 10px 150px; */
 }
 
@@ -89,11 +94,15 @@
   display: flex;
   justify-content: center;
   flex-direction: row;
-  padding: 5px auto;
+  padding-left: 200px;
   margin: 5px auto;
 }
-.social-media-icons {
-  flex-direction: row;
+
+.huge-container .social-media-icons {
+  display: flex;
+  padding: 0;
+  /* width: 20%; */
+  /* flex-direction: row; */
 }
 .social-media-icons img {
   width: 40px;
@@ -102,7 +111,7 @@
   display: flex;
   justify-content: center;
   flex-direction: row;
-  padding: 5px auto;
+  padding-right: 200px;
   margin: 5px auto;
 }
 span {
@@ -112,24 +121,36 @@ span {
 }
 .profile-right-side {
   border-top: 2px solid black;
-
   width: 100%;
   margin: 20px auto;
 }
-.all-posts-on-profile {
+.latest-post h2 {
+  font-size: 30px;
+  font-weight: bold;
+  padding: 10px;
+}
+.profile-right-side .all-posts-on-profile {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   padding: 10px;
 }
 
+.all-posts-on-profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .modal {
   position: fixed;
   top: 0;
-  padding: 20px;
+
+  margin: 10px;
 }
 
 .modal-form {
+  font-family: "Arimo", sans-serif;
   position: fixed;
   background: white;
   border: 2px solid black;
@@ -137,14 +158,17 @@ span {
   height: auto;
   top: 50%;
   left: 50%;
-  padding: 10px;
+  padding: 30px 20px;
   transform: translate(-50%, -50%);
 }
-
+.modal-form span {
+  font-weight: bold;
+  font-size: 20px;
+}
 .modal-form input {
-  font-size: 14px;
+  font-size: 16px;
   color: rgb(56, 56, 56);
-  height: 20px;
+  height: 25px;
   width: 95%;
   border: 1px solid rgb(99, 99, 99);
   padding: 5px;
@@ -152,7 +176,7 @@ span {
 }
 .modal-form textarea {
   height: 100px;
-  font-size: 12px;
+  font-size: 16px;
   width: 95%;
   border: 1px solid rgb(99, 99, 99);
 }
@@ -164,6 +188,8 @@ span {
 }
 
 .cancel-button button {
+  font-size: 14px;
+  font-weight: bold;
   width: 100px;
   border-radius: 5%;
   border: 1px solid #7fb25b;
@@ -178,7 +204,7 @@ span {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding: 0px auto;
+  padding: 0px 20px;
 }
 
 .create-edit {
@@ -187,6 +213,8 @@ span {
   /* padding: 10px; */
 }
 .create-edit button {
+  font-size: 14px;
+  font-weight: bold;
   width: 100px;
   border-radius: 5%;
   display: flex;
@@ -204,6 +232,7 @@ span {
   display: none;
 }
 .ab-container {
+  font-family: "Arimo", sans-serif;
   padding: 10px;
   width: 100%;
   padding: 0 200px;

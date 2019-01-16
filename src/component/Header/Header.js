@@ -39,7 +39,9 @@ class Header extends Component {
       console.log("logging out");
     });
   };
-
+  redirectToLandingPage() {
+    window.location.pathname = "/";
+  }
   toggle = () => {
     this.setState(prevState => {
       return {
@@ -75,7 +77,14 @@ class Header extends Component {
                 <Link to="/new">
                   <li>New Post</li>
                 </Link>
-                <li onClick={() => this.logout()}>Logout</li>
+                <li
+                  onClick={() => {
+                    this.logout();
+                    this.redirectToLandingPage();
+                  }}
+                >
+                  Logout
+                </li>
               </ul>
             </div>
           </div>

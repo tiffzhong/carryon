@@ -19,7 +19,7 @@ module.exports = {
       to: String(email),
       subject: `Thanks for Visiting Carry On!`,
       html: `<h3>Hello! Thank you for visiting Carry On!</h3>
-      <p>We hope that you will use our social platform to share your travel experiences with the world. Be sure to come back and visit :) www.carryon.fun </p>`
+      <p>We hope that you will use our social platform to share your travel experiences with the world. Be sure to come back and visit :) https://www.carryontravel.us/ </p>`
     };
 
     transporter.sendMail(mailOptions, (error, info) => {

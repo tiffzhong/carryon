@@ -1,13 +1,14 @@
 header {
+  font-family: "Roboto", sans-serif;
   background: white;
   position: fixed;
-  font-size: 18px;
+  font-size: 20px;
   left: 0;
   right: 0;
   border: none;
   position: fixed;
   text-transform: uppercase;
-  padding: 0px 40px;
+  padding: 0px 50px;
 }
 
 header > div {

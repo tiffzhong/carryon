@@ -56,6 +56,7 @@ class BlogPost extends Component {
     // console.log(this.state, "STATE");
     // console.log(this.props.blogpost.auth0_id, "PROPS");
     // console.log(this.state.auth0_id, "STATE");
+    console.log(this.props.user, "does user show ID?");
     console.log(this.props, "Trying to see Props");
     let { date, title, image_url, blurb, itinerary, name } = this.state;
     let { history, user, deleteBlogPost } = this.props;
@@ -64,6 +65,7 @@ class BlogPost extends Component {
     //   image_url.map(imageId => {
     //     return <img src={imageId} alt="imageid" />;
     //   });
+    console.log(this.state.user, "see DIDIDID");
 
     return (
       <>

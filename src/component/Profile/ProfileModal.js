@@ -41,7 +41,9 @@ class ProfileModal extends Component {
       .then(() => {})
       .catch(error => error, "error in edit profile");
   };
-
+  redirectToProfile() {
+    window.location.pathname = `/profile/${this.props.user_id}`;
+  }
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
@@ -61,7 +63,7 @@ class ProfileModal extends Component {
       <>
         <div className={showHideClassName}>
           <form className="modal-form" onSubmit={event => this.onSubmit(event)}>
-            Current City:
+            <span>Current City:</span>
             <br />
             <input
               placeholder="Add Current City"
@@ -71,7 +73,7 @@ class ProfileModal extends Component {
               type="text"
             />
             <br />
-            About Me:
+            <span>About Me:</span>
             <br />
             <textarea
               placeholder="Write some details about yourself"
@@ -81,7 +83,7 @@ class ProfileModal extends Component {
               type="text"
             />
             <br />
-            Twitter:
+            <span>Twitter:</span>
             <br />
             <input
               placeholder="Add Twitter"
@@ -91,7 +93,7 @@ class ProfileModal extends Component {
               value={this.state.twitter}
             />
             <br />
-            Instagram:
+            <span> Instagram:</span>
             <br />
             <input
               placeholder="Add Instagram"
@@ -111,6 +113,7 @@ class ProfileModal extends Component {
                   onClick={() => {
                     this.props.hideModal();
                     this.editProfile();
+                    this.redirectToProfile();
                   }}
                 >
                   Save

@@ -141,7 +141,7 @@ class BlogFormCreate extends Component {
     });
 
     return (
-      <>
+      <div className="entire-create-blogform-container">
         <div className="blogform-banner">
           <h2>Create</h2>
         </div>
@@ -174,7 +174,7 @@ class BlogFormCreate extends Component {
 
               <div className="create-itinerary-field">
                 <textarea
-                  placeholder="Itinerary"
+                  placeholder="Your Itinerary"
                   name="itinerary"
                   type="text"
                   value={itinerary}
@@ -217,7 +217,7 @@ class BlogFormCreate extends Component {
             </form>
           </div>
         </div>
-      </>
+      </div>
     );
   }
 }
