@@ -115,48 +115,50 @@ class Profile extends Component {
               <div className="greeting">
                 <h1>Welcome back!</h1>
               </div>
-              <div className="full-profile">
-                <div className="profile-left-side">
-                  <img src={this.state.picture} alt="provided by auth0" />
-                  <div className="image-and-city">
-                    <p>{this.state.name}</p>
-                    <span onClick={this.showModal}>
-                      +
-                      {this.state.city
-                        ? this.state.city
-                        : "Add your current city"}
-                    </span>
-                  </div>
-                </div>
 
-                <div className="about-me">
+              <div className="profile-left-side">
+                <img src={this.state.picture} alt="provided by auth0" />
+                <div className="image-and-city">
+                  <p>{this.state.name}</p>
                   <span onClick={this.showModal}>
                     +
-                    {this.state.about
-                      ? this.state.about
-                      : "Write some details about yourself"}
+                    {this.state.city
+                      ? this.state.city
+                      : "Add your current city"}
                   </span>
                 </div>
-                <div className="social-media-icons">
-                  <div className="twitter">
-                    <span onClick={this.showModal}>
-                      <img src={twitter} />+
-                      {this.state.twitter ? this.state.twitter : "Add Twitter"}
-                    </span>
-                  </div>
-                  <div className="insta">
-                    <span onClick={this.showModal}>
-                      <img src={instagram} />+
-                      {this.state.instagram
-                        ? this.state.instagram
-                        : "Add Instagram"}
-                    </span>
-                  </div>
+              </div>
+
+              <div className="about-me">
+                <span onClick={this.showModal}>
+                  +
+                  {this.state.about
+                    ? this.state.about
+                    : "Write some details about yourself"}
+                </span>
+              </div>
+              <div className="social-media-icons">
+                <div className="twitter">
+                  <span onClick={this.showModal}>
+                    <img src={twitter} />+
+                    {this.state.twitter ? this.state.twitter : "Add Twitter"}
+                  </span>
+                </div>
+                <div className="instagram">
+                  <span onClick={this.showModal}>
+                    <img src={instagram} />+
+                    {this.state.instagram
+                      ? this.state.instagram
+                      : "Add Instagram"}
+                  </span>
                 </div>
               </div>
 
               <div className="profile-right-side">
-                <h2>Latest Posts:</h2> {allOfMyBlogposts}
+                <div className="latest-post">
+                  <h2>Latest Posts:</h2>
+                  <div className="all-posts-on-profile">{allOfMyBlogposts}</div>
+                </div>
               </div>
             </div>
           ) : (
@@ -168,10 +170,10 @@ class Profile extends Component {
               <h6>instagram: {this.state.instagram}</h6>
             </div>
           )}
-          <div className="ab-container">
-            <div className="his-quote">{this.state.quote}</div>
-            <div className="his-name">-Anthony Bourdain</div>
-          </div>
+        </div>
+        <div className="ab-container">
+          <div className="his-quote">{this.state.quote}</div>
+          <div className="his-name">-Anthony Bourdain</div>
         </div>
       </div>
     );

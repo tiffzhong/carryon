@@ -16,7 +16,6 @@ module.exports = {
         if (profile.length > 0) {
           res.status(200).send(profile[0]);
         } else {
-          console.log("the good shit is running", id);
           database.bad_user([id]).then(user => {
             console.log(user, "from get user");
             res.status(200).send(user[0]);
@@ -44,7 +43,8 @@ module.exports = {
   editProfile: (req, res) => {
     const database = req.app.get("db");
     let { city, about, twitter, instagram } = req.body;
-    const { user_id } = req.params;
+    let { user_id } = req.params;
+    console.log(req.body, "looking for insta");
     database
       .profile_update([user_id, city, about, twitter, instagram])
       .then(() => {

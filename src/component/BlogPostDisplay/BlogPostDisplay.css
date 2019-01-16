@@ -1,8 +1,9 @@
 .display-container {
-  display: inline;
+  /* border-bottom: 1px solid black; */
+
   justify-content: center;
   align-items: center;
-  width: 90%;
+
   margin: 5px;
   padding: 5px;
 }

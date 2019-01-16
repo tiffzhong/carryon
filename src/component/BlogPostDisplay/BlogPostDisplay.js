@@ -43,7 +43,6 @@ class BlogPostDisplay extends Component {
             </div>
           ) : null}
         </div>
-        ---
       </>
     );
   }

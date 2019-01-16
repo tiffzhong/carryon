@@ -24,6 +24,9 @@
   flex-wrap: wrap;
   width: 100%;
 }
+.huge-container {
+  width: 90%;
+}
 .huge-container .greeting {
   display: flex;
   width: 100%;
@@ -37,15 +40,12 @@
   justify-content: center;
 }
 
-.full-profile .profile-left-side {
+.profile-left-side {
   display: flex;
-  width: 90%;
   justify-content: center;
   align-items: center;
-  padding: 0 30px;
-}
-.profile-left-side {
   width: 80%;
+  /* padding: 0 100px; */
 }
 .image-and-city {
   display: flex;
@@ -71,41 +71,56 @@
 }
 
 .about-me {
+  width: 70%;
   display: flex;
   justify-content: center;
+  align-items: center;
+  /* padding: 10px 150px; */
 }
 
 .about-me span {
-  padding: 10px auto;
+  /* padding: 10px auto; */
   margin: 5px auto;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
-  width: 90%;
   font-size: 18px;
 }
 .twitter {
   display: flex;
   justify-content: center;
-  flex-direction: column;
+  flex-direction: row;
   padding: 5px auto;
   margin: 5px auto;
 }
 .social-media-icons {
-  flex-direction: column;
+  flex-direction: row;
 }
 .social-media-icons img {
   width: 40px;
 }
-
-button {
-  border: none;
-  font-size: 18px;
-  font-weight: bold;
+.instagram {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  padding: 5px auto;
+  margin: 5px auto;
 }
+span {
+  border: none;
+  font-size: 25px;
+  cursor: pointer;
+}
+.profile-right-side {
+  border-top: 2px solid black;
 
-.profile-right-side h2 {
-  border-top: 1px solid black;
+  width: 100%;
+  margin: 20px auto;
+}
+.all-posts-on-profile {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 10px;
 }
 
 .modal {
@@ -190,8 +205,8 @@ button {
 }
 .ab-container {
   padding: 10px;
-  width: 80%;
-
+  width: 100%;
+  padding: 0 200px;
   font-size: 13px;
   font-weight: bold;
 }
@@ -200,9 +215,11 @@ button {
   font-weight: bold;
 }
 .his-name {
+  display: flex;
+  justify-content: center;
   font-size: 10px;
 }
-@media (max-width: 700px) {
+/* @media (max-width: 700px) {
   .profile-container {
     justify-content: center;
     align-items: center;
@@ -225,4 +242,4 @@ button {
   .profile-right-side {
     width: 70%;
   }
-}
+} */

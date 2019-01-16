@@ -15,6 +15,8 @@ const clientController = require("./controllers/clientController");
 const app = express();
 app.use(bodyParser.json());
 
+app.use(express.static(`${__dirname}/../build`));
+
 massive(process.env.CONNECTION_STRING)
   .then(database => {
     app.set("db", database);
@@ -67,4 +69,9 @@ app.post("/admin/logout", adminController.logout);
 const PORT = 4000;
 app.listen(PORT, () => {
   console.log(`Sever listening on PORT ${PORT}`);
+});
+
+const path = require("path");
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../build/index.html"));
 });

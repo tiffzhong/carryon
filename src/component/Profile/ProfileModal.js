@@ -36,7 +36,7 @@ class ProfileModal extends Component {
         city: this.state.city,
         about: this.state.about,
         twitter: this.state.twitter,
-        instgram: this.state.instagram
+        instagram: this.state.instagram
       })
       .then(() => {})
       .catch(error => error, "error in edit profile");
