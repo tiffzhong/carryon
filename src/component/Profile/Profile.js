@@ -202,7 +202,7 @@ class Profile extends Component {
 }
 
 function mapStateToProps(state) {
-  let { user, allBlogposts, blogpost } = state;
+  let { user, allBlogposts, blogpost } = state.blogpost;
   return {
     user,
     blogpost,

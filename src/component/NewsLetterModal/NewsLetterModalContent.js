@@ -27,21 +27,26 @@ class NewsLetterModalContent extends Component {
     return (
       <div className={displayName}>
         <div className="news-letter-modal">
-          <h4>Sign up to get our newsletter!</h4>
-          <input
-            placeholder="Email"
-            name="email"
-            value={this.state.email}
-            onChange={event => this.handleChange(event)}
-          />
-          <button
-            onClick={() => {
-              this.newsletter(this.state.email);
-              this.props.onHide();
-            }}
-          >
-            Submit!
-          </button>
+          <h4>Sign up to receive our newsletter!</h4>
+
+          <div className="content-inside-modal">
+            <input
+              placeholder="Email"
+              name="email"
+              value={this.state.email}
+              onChange={event => this.handleChange(event)}
+            />
+            <button
+              className="inside-button"
+              onClick={() => {
+                this.newsletter(this.state.email);
+                this.props.onHide();
+              }}
+            >
+              Submit!
+            </button>
+          </div>
+
           <div className="x-button-modal">
             <button
               onClick={() => {

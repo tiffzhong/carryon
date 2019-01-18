@@ -1,0 +1,23 @@
+/* :root {
+  --black: #000;
+  --darkBlue: #2d3fb2;
+  --orange: #f58423;
+  --skyBlue: #5169ff;
+  --limeGreem: #6acc25;
+  --treeGreen: #7fb25b;
+  --grey: #9b9b9b;
+  --backgroundGrey: rgb(240, 240, 240);
+}
+
+body {
+  font-family: "Arimo", sans-serif !important;
+  font-family: "Roboto", sans-serif;
+  background: var(--backgroundGrey) !important;
+  color: var(--black) !important;
+}
+
+.banner-title {
+  font-family: "Arimo", sans-serif;
+  letter-spacing: .3rem;
+  text-transform: uppercase;
+} */

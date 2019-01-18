@@ -15,45 +15,65 @@
   right: 0;
   bottom: 0;
 }
-.button-pop-up button {
+.button-pop-up .outside-button {
   background-color: #2d3fb2;
   border: none;
   color: white;
-  width: 130px;
-  font-size: 9px;
+  width: 180px;
+  font-size: 13px;
   border-radius: 25px;
 }
 .news-letter-modal {
   position: fixed;
   background: white;
   border: 2px solid black;
-  width: 50%;
+  width: 40%;
   height: auto;
   top: 50%;
   left: 50%;
-  padding: 10px;
+  padding: 15px;
   transform: translate(-50%, -50%);
 }
-.news-letter-modal input {
-  font-size: 14px;
+.news-letter-modal h4 {
+  font-size: 24px;
+  font-weight: bold;
+}
+.content-inside-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.content-inside-modal input {
+  font-size: 16px;
   color: rgb(56, 56, 56);
-  height: 20px;
-  width: 95%;
+  height: 40px;
+  width: 60%;
   border: 1px solid rgb(99, 99, 99);
   padding: 5px;
-  margin: 5px auto;
+  margin: 5px 0;
 }
-
-.news-letter-modal .x-button-modal {
-  right: 0;
-}
-.news-letter-modal .x-button-modal button {
+.content-inside-modal .inside-button {
   background-color: #2d3fb2;
   border: none;
-  width: 20px;
+  color: white;
+  width: 90px;
+  font-size: 14px;
+  border-radius: 25px;
+}
+.x-button-modal {
+  top: -10px;
+  right: -10px;
+  position: absolute;
+}
+
+.x-button-modal button {
+  background-color: #2d3fb2;
+  border: none;
+  width: 35px;
+  height: 35px;
+  margin: 0;
   padding: 2px;
   color: white;
-
-  font-size: 9px;
+  font-size: 18px;
   border-radius: 50%;
 }

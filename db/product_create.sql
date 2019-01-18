@@ -1,7 +1,8 @@
 insert into products 
 (product_id,
 product_name,
+product_description,
 product_price,
 product_picture,
 product_quantity)
-values ($1, $2, $3, $4, $5)
+values ($1, $2, $3, $4, $5, $6)

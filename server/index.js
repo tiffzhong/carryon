@@ -14,7 +14,7 @@ const blogpostContoller = require("./controllers/blogpostController");
 const adminController = require("./controllers/adminController");
 const clientController = require("./controllers/clientController");
 const productsController = require("./controllers/productsController");
-
+const cartController = require("./controllers/cartController");
 const app = express();
 app.use(bodyParser.json());
 
@@ -37,7 +37,7 @@ app.use(
     saveUninitialized: false,
     resave: false,
     cookie: {
-      maxAge: 1000 * 60 * 60 * 24 * 7 * 2
+      maxAge: 1000 * 60 * 60 * 24 * 7
     }
   })
 );
@@ -74,6 +74,11 @@ app.get("/api/product/:product_id", productsController.getOneProduct);
 app.post("/api/product", productsController.createProduct);
 app.delete("/api/product/:product_id", productsController.deleteProduct);
 app.put("/api/product/:product_id", productsController.updateProduct);
+
+//Cart
+app.get("/api/user/cart", cartController.getCart);
+app.post("/api/user/cart", cartController.addToCart);
+app.delete("/api/user/cart/:product_id", cartController.removeFromCart);
 
 const PORT = 4000;
 app.listen(PORT, () => {

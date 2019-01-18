@@ -20,7 +20,6 @@ drop table if exists newsletter;
 drop table if exists users_info;
 drop table if exists products cascade;
 
-
 select * from admin;
 select * from users;
 select * from blogposts order by date desc;
@@ -77,10 +76,12 @@ email text
 create table products (
 product_id serial primary key,
 product_name text,
+product_description text,
 product_price decimal not null check (product_price >= 0),
-product_picture text,
+product_picture text[],
 product_quantity int not null
 );
+
 
 
 
@@ -97,6 +98,8 @@ values(1, 'San Francisco', 'Hello my name is Tiffany and I love to travel', 'twi
 
 insert into newsletter(email) values ('tiff@gmail')
 
-insert into products (product_id, product_name, product_price, product_picture, product_quantity)
-values(1, 'sticker', 2.00, 'https://imgur.com/a/2ZAZZRH', 400);
 
+insert into products (product_id, product_name, product_description, product_price, product_picture, product_quantity)
+values(1, 'Carry On Logo Sticker', 'Support our brand with a sticker for your laptop, bags, and/or water bottles!', 2.00, '{https://i.imgur.com/7b3VA5Z.png, https://i.imgur.com/0paUH3S.jpg}', 800 ),
+(2,'Large Duffel Bag', 'This all-weather large duffel bag is made to hold everything and is great for both short and long term travel. Stash all your belongings in this recycled duffel!', 22.00, '{https://i.imgur.com/UCZYViT.png, https://i.imgur.com/jFjc9cR.png}', 300),
+(3, '17oz Cooper Vacuum Insulated Water Bottle', 'A great size for any trip, this insulated water bottle definitely adds style to your travel journey and keeps a beverage hot or cold for hours!', 14.00, '{https://i.imgur.com/3nMc9hV.png, https://i.imgur.com/jlJZxHF.png, https://i.imgur.com/wiHUJ1o.png}', 400);

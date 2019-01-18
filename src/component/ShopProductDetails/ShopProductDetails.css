@@ -1,0 +1,35 @@
+.product-detail-container {
+  background-color: rgb(240, 240, 240);
+  font-family: "Arimo", sans-serif;
+  padding: 100px;
+  flex-direction: column;
+}
+
+.name-product {
+  font-size: 18px;
+  padding: 5px;
+}
+.description-product {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+}
+
+.price-product {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+}
+
+.picture-product img {
+  width: 400px;
+  margin: 0 auto;
+}
+
+.product-picture-in-slick {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

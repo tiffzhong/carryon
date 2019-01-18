@@ -1,6 +1,6 @@
 module.exports = {
   getAllProducts: (req, res) => {
-    const database = rep.app.get("db");
+    const database = req.app.get("db");
     database
       .products_get_all()
       .then(products => {
@@ -17,11 +17,12 @@ module.exports = {
   getOneProduct: (req, res) => {
     const database = req.app.get("db");
     let { product_id } = req.params;
-    console.log("product_id", product_id);
+
+    console.log("product_id param", req.params);
     database
       .product_get_one(product_id)
-      .then(blogpost => {
-        res.status(200).send(blogpost[0]);
+      .then(product => {
+        res.status(200).send(product[0]);
       })
       .catch(err => {
         console.log("error in get getting ONE product", err);
@@ -34,6 +35,7 @@ module.exports = {
     let {
       product_id,
       product_name,
+      product_description,
       product_price,
       product_picture,
       product_quantity
@@ -42,6 +44,7 @@ module.exports = {
       .product_create([
         product_id,
         product_name,
+        product_description,
         product_price,
         `{${product_picture}}`,
         product_quantity
@@ -56,6 +59,7 @@ module.exports = {
     const database = req.app.get("db");
     let {
       product_name,
+      product_description,
       product_price,
       product_picture,
       product_quantity
@@ -63,6 +67,7 @@ module.exports = {
     let { product_id } = req.params;
     console.log(
       product_name,
+      product_description,
       product_price,
       product_picture,
       product_quantity,
@@ -73,6 +78,7 @@ module.exports = {
     database
       .product_update([
         product_name,
+        product_description,
         product_price,
         `{${product_picture}}`,
         product_quantity,

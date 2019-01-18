@@ -25,7 +25,9 @@ class NewsLetterModal extends Component {
             onHide={this.hideModal}
           />
         ) : null}
-        <button onClick={this.showModal}>Want Our Newsletter?</button>
+        <button className="outside-button" onClick={this.showModal}>
+          Join Our Newsletter?
+        </button>
       </div>
     );
   }

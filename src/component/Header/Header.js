@@ -71,11 +71,12 @@ class Header extends Component {
                 <Link to="/dashboard">
                   <li>Dashboard</li>
                 </Link>
-                <Link to="/shop">
-                  <li>Shop</li>
-                </Link>
+
                 <Link to="/new">
                   <li>New Post</li>
+                </Link>
+                <Link to="/shop">
+                  <li>Shop</li>
                 </Link>
                 <li
                   onClick={() => {
@@ -85,6 +86,11 @@ class Header extends Component {
                 >
                   Logout
                 </li>
+                <Link to="/cart">
+                  <li>
+                    <i className="fas fa-shopping-cart" />
+                  </li>
+                </Link>
               </ul>
             </div>
           </div>
@@ -103,6 +109,11 @@ class Header extends Component {
                 </Link>
 
                 <li onClick={() => this.login()}>Register/Login</li>
+                <Link to="/cart">
+                  <li>
+                    <i className="fas fa-shopping-cart" />
+                  </li>
+                </Link>
               </ul>
             </div>
           </div>
@@ -113,8 +124,9 @@ class Header extends Component {
 }
 
 function mapStateToProps(state) {
+  let { user } = state.blogpost;
   return {
-    user: state.user
+    user
   };
 }
 

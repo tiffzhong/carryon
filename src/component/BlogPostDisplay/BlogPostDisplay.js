@@ -7,7 +7,7 @@ import moment from "moment";
 
 class BlogPostDisplay extends Component {
   render() {
-    let { date, title, image_url, name, id, user } = this.props;
+    let { date, title, image_url, name, id, user, user_id } = this.props;
 
     let { deleteBlogPost, auth } = this.props;
 
@@ -48,7 +48,7 @@ class BlogPostDisplay extends Component {
   }
 }
 const mapStateToProps = state => {
-  let { user, allBlogposts } = state;
+  let { user, allBlogposts } = state.blogpost;
   return {
     user,
     allBlogposts

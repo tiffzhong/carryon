@@ -58,6 +58,7 @@ class Dashboard extends Component {
     let displayBlogPosts =
       allBlogposts.length > 0 &&
       allBlogposts.map(blogpost => {
+        console.log("blogpost letmwlekjalksdf", blogpost);
         return (
           <div className="dashboard-container">
             <div className="blogpost-container">
@@ -109,7 +110,7 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = state => {
-  let { user, allBlogposts } = state;
+  let { user, allBlogposts } = state.blogpost;
   return {
     user,
     allBlogposts

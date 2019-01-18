@@ -223,7 +223,7 @@ class BlogFormCreate extends Component {
 }
 
 const mapStateToProps = state => {
-  let { blogpost, user } = state;
+  let { blogpost, user } = state.blogpost;
   return {
     blogpost,
     user

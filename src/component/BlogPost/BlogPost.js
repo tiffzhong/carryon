@@ -116,7 +116,7 @@ class BlogPost extends Component {
 }
 
 const mapStateToProps = state => {
-  let { user, blogpost } = state;
+  let { user, blogpost } = state.blogpost;
   return { user, blogpost };
 };
 const mapDispatchToProps = {

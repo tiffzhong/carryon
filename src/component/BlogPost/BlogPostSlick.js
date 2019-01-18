@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
 
-export default class SimpleSlider extends Component {
+export default class BlogPostSlick extends Component {
   render() {
     const settings = {
       dots: true,
@@ -10,7 +10,7 @@ export default class SimpleSlider extends Component {
       slidesToShow: 1,
       slidesToScroll: 1
     };
-    console.log(this.props.images, "allimage");
+    console.log(this.props.images, "allimages");
     let image = this.props.images.map((slickImage, i) => {
       return (
         <div className="slick-image-container-again">

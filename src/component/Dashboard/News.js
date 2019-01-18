@@ -13,7 +13,6 @@ class News extends Component {
   }
 
   getArticle = () => {
-    console.log("$$$$$$$$$$$$$$$$$@@@@@@@@@");
     axios
       .get(
         "https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=26f494317e574b859f9dd860351daa3f"
