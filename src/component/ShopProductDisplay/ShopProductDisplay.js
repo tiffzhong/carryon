@@ -17,7 +17,7 @@ class ShopProductDisplay extends Component {
     const firstProductImage = product_picture.map(productImageOne => {
       return productImageOne;
     });
-    console.log(firstProductImage, "firstProductImage");
+    // console.log(firstProductImage, "firstProductImage");
     return (
       <div className="product-display-container">
         <div className="product-display-image">
@@ -32,7 +32,7 @@ class ShopProductDisplay extends Component {
           {product_name ? product_name : "loading"}
         </div>
         <div className="product-display-price">
-          {product_price ? product_price : "loading"}
+          ${product_price ? product_price : "loading"}
         </div>
       </div>
     );

@@ -15,6 +15,7 @@ const adminController = require("./controllers/adminController");
 const clientController = require("./controllers/clientController");
 const productsController = require("./controllers/productsController");
 const cartController = require("./controllers/cartController");
+
 const app = express();
 app.use(bodyParser.json());
 
@@ -78,6 +79,7 @@ app.put("/api/product/:product_id", productsController.updateProduct);
 //Cart
 app.get("/api/user/cart", cartController.getCart);
 app.post("/api/user/cart", cartController.addToCart);
+app.put("/api/user/cart/:product_id", cartController.updateCart);
 app.delete("/api/user/cart/:product_id", cartController.removeFromCart);
 
 const PORT = 4000;

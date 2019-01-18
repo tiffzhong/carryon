@@ -11,11 +11,11 @@ import BlogFormCreate from "./component/BlogFormCreate/BlogFormCreate";
 import ShopFront from "./component/ShopFront/ShopFront";
 import ShopProductDetails from "./component/ShopProductDetails/ShopProductDetails";
 import ShoppingCart from "./component/ShoppingCart/ShoppingCart";
-// import ShopCart from "./component/ShopCart/ShopCart";
+import ShopCheckout from "./component/ShopCheckout/ShopCheckout";
+import ShopConfirmation from "./component/ShopConfirmation/ShopConfirmation";
 export default (
   <Switch>
     <Route exact path="/" component={LandingPage} />
-    {/* <Route exact path="/shoppingcart" component={ShopCart} /> */}
     <Route path="/dashboard" component={Dashboard} />
     <Route exact path="/profile/:id" component={Profile} />
     <Route path="/post/:postid" component={BlogPost} />
@@ -25,5 +25,7 @@ export default (
     <Route path="/admin" component={Admin} />
     <Route path="/shoppingcart" component={ShoppingCart} />
     <Route path="/product/:product_id" component={ShopProductDetails} />
+    <Route path="/checkout" component={ShopCheckout} />
+    <Route path="/confirmation" component={ShopConfirmation} />
   </Switch>
 );

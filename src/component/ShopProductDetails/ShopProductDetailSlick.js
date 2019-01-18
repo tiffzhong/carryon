@@ -10,10 +10,10 @@ export default class ShopProductDetailSlick extends Component {
       slidesToShow: 1,
       slidesToScroll: 1
     };
-    console.log(this.props.imageState, "product images??");
+    // console.log(this.props.imageState, "product images??");
     const { imageState } = this.props;
     let productimage = imageState.map((productSlickImage, i) => {
-      console.log(imageState);
+      // console.log(imageState);
       return (
         <div className="product-picture-in-slick">
           <img src={productSlickImage} alt="product slick preview" key={i} />

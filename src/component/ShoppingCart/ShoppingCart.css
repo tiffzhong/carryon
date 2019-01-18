@@ -2,9 +2,10 @@
   padding-top: 100px;
 }
 
-.fuckthisshit {
-  padding-top: 100px;
-}
 .items-container img {
   width: 150px;
+}
+
+.empty-cart-message {
+  padding-top: 100px;
 }

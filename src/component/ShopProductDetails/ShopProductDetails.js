@@ -13,8 +13,7 @@ class ShopProductDetails extends Component {
     this.state = {
       product: [],
       image: [],
-      quantity: 1,
-      total: 1
+      quantity: 1
     };
   }
   componentDidMount() {
@@ -24,14 +23,13 @@ class ShopProductDetails extends Component {
         console.log("res.data", res.data);
         this.setState({
           product: res.data,
-          image: res.data.product_picture,
-          total: res.data.product_price
+          image: res.data.product_picture
         });
       });
   }
 
   render() {
-    console.log(this.state.image, "product deets");
+    // console.log(this.state.image, "product deets");
 
     let {
       product_id,
@@ -40,7 +38,7 @@ class ShopProductDetails extends Component {
       product_price
     } = this.state.product;
     let { image, quantity } = this.state;
-    const { product, history } = this.props;
+    const { history, total } = this.props;
 
     return (
       <div className="product-detail-container">
@@ -57,8 +55,7 @@ class ShopProductDetails extends Component {
             onClick={() =>
               this.state.quantity > 1 &&
               this.setState({
-                quantity: this.state.quantity - 1,
-                total: (this.state.quantity - 1) * product_price
+                quantity: this.state.quantity - 1
               })
             }
           >
@@ -68,8 +65,7 @@ class ShopProductDetails extends Component {
           <button
             onClick={() =>
               this.setState({
-                quantity: this.state.quantity + 1,
-                total: (this.state.quantity + 1) * product_price
+                quantity: this.state.quantity + 1
               })
             }
           >
@@ -84,7 +80,8 @@ class ShopProductDetails extends Component {
               product_name,
               product_price,
               quantity,
-              image
+              image,
+              total
             )
           }
         >
