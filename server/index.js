@@ -30,9 +30,9 @@ massive(process.env.CONNECTION_STRING)
 
 app.use(
   session({
-    store: new (connect(session))({
-      conString: process.env.CONNECTION_STRING
-    }),
+    // store: new (connect(session))({
+    //   conString: process.env.CONNECTION_STRING
+    // }),
     secret: process.env.SESSION_SECRET,
     saveUninitialized: false,
     resave: false,

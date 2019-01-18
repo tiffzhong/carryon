@@ -17,8 +17,6 @@ module.exports = {
   getOneProduct: (req, res) => {
     const database = req.app.get("db");
     let { product_id } = req.params;
-
-    console.log("product_id param", req.params);
     database
       .product_get_one(product_id)
       .then(product => {

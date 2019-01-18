@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getAllProducts } from "../../ducks/shopReducer";
 import ShopProductDisplay from "../ShopProductDisplay/ShopProductDisplay";
+import NewsLetterModal from "../NewsLetterModal/NewsLetterModal";
 
 class ShopFront extends Component {
   componentDidMount() {
@@ -17,17 +18,18 @@ class ShopFront extends Component {
       return <ShopProductDisplay {...productItem} />;
     });
     return (
-      <div className="the-entire-shop">
-        <div className="shop-banner">
-          <h2>Shop</h2>
-        </div>
+      <>
+        <div className="the-entire-shop">
+          <div className="shop-banner">
+            <h2>Shop</h2>
+          </div>
 
-        <div className="display-all-products">{displayAllProducts}</div>
-
-        <div className="newsletter-store-front">
-          <input />Sign up for our Newsletter
+          <div className="display-all-products">
+            {displayAllProducts}
+            <NewsLetterModal />
+          </div>
         </div>
-      </div>
+      </>
     );
   }
 }

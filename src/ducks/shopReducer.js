@@ -3,9 +3,8 @@ import axios from "axios";
 const INITIAL_STATE = {
   products: [],
   product: [],
-  inCart: false,
   total: 0,
-  count: 0
+  cart: []
 };
 
 const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
@@ -16,6 +15,7 @@ const EDIT_PRODUCT = "EDIT_PRODUCT";
 
 const GET_CART = "GET_CART";
 const ADD_TO_CART = "ADD_TO_SHOPPING_CART";
+const UPDATE_CART = "UPDATE_CART";
 const REMOVE_FROM_CART = "REMOVE_FROM_SHOPPING_CART";
 
 export default function shopReducer(state = INITIAL_STATE, action) {
@@ -32,23 +32,14 @@ export default function shopReducer(state = INITIAL_STATE, action) {
       return { ...state };
 
     case `${GET_CART}_FULFILLED`:
-      return {
-        ...state,
-        inCart: action.payload.cart,
-        total: action.payload.total,
-        count: action.payload.count
-      };
+      return { ...state, cart: action.payload };
     case `${ADD_TO_CART}_FULFILLED`:
-      return {
-        ...state,
-        inCart: action.payload.cart,
-        total: action.payload.total,
-        count: action.payload.count
-      };
+      return { ...state };
+    case `${UPDATE_CART}_FULFILLED`:
+      return { ...state };
     case `${REMOVE_FROM_CART}_FULFILLED`:
       return {
         ...state,
-        inCart: action.payload.cart,
         total: action.payload.total,
         count: action.payload.count
       };
@@ -137,25 +128,56 @@ export function editProduct(
 }
 
 export function getCart() {
+  console.log("get cart is running from cart component");
   return {
     type: GET_CART,
     payload: axios
       .get("/api/user/cart")
-      .then(res => res.data)
+      .then(res => res.data.cart)
       .catch(err => console.log("Err in set cart", err))
   };
 }
 
-export function addToCart(product) {
+export function addToCart(
+  product_id,
+  product_name,
+  product_price,
+  quantity,
+  image
+) {
+  console.log(
+    "all the paarrams",
+    product_id,
+    product_name,
+    product_price,
+    quantity,
+    image
+  );
   return {
     type: ADD_TO_CART,
     payload: axios
-      .post("/api/user/cart", { product })
+      .post("/api/user/cart", {
+        product_id,
+        product_name,
+        product_price,
+        quantity,
+        image
+      })
       .then(res => res.data)
       .catch(err => console.log("Err in addToCart", err))
   };
 }
-
+export function updateCart(product_id, product_name, product_price, quantity) {
+  return {
+    type: UPDATE_CART,
+    payload: axios.put(`/api/user/cart/:productid`, {
+      product_id,
+      product_name,
+      product_price,
+      quantity
+    })
+  };
+}
 export function removeFromCart(product_id) {
   return {
     type: REMOVE_FROM_CART,

@@ -86,10 +86,8 @@ class Header extends Component {
                 >
                   Logout
                 </li>
-                <Link to="/cart">
-                  <li>
-                    <i className="fas fa-shopping-cart" />
-                  </li>
+                <Link to="/shoppingcart">
+                  <li>CART</li>
                 </Link>
               </ul>
             </div>
@@ -109,10 +107,8 @@ class Header extends Component {
                 </Link>
 
                 <li onClick={() => this.login()}>Register/Login</li>
-                <Link to="/cart">
-                  <li>
-                    <i className="fas fa-shopping-cart" />
-                  </li>
+                <Link to="/shoppingcart">
+                  <li>CART</li>
                 </Link>
               </ul>
             </div>
