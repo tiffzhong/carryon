@@ -4,4 +4,5 @@ module.exports = app => {
   app.use("/auth", proxy({ target: "http://localhost:4000" }));
   app.use("/api", proxy({ target: "http://localhost:4000" }));
   app.use("/callback", proxy({ target: "http://localhost:4000" }));
+  app.use("/save-stripe-token", proxy({ target: "http://localhost:4000" }));
 };

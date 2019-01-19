@@ -100,6 +100,7 @@ insert into newsletter(email) values ('tiff@gmail')
 
 
 insert into products (product_id, product_name, product_description, product_price, product_picture, product_quantity)
-values(1, 'Carry On Logo Sticker', 'Support our brand with a sticker for your laptop, bags, and/or water bottles!', 2.00, '{https://i.imgur.com/7b3VA5Z.png, https://i.imgur.com/0paUH3S.jpg}', 800 ),
-(2,'Large Duffel Bag', 'This all-weather large duffel bag is made to hold everything and is great for both short and long term travel. Stash all your belongings in this recycled duffel!', 22.00, '{https://i.imgur.com/UCZYViT.png, https://i.imgur.com/jFjc9cR.png}', 300),
-(3, '17oz Cooper Vacuum Insulated Water Bottle', 'A great size for any trip, this insulated water bottle definitely adds style to your travel journey and keeps a beverage hot or cold for hours!', 14.00, '{https://i.imgur.com/3nMc9hV.png, https://i.imgur.com/jlJZxHF.png, https://i.imgur.com/wiHUJ1o.png}', 400);
+values(1, 'Carry On Logo Sticker', 'Share our brand with the world. These look good on your laptop, water bottles, or furniture!', 2.00, '{https://i.imgur.com/wTAzqTP.png, https://i.imgur.com/7opiRPe.png}', 800 ),
+(2,'Large Duffel Bag', 'This all-weather large duffel bag is made to hold anything and everything. Durable for your short and long term travel trips.', 22.00, '{https://i.imgur.com/3uJGyP8.png, https://i.imgur.com/WOQBzoV.png}', 300),
+(3, 'Insulated Water Bottle', 'A 17oz Cooper Vacuum water bottle that adds style to your travel journey and keeps your beverage hot or cold for up to 12 hours.', 14.00, '{https://i.imgur.com/RnVgced.png, https://i.imgur.com/NeEgdcc.png, https://i.imgur.com/8sN0vOZ.png}', 400);
+

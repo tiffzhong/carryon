@@ -41,57 +41,72 @@ class ShopProductDetails extends Component {
     const { history, total } = this.props;
 
     return (
-      <div className="product-detail-container">
-        <div className="picture-product">
-          <ShopProductDetailSlick imageState={this.state.image} />
-        </div>
-        <div className="name-product">{product_name}</div>
-        <div className="description-product">{product_description}</div>
-        <div className="price-product">{product_price}</div>
+      <>
+        <div className="product-detail-container">
+          <div class="links-shop">
+            <Link to="/shop">Shop</Link> > Bottle
+          </div>
+          <div className="picture-product">
+            <ShopProductDetailSlick imageState={this.state.image} />
+          </div>
+          <div className="name-product">{product_name}</div>
+          <div className="price-product">${product_price}</div>
+          <div className="description-product">{product_description}</div>
+          <div className="product-and-quantity">
+            <p>Quantity</p>
 
-        <div className="quantity-product">
-          <p>Quantity</p>
-          <button
-            onClick={() =>
-              this.state.quantity > 1 &&
-              this.setState({
-                quantity: this.state.quantity - 1
-              })
-            }
-          >
-            <i class="fas fa-angle-left" />
-          </button>
-          <p>{this.state.quantity}</p>
-          <button
-            onClick={() =>
-              this.setState({
-                quantity: this.state.quantity + 1
-              })
-            }
-          >
-            <i class="fas fa-angle-right" />
-          </button>
+            <div className="quantity-product">
+              <button
+                onClick={() =>
+                  this.state.quantity > 1 &&
+                  this.setState({
+                    quantity: this.state.quantity - 1
+                  })
+                }
+              >
+                <i class="fas fa-angle-left" />
+              </button>
+              <p>{this.state.quantity}</p>
+              <button
+                onClick={() =>
+                  this.setState({
+                    quantity: this.state.quantity + 1
+                  })
+                }
+              >
+                <i class="fas fa-angle-right" />
+              </button>
+            </div>
+          </div>
+          <div class="adding">
+            <button
+              className="add-to-cart-button"
+              onClick={() =>
+                this.props.addToCart(
+                  product_id,
+                  product_name,
+                  product_price,
+                  quantity,
+                  image,
+                  total
+                )
+              }
+            >
+              Add to Cart
+            </button>
+          </div>
+          <div className="bottom-buttons">
+            <Link to="/shoppingcart">
+              <button>
+                <i class="fas fa-shopping-cart" />
+              </button>
+            </Link>
+            <button onClick={() => history.goBack()}>
+              <i class="fas fa-long-arrow-alt-left" />
+            </button>
+          </div>
         </div>
-
-        <button
-          onClick={() =>
-            this.props.addToCart(
-              product_id,
-              product_name,
-              product_price,
-              quantity,
-              image,
-              total
-            )
-          }
-        >
-          Add to Cart
-        </button>
-        <Link to="/shoppingcart">
-          <button>Check Out</button>
-        </Link>
-        <button onClick={() => history.goBack()}>Go Back</button>
-      </div>
+      </>
     );
   }
 }

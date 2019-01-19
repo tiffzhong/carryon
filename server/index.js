@@ -15,7 +15,7 @@ const adminController = require("./controllers/adminController");
 const clientController = require("./controllers/clientController");
 const productsController = require("./controllers/productsController");
 const cartController = require("./controllers/cartController");
-
+const stripeController = require("./controllers/stripeController");
 const app = express();
 app.use(bodyParser.json());
 
@@ -81,6 +81,9 @@ app.get("/api/user/cart", cartController.getCart);
 app.post("/api/user/cart", cartController.addToCart);
 app.put("/api/user/cart/:product_id", cartController.updateCart);
 app.delete("/api/user/cart/:product_id", cartController.removeFromCart);
+
+//Stripe
+app.post("/save-stripe-token", stripeController.payment);
 
 const PORT = 4000;
 app.listen(PORT, () => {

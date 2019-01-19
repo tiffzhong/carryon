@@ -1,10 +1,12 @@
 .the-entire-shop {
   background-color: rgb(240, 240, 240);
   font-family: "Arimo", sans-serif;
+  width: 100%;
+  height: 100%;
 }
 .shop-banner {
   padding-top: 50px;
-  background-image: url("./deer.jpg");
+  background-image: url("./oia.jpg");
   z-index: 0;
   color: white;
   font-size: 45px;
@@ -26,4 +28,55 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.the-entire-shop h4 {
+  text-align: center;
+  font-weight: bold;
+  padding-top: 30px;
+  font-size: 20px;
+}
+.newsletter-on-store-front {
+  /* position: fixed; */
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 0;
+}
+
+.newsletter-on-store-front input {
+  font-size: 18px;
+  color: rgb(56, 56, 56);
+  height: 25px;
+  width: 30%;
+  border: 1px solid rgb(99, 99, 99);
+  padding: 5px;
+  margin: 5px;
+}
+.submit-button-store-front {
+  background-color: #2d3fb2;
+  border: none;
+  color: white;
+  width: 100px;
+  height: 25px;
+  font-size: 13px;
+  border-radius: 25px;
+  font-weight: bold;
+}
+@media (max-width: 650px) {
+  .the-entire-shop {
+    width: 100%;
+    height: 100%;
+  }
+  .display-all-products {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    /* height: 100%; */
+    align-items: center;
+    flex: wrap;
+    margin: 0 30px;
+    padding: 0 30px;
+  }
 }

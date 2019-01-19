@@ -2,23 +2,27 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 30%;
+  width: 100%;
+  /* height: 100%; */
   align-items: center;
-  padding-bottom: 20px;
+  flex: wrap;
+  margin: 5px;
 }
 .product-display-image {
-  padding: 10px;
   display: flex;
 }
 .product-display-image img {
-  width: 150px;
-  height: 150px;
+  padding: 1px;
+  width: 100%;
+  margin: 0;
 }
 .product-display-name {
-  padding: 0 10px;
+  padding: 10 10px;
   display: flex;
+  font-weight: bold;
 }
 .product-display-price {
   padding: 0 10px;
   display: flex;
+  /* padding-bottom: 10px; */
 }
