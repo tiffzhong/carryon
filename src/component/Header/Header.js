@@ -4,6 +4,7 @@ import "./Header.css";
 import axios from "axios";
 import { connect } from "react-redux";
 import { setUser } from "../../ducks/blogpostReducer";
+
 import logo from "./logo.png";
 
 class Header extends Component {
@@ -87,7 +88,9 @@ class Header extends Component {
                   Logout
                 </li>
                 <Link to="/shoppingcart">
-                  <li>CART</li>
+                  <li>
+                    <i class="fas fa-shopping-cart" />
+                  </li>
                 </Link>
               </ul>
             </div>
@@ -108,7 +111,9 @@ class Header extends Component {
 
                 <li onClick={() => this.login()}>Register/Login</li>
                 <Link to="/shoppingcart">
-                  <li>CART</li>
+                  <li>
+                    <i class="fas fa-shopping-cart" />
+                  </li>
                 </Link>
               </ul>
             </div>
@@ -121,6 +126,7 @@ class Header extends Component {
 
 function mapStateToProps(state) {
   let { user } = state.blogpost;
+
   return {
     user
   };

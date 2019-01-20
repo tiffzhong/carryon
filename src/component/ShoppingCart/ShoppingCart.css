@@ -68,7 +68,9 @@
   width: 100%;
   flex: 1;
 }
-
+.shoppe-nothing {
+  padding: 20px 40px;
+}
 .cart-product-price {
   display: flex;
   flex-direction: row;

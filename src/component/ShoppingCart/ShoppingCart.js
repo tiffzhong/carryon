@@ -157,16 +157,16 @@ class ShoppingCart extends Component {
             </div>
           </div>
         ) : (
-          <>
+          <div className="shoppe-nothing">
             <Link to="/shop">Shop</Link> > Cart
             <div className="empty-cart-message">
               <h3>
-                You have nothing in your shopping cart.
+                You have nothing in your cart.
                 <br />
                 <Link to="/shop">Continue Shopping</Link>
               </h3>
             </div>
-          </>
+          </div>
         )}
       </div>
     );

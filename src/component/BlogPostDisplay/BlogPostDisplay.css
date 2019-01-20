@@ -8,23 +8,32 @@
   padding: 5px;
 }
 .display-image img {
-  width: 250px;
+  width: 400px;
 }
-
+.bottom-line-tag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  letter-spacing: 1px;
+  font-size: 16px;
+  text-transform: uppercase;
+  padding: 3px;
+}
 .display-date {
-  font-size: 13px;
+  padding-right: 5px;
   font-style: italic;
   color: #5169ff;
 }
 
 .display-title {
   font-size: 25px;
+  text-align: center;
   text-decoration: none;
   color: black;
 }
 .display-user {
   text-decoration: none;
-  font-size: 12px;
+  padding-left: 5px;
 }
 .buttons-container1 {
   width: 100%;

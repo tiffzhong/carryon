@@ -7,6 +7,7 @@ import moment from "moment";
 import request from "superagent";
 import Dropzone from "react-dropzone";
 import axios from "axios";
+import { Line, Circle } from "rc-progress";
 
 const CLOUDINARY_UPLOAD_PRESET = "carryon";
 const CLOUDINARY_UPLOAD_URL =
@@ -24,8 +25,32 @@ class BlogFormCreate extends Component {
       itinerary: "",
       files: [],
       cloudinaryUrl: [],
-      publicId: []
+      publicId: [],
+      percent: 0
     };
+    this.increase = this.increase.bind(this);
+    this.restart = this.restart.bind(this);
+  }
+
+  componentDidMount() {
+    this.increase();
+  }
+
+  increase() {
+    const percent = this.state.percent + 1;
+    if (percent >= 100) {
+      clearTimeout(this.tm);
+      return;
+    }
+    this.setState({ percent });
+    this.tm = setTimeout(this.increase, 10);
+  }
+
+  restart() {
+    clearTimeout(this.tm);
+    this.setState({ percent: 0 }, () => {
+      this.increase();
+    });
   }
 
   handleChange(e) {
@@ -195,6 +220,15 @@ class BlogFormCreate extends Component {
                 {thumbs}
               </div>
 
+              {/* ....... */}
+
+              <div style={{ margin: 10, width: 200 }}>
+                <Circle strokeWidth="6" percent={this.state.percent} />
+                <Line strokeWidth="4" percent={this.state.percent} />
+                <button onClick={this.restart}>Restart</button>
+              </div>
+
+              {/* ------------ */}
               <div className="post-button-create">
                 <Link to="/dashboard">
                   <button

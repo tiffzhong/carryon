@@ -17,9 +17,9 @@ class Dashboard extends Component {
   componentDidMount() {
     this.grabUser();
   }
-  // redirectToLandingPage() {
-  //   window.location.pathname = "/";
-  // }
+  redirectToLandingPage() {
+    window.location.pathname = "/";
+  }
 
   grabUser = () => {
     this.props.getAllBlogposts().then(post => {
@@ -28,15 +28,23 @@ class Dashboard extends Component {
       });
     });
   };
+
   render() {
-    console.log(this.props.user, "USER");
-    ///GETTING MY BLOGPOSTS ONLY!!!
-    let { allBlogposts } = this.props;
-    let displayMyBlogPosts =
-      allBlogposts.length > 0 &&
-      allBlogposts.filter(myBlogpost => {
-        return myBlogpost.auth0_id === this.props.user.auth0_id;
-      });
+    // let displayBlogPosts = [];
+    if (this.props.user) {
+      console.log(this.props.user, "USER");
+      ///GETTING MY BLOGPOSTS ONLY!!!
+      // let { allBlogposts } = this.props;
+
+      let { posts } = this.state;
+      let displayMyBlogPosts =
+        posts.length > 0 &&
+        posts.filter(myBlogpost => {
+          return myBlogpost.auth0_id === this.props.user.auth0_id;
+        });
+    } else {
+      this.redirectToLandingPage();
+    }
 
     let allOfMyBlogposts =
       displayMyBlogPosts.length > 0 &&
@@ -60,13 +68,20 @@ class Dashboard extends Component {
       allBlogposts.map(blogpost => {
         console.log("blogpost letmwlekjalksdf", blogpost);
         return (
-          <div className="dashboard-container">
-            <div className="blogpost-container">
-              <BlogPostDisplay {...blogpost} id={blogpost.id} />
-            </div>
+          <div className="your-feed-blogposts">
+            <BlogPostDisplay {...blogpost} id={blogpost.id} />
           </div>
         );
       });
+
+    // return (
+    //   <div className="sign-in-page">
+    //     To see your Dashboard, <br />
+    //     Please Register or Sign In (...or Shop){" "}
+    //     <i class="far fa-smile-wink" />⤴
+    //   </div>
+    // );
+
     return (
       <div className="the-entire-dashboard">
         {this.props.user ? (
@@ -74,36 +89,29 @@ class Dashboard extends Component {
             <div className="dashboard-banner">
               <h2>Dashboard</h2>
             </div>
-
             <div className="create-new">
               <Link to="/new">
                 <button>New Post</button>
               </Link>
             </div>
-            <div className="search-bar">
+            {/* <div className="search-bar">
               <input placeholder="search destinations" />
               <button>Search</button>
+            </div> */}
+            <div className="title-of-feed-container">
+              <h3>Your Trips</h3>
+              <div className="your-trips">{allOfMyBlogposts}</div>
+              <h3>Explore Posts</h3>
+              <div className="your-feed">{displayBlogPosts}</div>
             </div>
-            <div className="ALL-POSTS-CONTAINER">
-              <div className="your-trips">
-                Your Trips
-                {allOfMyBlogposts}
-              </div>
-
-              <div className="your-feed">
-                Feed
-                {displayBlogPosts}
-              </div>
-
-              <div className="your-news">
-                World Wide News
-                <News />
-              </div>
+            <h3>On the News</h3>
+            <div className="your-news">
+              <News />
             </div>
           </>
-        ) : null
-        // this.redirectToLandingPage()
-        }
+        ) : (
+          <div>Please Log In to View your Dashboard!</div>
+        )}
       </div>
     );
   }

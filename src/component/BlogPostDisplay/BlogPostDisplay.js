@@ -17,18 +17,25 @@ class BlogPostDisplay extends Component {
     return (
       <>
         <div className="display-container">
-          <div className="display-date">
-            {date ? moment(date).format("MMMM Do YYYY h:mm:ss a") : "loading"}
+          <div className="display-image">
+            <Link to={`/post/${id}`}>
+              {firstImage[0] ? firstImage[0] : "loading"}
+            </Link>
           </div>
           <div className="display-title">
             <Link to={`/post/${id}`}>{title ? title : "loading"}</Link>
           </div>
-          <div className="display-user">
-            by: <Link to={`/profile/${id}`}>{name ? name : "loading"}</Link>
+
+          <div className="bottom-line-tag">
+            <div className="display-user">
+              <Link to={`/profile/${id}`}>{name ? name : "loading"}</Link>
+            </div>
+            •
+            <div className="display-date">
+              {date ? moment(date).format("MMMM Do YYYY") : "loading"}
+            </div>
           </div>
-          <div className="display-image">
-            {firstImage[0] ? firstImage[0] : "loading"}
-          </div>
+
           {user.auth0_id === auth ? (
             <div className="buttons-container1">
               <button
