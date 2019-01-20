@@ -20,7 +20,8 @@ module.exports = {
       subject: `Thanks for Visiting Carry On!`,
       html: `<h3>Hello! Thank you for visiting Carry On!</h3>
       <p>We hope that you will use our social platform to share your travel experiences with the world. Be sure to come back and visit :)</p>
-      <h6>Check Us Out on Our Social Media Pages <a href='www.twitter.com'>Twitter</a> </h6>
+      <h3>Check Us Out on Our Social Media Pages <a href='www.twitter.com'>Twitter</a> </h3>
+      Also, Check out our <a href='  https://www.carryontravel.us/shop'>Store!</a> 
       https://www.carryontravel.us/`
     };
 

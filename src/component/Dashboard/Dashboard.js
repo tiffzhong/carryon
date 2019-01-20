@@ -17,9 +17,9 @@ class Dashboard extends Component {
   componentDidMount() {
     this.grabUser();
   }
-  redirectToLandingPage() {
-    window.location.pathname = "/";
-  }
+  // redirectToLandingPage() {
+  //   window.location.pathname = "/";
+  // }
 
   grabUser = () => {
     this.props.getAllBlogposts().then(post => {
@@ -28,23 +28,15 @@ class Dashboard extends Component {
       });
     });
   };
-
   render() {
-    // let displayBlogPosts = [];
-    if (this.props.user) {
-      console.log(this.props.user, "USER");
-      ///GETTING MY BLOGPOSTS ONLY!!!
-      // let { allBlogposts } = this.props;
-
-      let { posts } = this.state;
-      let displayMyBlogPosts =
-        posts.length > 0 &&
-        posts.filter(myBlogpost => {
-          return myBlogpost.auth0_id === this.props.user.auth0_id;
-        });
-    } else {
-      this.redirectToLandingPage();
-    }
+    console.log(this.props.user, "USER");
+    ///GETTING MY BLOGPOSTS ONLY!!!
+    let { allBlogposts } = this.props;
+    let displayMyBlogPosts =
+      allBlogposts.length > 0 &&
+      allBlogposts.filter(myBlogpost => {
+        return myBlogpost.auth0_id === this.props.user.auth0_id;
+      });
 
     let allOfMyBlogposts =
       displayMyBlogPosts.length > 0 &&

@@ -12,6 +12,7 @@ import ShopFront from "./component/ShopFront/ShopFront";
 import ShopProductDetails from "./component/ShopProductDetails/ShopProductDetails";
 import ShoppingCart from "./component/ShoppingCart/ShoppingCart";
 import ShopConfirmation from "./component/ShopConfirmation/ShopConfirmation";
+import Error404 from "./component/Error 404/Error404";
 export default (
   <Switch>
     <Route exact path="/" component={LandingPage} />
@@ -25,5 +26,6 @@ export default (
     <Route path="/shoppingcart" component={ShoppingCart} />
     <Route path="/product/:product_id" component={ShopProductDetails} />
     <Route path="/confirmation" component={ShopConfirmation} />
+    <Route component={Error404} />
   </Switch>
 );

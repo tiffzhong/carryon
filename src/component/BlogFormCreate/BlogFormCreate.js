@@ -28,29 +28,6 @@ class BlogFormCreate extends Component {
       publicId: [],
       percent: 0
     };
-    this.increase = this.increase.bind(this);
-    this.restart = this.restart.bind(this);
-  }
-
-  componentDidMount() {
-    this.increase();
-  }
-
-  increase() {
-    const percent = this.state.percent + 1;
-    if (percent >= 100) {
-      clearTimeout(this.tm);
-      return;
-    }
-    this.setState({ percent });
-    this.tm = setTimeout(this.increase, 10);
-  }
-
-  restart() {
-    clearTimeout(this.tm);
-    this.setState({ percent: 0 }, () => {
-      this.increase();
-    });
   }
 
   handleChange(e) {
@@ -118,10 +95,17 @@ class BlogFormCreate extends Component {
       let upload = request
         .post(CLOUDINARY_UPLOAD_URL)
         .field("upload_preset", CLOUDINARY_UPLOAD_PRESET)
-        .field("file", file);
+        .field("file", file)
+        .on(
+          "progress",
+          function(e) {
+            this.setState({ percent: e.percent });
+          }.bind(this)
+        );
 
       upload.end((err, response) => {
         console.log("SHOW RESPONSE FOR UPLOAD", response);
+
         if (err) {
           console.log("error w upload", err);
         }
@@ -150,7 +134,7 @@ class BlogFormCreate extends Component {
   }
 
   render() {
-    console.log("state", this.state);
+    // console.log("state", this.state);
     const { date, title, image_url, blurb, itinerary } = this.state;
     const { createBlogPost, user } = this.props;
     const { files, cloudinaryUrl, publicId } = this.state;
@@ -222,11 +206,9 @@ class BlogFormCreate extends Component {
 
               {/* ....... */}
 
-              <div style={{ margin: 10, width: 200 }}>
-                <Circle strokeWidth="6" percent={this.state.percent} />
+              {/* <div style={{ margin: 10, width: 100 }}>
                 <Line strokeWidth="4" percent={this.state.percent} />
-                <button onClick={this.restart}>Restart</button>
-              </div>
+              </div> */}
 
               {/* ------------ */}
               <div className="post-button-create">
