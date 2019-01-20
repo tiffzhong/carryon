@@ -25,7 +25,7 @@ export default (
     <Route path="/admin" component={Admin} />
     <Route path="/shoppingcart" component={ShoppingCart} />
     <Route path="/product/:product_id" component={ShopProductDetails} />
-    <Route path="/checkout" component={ShopCheckout} />
+
     <Route path="/confirmation" component={ShopConfirmation} />
   </Switch>
 );

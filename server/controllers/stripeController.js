@@ -1,5 +1,4 @@
-let stripe = require("stripe")("sk_test_DZFvC0p0GYyD1jBbxC1VxtOl");
-// (process.env.STRIPE_SECRET_KEY);
+let stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 // const charge = stripe.charges.create({
 //   amount:

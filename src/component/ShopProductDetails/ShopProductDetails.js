@@ -44,7 +44,7 @@ class ShopProductDetails extends Component {
       <>
         <div className="product-detail-container">
           <div class="links-shop">
-            <Link to="/shop">Shop</Link> > Bottle
+            <Link to="/shop">Shop</Link> > {product_name}
           </div>
           <div className="picture-product">
             <ShopProductDetailSlick imageState={this.state.image} />

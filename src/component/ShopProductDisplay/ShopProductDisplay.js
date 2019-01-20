@@ -21,7 +21,10 @@ class ShopProductDisplay extends Component {
     return (
       <div className="product-display-container">
         <div className="product-display-image">
-          <Link to={`/product/${product_id}`}>
+          <Link
+            style={{ textDecoration: "none" }}
+            to={`/product/${product_id}`}
+          >
             <HoverImage
               src={firstProductImage[0]}
               hoverSrc={firstProductImage[1]}
