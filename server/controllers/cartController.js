@@ -39,7 +39,7 @@ module.exports = {
       req.session.total += product_price * quantity;
     }
     // console.log(req.session.cart, "did the cart make");
-    console.log(req.session.total, "this is the fucking total");
+    console.log(req.session.total, "this is the total");
     // req.session.total += parseFloat(product_price.price);
     res.json(req.session);
   },
@@ -48,6 +48,7 @@ module.exports = {
     let { quantity } = req.body;
     let { product_id } = req.params;
     console.log(req.body, "bodehhhheheheh");
+
     let updatedItem = req.session.cart.find(f => f.product_id == product_id);
     req.session.total -= updatedItem.product_price * updatedItem.quantity;
 

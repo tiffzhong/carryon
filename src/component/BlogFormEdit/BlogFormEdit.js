@@ -7,11 +7,50 @@ import moment from "moment";
 import request from "superagent";
 import Dropzone from "react-dropzone";
 import axios from "axios";
+import styled from "styled-components";
+import { Progress } from "react-sweet-progress";
+import "react-sweet-progress/lib/style.css";
 
 const CLOUDINARY_UPLOAD_URL =
   "https://api.cloudinary.com/v1_1/tiffz/image/upload";
 const CLOUDINARY_UPLOAD_PRESET = "carryon";
+const thumbsContainer = {
+  display: "flex",
+  flexDirection: "row",
+  flexWrap: "wrap",
+  marginTop: 5
+};
 
+const thumb = {
+  display: "inline-flex",
+  // borderRadius: 2,
+  // border: "1px solid #eaeaea",
+  marginBottom: 5,
+  marginRight: 5,
+  width: 120,
+  height: 120
+  // padding: 5
+  // boxSizing: "border-box"
+};
+const Button = styled.button`
+  width: 20px;
+  height: 20px;
+  border: none;
+  color: black;
+`;
+
+const thumbInner = {
+  display: "flex",
+  flexWrap: "wrap",
+  // minWidth: 0,
+  overflow: "hidden"
+};
+
+const img = {
+  display: "block",
+  width: "100",
+  height: "100%"
+};
 class BlogFormEdit extends Component {
   constructor(props) {
     super(props);
@@ -24,7 +63,8 @@ class BlogFormEdit extends Component {
       itinerary: "",
       files: [],
       cloudinaryUrl: [],
-      publicId: []
+      publicId: [],
+      percent: 100
     };
   }
 
@@ -102,7 +142,13 @@ class BlogFormEdit extends Component {
       let upload = request
         .post(CLOUDINARY_UPLOAD_URL)
         .field("upload_preset", CLOUDINARY_UPLOAD_PRESET)
-        .field("file", file);
+        .field("file", file)
+        .on(
+          "progress",
+          function(e) {
+            this.setState({ percent: e.percent });
+          }.bind(this)
+        );
 
       upload.end((err, response) => {
         console.log("SHOW RESPONSE FOR UPLOAD", response);
@@ -128,9 +174,9 @@ class BlogFormEdit extends Component {
       });
     });
   }
-  // componentWillUnmount() {
-  //   this.state.files.forEach(file => URL.revokeObjectURL(file.preview));
-  // }
+  componentWillUnmount() {
+    this.state.files.forEach(file => URL.revokeObjectURL(file.preview));
+  }
 
   render() {
     console.log("this.props", this.props.blogpost);
@@ -140,26 +186,28 @@ class BlogFormEdit extends Component {
     const { id } = this.props.blogpost;
     const { editBlogPost } = this.props;
 
-    const thumbs = this.state.image_url.map((file, i) => {
-      return (
-        <div className="thumb">
-          <img src={file} width={200} alt="preview" id={i} />
-          <button onClick={() => this.clear(i)}>X</button>
+    const thumbs = this.state.image_url.map((file, i) => (
+      <div style={thumb} key={i}>
+        <div style={thumbInner}>
+          <Button onClick={() => this.clear(i)}>X</Button>
+          <img src={file} style={img} id={i} />
         </div>
-      );
-    });
+      </div>
+    ));
+
     return (
-      <>
+      <div className="entire-create-blogform-container">
         <div className="blogform-banner1">
           <h2>Edit</h2>
         </div>
 
         <div className="edit-blogform-container">
           <div className="edit-blogform">
-            <p>{moment().format("MMMM Do YYYY h:mm:ss")}</p>
+            <p>{moment().format("MMMM Do YYYY h:mm a")}</p>
 
             <div className="edit-title-field">
               <input
+                placeholder="Title"
                 name="title"
                 type="text"
                 value={this.state.title}
@@ -196,9 +244,34 @@ class BlogFormEdit extends Component {
                   </div>
                 )}
               </Dropzone>
-              {thumbs}
+
+              {this.state.percent < 100 ? (
+                <div style={{ margin: 10, width: 300 }}>
+                  <Progress
+                    percent={this.state.percent}
+                    theme={{
+                      success: {
+                        symbol: "🤩",
+                        color: "#7fb25b"
+                      },
+                      active: {
+                        symbol: "🌎",
+                        color: "#2d3fb2"
+                      },
+                      default: {
+                        symbol: "😬",
+                        color: "#fbc630"
+                      }
+                    }}
+                  />
+                  {/* <Line strokeWidth="10" percent={this.state.percent} /> */}
+                </div>
+              ) : (
+                <aside style={thumbsContainer}>{thumbs}</aside>
+              )}
             </div>
           </div>
+
           <div className="post-button-edit">
             <Link to="/dashboard">
               <button
@@ -218,7 +291,7 @@ class BlogFormEdit extends Component {
             </Link>
           </div>
         </div>
-      </>
+      </div>
     );
   }
 }

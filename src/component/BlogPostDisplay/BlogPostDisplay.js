@@ -4,8 +4,34 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getAllBlogposts, deleteBlogPost } from "../../ducks/blogpostReducer";
 import moment from "moment";
-
+import { confirmAlert } from "react-confirm-alert";
+// import "react-confirm-alert/src/react-confirm-alert.css";
 class BlogPostDisplay extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      confirmDelete: false
+    };
+    this.clicked = this.clicked.bind(this);
+  }
+  clicked(id) {
+    console.log("something");
+    confirmAlert({
+      title: " ",
+      message: "Are you sure you want to delete your post?",
+      buttons: [
+        {
+          label: "Yes",
+          onClick: () => this.props.deleteBlogPost(id)
+        },
+        {
+          label: "No",
+          onClick: () => console.log("Clicked No")
+        }
+      ]
+    });
+  }
   render() {
     let { date, title, image_url, name, id, user, user_id } = this.props;
 
@@ -29,8 +55,8 @@ class BlogPostDisplay extends Component {
           <div className="bottom-line-tag">
             <div className="display-user">
               <Link to={`/profile/${id}`}>{name ? name : "loading"}</Link>
-            </div>
-            •
+            </div>{" "}
+            •{" "}
             <div className="display-date">
               {date ? moment(date).format("MMMM Do YYYY") : "loading"}
             </div>
@@ -38,14 +64,14 @@ class BlogPostDisplay extends Component {
 
           {user.auth0_id === auth ? (
             <div className="buttons-container1">
-              <button
-                className="delete-button"
-                onClick={() => deleteBlogPost(id)}
-              >
-                Delete
-              </button>
+              <a className="delete-button" onClick={() => this.clicked(id)}>
+                <i class="far fa-trash-alt" />
+              </a>
+
               <Link to={`/blogpost/${id}`}>
-                <button className="edit-button">Edit</button>
+                <p className="edit-button">
+                  <i class="far fa-edit" />
+                </p>
               </Link>
             </div>
           ) : null}

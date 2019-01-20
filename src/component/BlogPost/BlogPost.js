@@ -10,7 +10,7 @@ import { connect } from "react-redux";
 import moment from "moment";
 import axios from "axios";
 import BlogPostSlick from "./BlogPostSlick";
-
+import earth from "../../earth.gif";
 class BlogPost extends Component {
   constructor(props) {
     super(props);
@@ -70,42 +70,46 @@ class BlogPost extends Component {
     return (
       <>
         {this.props.user ? (
-          <div className="single-blogpost-background">
-            <div className="single-blogpost-banner" />
-            <div className="single-blogpost-container">
-              <div className="blogpost-images-container1">
-                <BlogPostSlick images={image_url} />
-              </div>
-              <div className="title-container">
-                <h2>{title ? title : "loading"}</h2>
-                <p>
-                  {date
-                    ? moment(date).format("MMMM Do YYYY h:mm:ss a")
-                    : "loading"}
-                </p>
-
-                <h6>by: {name ? name : "loading"}</h6>
-              </div>
-              <div className="blurb-container">
-                <p>{blurb ? blurb : "loading"}</p>
-              </div>
-              <div className="itinerary-container">
-                <h5>Itinerary: {itinerary ? itinerary : "loading"}</h5>
-              </div>
-              {/* <div className="blogpost-images-container">{allImages}</div> */}
-
-              {user ? (
-                <div>
-                  {user.auth0_id === this.state.auth0_id ? (
-                    <Link to={`/blogpost/${this.props.match.params.postid}`}>
-                      <button className="edit-button">Edit</button>
-                    </Link>
-                  ) : null}
-                </div>
-              ) : null}
-
-              <button onClick={() => history.goBack()}>Go Back</button>
+          <div className="single-blogpost-container">
+            <div className="go-back-arrow">
+              <p
+                className="blog-post-edit-button"
+                onClick={() => history.goBack()}
+              >
+                <i class="fas fa-long-arrow-alt-left" />
+              </p>
             </div>
+            <h6>
+              {name ? name : null} •{" "}
+              {date ? moment(date).format("MMMM Do YYYY h:mm a") : null}
+            </h6>
+            <div className="blogpost-images-container1">
+              <BlogPostSlick images={image_url} />
+            </div>
+            <div className="title-container">
+              <h1>{title ? title : <img src={earth} alt="loading" />}</h1>
+            </div>
+            <div className="blurb-container">
+              <p>{blurb ? blurb : null}</p>
+            </div>
+            <div className="itinerary-container">
+              <h5>{itinerary ? itinerary : null}</h5>
+            </div>
+            {/* <div className="blogpost-images-container">{allImages}</div> */}
+
+            {user ? (
+              <div>
+                {user.auth0_id === this.state.auth0_id ? (
+                  <Link to={`/blogpost/${this.props.match.params.postid}`}>
+                    <p className="blog-post-edit-button">
+                      <i class="far fa-edit" />
+                    </p>
+                  </Link>
+                ) : null}
+              </div>
+            ) : null}
+
+            <p />
           </div>
         ) : null
         // this.redirectToDashboard()

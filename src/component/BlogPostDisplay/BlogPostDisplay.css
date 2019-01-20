@@ -1,14 +1,17 @@
 .display-container {
   /* border-bottom: 1px solid black; */
-
+  font-family: "Roboto", sans-serif;
   justify-content: center;
   align-items: center;
 
   margin: 5px;
   padding: 5px;
 }
+
 .display-image img {
   width: 400px;
+  height: 300px;
+  overflow: hidden;
 }
 .bottom-line-tag {
   display: flex;
@@ -26,20 +29,56 @@
 }
 
 .display-title {
-  font-size: 25px;
+  font-size: 28px;
   text-align: center;
   text-decoration: none;
   color: black;
+  padding-bottom: 5px;
 }
 .display-user {
   text-decoration: none;
   padding-left: 5px;
 }
 .buttons-container1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
 }
 
 .buttons-container1 .delete-button {
+  font-size: 20px;
+  /* border-radius: 5%; */
+  padding: 5 10px;
+  /* padding-right: 5px; */
+}
+.buttons-container1 .edit-button {
+  font-size: 20px;
+  padding: 10px;
+  /* border-radius: 5%; */
+}
+
+.react-confirm-alert-body {
+  font-family: "Roboto", sans-serif;
+  background-color: white;
+  font-size: 25px;
+  border-radius: 10px;
+  border: 1px solid #5169ff;
+  text-align: center;
+  color: #2d3fb2;
+  font-weight: 700;
+  position: fixed;
+  width: auto;
+  height: auto;
+  top: 50%;
+  left: 50%;
+  padding: 20px;
+  transform: translate(-50%, -50%);
+}
+.react-confirm-alert-button-group {
+  padding: 15px;
+}
+.react-confirm-alert-button-group button {
   background-color: white;
   border: 1px solid #7fb25b;
   font-weight: bold;
@@ -49,15 +88,13 @@
   padding: 5px;
   margin: auto 2px;
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
 }
-.buttons-container1 .edit-button {
-  background-color: #7fb25b;
-  border: 1px solid #7fb25b;
-  font-weight: bold;
-  font-size: 12px;
-  border-radius: 5%;
-  width: 110px;
-  padding: 5px;
-  margin: auto 2px;
-  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.35);
+
+@media (max-width: 1100px) {
+  .display-image img {
+    width: 450px;
+    height: 350px;
+    overflow: hidden;
+  }
 }

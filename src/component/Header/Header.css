@@ -78,7 +78,7 @@ header button {
     transition: padding-top 0.3s, padding-bottom 0.3s;
     /* transition: 0.3s; */
     /* makes the menu bar move down */
-    z-index: 5;
+    z-index: 5 !important;
     /* comes from under the header bar */
   }
   header li {

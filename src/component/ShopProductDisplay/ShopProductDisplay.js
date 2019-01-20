@@ -32,10 +32,10 @@ class ShopProductDisplay extends Component {
           </Link>
         </div>
         <div className="product-display-name">
-          {product_name ? product_name : "loading"}
+          {product_name ? product_name : null}
         </div>
         <div className="product-display-price">
-          ${product_price ? product_price : "loading"}
+          ${product_price ? product_price : null}
         </div>
       </div>
     );

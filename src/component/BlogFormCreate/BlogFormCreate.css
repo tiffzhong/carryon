@@ -1,9 +1,10 @@
 .entire-create-blogform-container {
   font-family: "Arimo", sans-serif;
+  background-color: rgb(240, 240, 240);
 }
 .blogform-banner {
   padding-top: 50px;
-  background-image: url("./hava.jpg");
+  background-image: url("./shira.jpg");
   color: white;
   z-index: 0;
   font-size: 45px;
@@ -20,7 +21,7 @@
   font-size: 60px;
   font-weight: bold;
 }
-.create-blogform-container {
+/* .create-blogform-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -29,8 +30,9 @@
   width: 100%;
   display: flex;
   justify-content: center;
-}
+} */
 .create-blogform-form {
+  padding-bottom: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -66,12 +68,17 @@
   font-size: 20px;
 }
 .photo-area-create {
-  font-size: 18px;
+  background-color: white;
+  color: rgb(146, 146, 146);
   border: 1px solid rgb(146, 146, 146);
-  width: 70%;
+  width: 80%;
   padding: 10px;
-  margin: 7px auto;
-  height: 100px;
+  margin: 7px 10px;
+  height: 300px;
+}
+.photo-area-create span {
+  font-size: 22px;
+  width: 100%;
 }
 
 .create-title-field {
@@ -85,6 +92,24 @@
 .create-itinerary-field {
   width: 80%;
 }
+/* 
+.thumb {
+  display: flex;
+  padding: 2px;
+  width: 100%;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.thumb-button {
+  right: -10;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  font-size: 11px;
+  border-radius: 50%;
+} */
 
 .post-button-create {
   background-color: #2d3fb2;
@@ -96,7 +121,7 @@
   font-size: 12px;
   border-radius: 10px;
   height: 30px;
-  width: 50%;
+  width: 80%;
   padding: 5px;
   margin: auto 2px;
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.35);
@@ -105,6 +130,7 @@
 .post-button-create button {
   background-color: #2d3fb2;
   font-weight: bold;
+  width: 300px;
   color: white;
   font-size: 14px;
   border: none;

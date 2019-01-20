@@ -7,11 +7,52 @@ import moment from "moment";
 import request from "superagent";
 import Dropzone from "react-dropzone";
 import axios from "axios";
-import { Line, Circle } from "rc-progress";
+
+import styled from "styled-components";
+import { Progress } from "react-sweet-progress";
+import "react-sweet-progress/lib/style.css";
 
 const CLOUDINARY_UPLOAD_PRESET = "carryon";
 const CLOUDINARY_UPLOAD_URL =
   "https://api.cloudinary.com/v1_1/tiffz/image/upload";
+
+const thumbsContainer = {
+  display: "flex",
+  flexDirection: "row",
+  flexWrap: "wrap",
+  marginTop: 5
+};
+
+const thumb = {
+  display: "inline-flex",
+  // borderRadius: 2,
+  // border: "1px solid #eaeaea",
+  marginBottom: 5,
+  marginRight: 5,
+  width: 120,
+  height: 120
+  // padding: 5
+  // boxSizing: "border-box"
+};
+const Button = styled.button`
+  width: 20px;
+  height: 20px;
+  border: none;
+  color: black;
+`;
+
+const thumbInner = {
+  display: "flex",
+  flexWrap: "wrap",
+  // minWidth: 0,
+  overflow: "hidden"
+};
+
+const img = {
+  // display: "block"
+  width: "auto",
+  height: "100%"
+};
 
 class BlogFormCreate extends Component {
   constructor(props) {
@@ -26,7 +67,7 @@ class BlogFormCreate extends Component {
       files: [],
       cloudinaryUrl: [],
       publicId: [],
-      percent: 0
+      percent: 100
     };
   }
 
@@ -137,101 +178,125 @@ class BlogFormCreate extends Component {
     // console.log("state", this.state);
     const { date, title, image_url, blurb, itinerary } = this.state;
     const { createBlogPost, user } = this.props;
-    const { files, cloudinaryUrl, publicId } = this.state;
+    const { files } = this.state;
 
-    // const thumbs = [];
-    let thumbs = files.map((file, i) => {
-      return (
-        <div className="thumb">
-          <img src={file.preview} width={200} alt="preview" id={i} />
-          <button onClick={() => this.clear(i)}>X</button>
+    // const thumbs = [];]
+
+    let thumbs = files.map((file, i) => (
+      <div style={thumb} key={i}>
+        <div style={thumbInner}>
+          <Button onClick={() => this.clear(i)}>X</Button>
+          <img src={file.preview} style={img} />
         </div>
-      );
-    });
+      </div>
+    ));
+    //   return (
+    //     <div className="thumb">
+    //       <img src={file.preview} width={200} alt="preview" id={i} />
+    //       <button className="thumb-button" onClick={() => this.clear(i)}>
+    //         X
+    //       </button>
+    //     </div>
+    //   );
+    // });
 
     return (
       <div className="entire-create-blogform-container">
         <div className="blogform-banner">
           <h2>Create</h2>
         </div>
-        <div className="create-blogform-container">
-          <div className="create-blogform-form">
-            <form onSubmit={event => this.onSubmit(event)}>
-              <p value={date} onChange={event => this.handleChange(event)}>
-                {moment().format("MMMM Do YYYY h:mm:ss")}
-              </p>
+        <div className="create-blogform-form">
+          <form onSubmit={event => this.onSubmit(event)}>
+            <p value={date} onChange={event => this.handleChange(event)}>
+              {moment().format("MMMM Do YYYY h:mm a")}
+            </p>
 
-              <div className="create-title-field">
-                <input
-                  placeholder="Title"
-                  name="title"
-                  type="text"
-                  value={title}
-                  onChange={event => this.handleChange(event)}
-                />
-              </div>
+            <div className="create-title-field">
+              <input
+                placeholder="Title"
+                name="title"
+                type="text"
+                value={title}
+                onChange={event => this.handleChange(event)}
+              />
+            </div>
 
-              <div className="create-blurb-field">
-                <textarea
-                  placeholder="How was your trip?"
-                  name="blurb"
-                  type="text"
-                  value={blurb}
-                  onChange={event => this.handleChange(event)}
-                />
-              </div>
+            <div className="create-blurb-field">
+              <textarea
+                placeholder="How was your trip?"
+                name="blurb"
+                type="text"
+                value={blurb}
+                onChange={event => this.handleChange(event)}
+              />
+            </div>
 
-              <div className="create-itinerary-field">
-                <textarea
-                  placeholder="Your Itinerary"
-                  name="itinerary"
-                  type="text"
-                  value={itinerary}
-                  onChange={event => this.handleChange(event)}
-                />
-              </div>
+            <div className="create-itinerary-field">
+              <textarea
+                placeholder="Your Itinerary"
+                name="itinerary"
+                type="text"
+                value={itinerary}
+                onChange={event => this.handleChange(event)}
+              />
+            </div>
 
-              <div className="photo-area-create">
-                <Dropzone onDrop={this.onDrop} accept="image/*" multiple>
-                  {({ getRootProps, getInputProps }) => (
-                    <div {...getRootProps()}>
-                      <input {...getInputProps()} />
-                      <span>Click or Drop Your Photos Here!</span>
-                    </div>
-                  )}
-                </Dropzone>
+            <div className="photo-area-create">
+              <Dropzone onDrop={this.onDrop} accept="image/*">
+                {({ getRootProps, getInputProps }) => (
+                  <div {...getRootProps()}>
+                    <input {...getInputProps()} />
+                    <span>Click or Drop Your Photos Here!</span>
+                  </div>
+                )}
+              </Dropzone>
 
-                {thumbs}
-              </div>
+              {this.state.percent < 100 ? (
+                <div style={{ margin: 10, width: 300 }}>
+                  <Progress
+                    percent={this.state.percent}
+                    theme={{
+                      success: {
+                        symbol: "🤩",
+                        color: "#7fb25b"
+                      },
+                      active: {
+                        symbol: "🌎",
+                        color: "#2d3fb2"
+                      },
+                      default: {
+                        symbol: "😬",
+                        color: "#fbc630"
+                      }
+                    }}
+                  />
+                  {/* <Line strokeWidth="10" percent={this.state.percent} /> */}
+                </div>
+              ) : (
+                <aside style={thumbsContainer}>{thumbs}</aside>
+              )}
+            </div>
 
-              {/* ....... */}
-
-              {/* <div style={{ margin: 10, width: 100 }}>
-                <Line strokeWidth="4" percent={this.state.percent} />
-              </div> */}
-
-              {/* ------------ */}
-              <div className="post-button-create">
-                <Link to="/dashboard">
-                  <button
-                    onClick={() =>
-                      createBlogPost(
-                        date,
-                        title,
-                        image_url,
-                        blurb,
-                        itinerary,
-                        user.name,
-                        user.auth0_id
-                      )
-                    }
-                  >
-                    Post
-                  </button>
-                </Link>
-              </div>
-            </form>
-          </div>
+            <div className="post-button-create">
+              <Link to="/dashboard">
+                <button
+                  onClick={() =>
+                    createBlogPost(
+                      date,
+                      title,
+                      image_url,
+                      blurb,
+                      itinerary,
+                      user.name,
+                      user.auth0_id
+                    )
+                  }
+                >
+                  Post
+                </button>
+              </Link>
+            </div>
+          </form>
         </div>
       </div>
     );

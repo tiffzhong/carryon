@@ -32,15 +32,17 @@ class News extends Component {
         console.log(article, "%%%%");
         return (
           <div className="news-api">
-            <div className="article-date">
-              {moment(article.publishedAt).format("MMMM Do YYYY h:mm:ss a")}
+            <div className="display-image">
+              <img src={article.urlToImage} key={article.author} />
             </div>
-            <div className="article-title">
+            <div className="news-display-title">
+              {" "}
               <a href={article.url}>{article.title}</a>
             </div>
-            <img src={article.urlToImage} key={article.author} />
-            <div className="article-description">{article.description}</div>
-            ---
+            <div className="news-display-author">
+              {article.author} •{" "}
+              {moment(article.publishedAt).format("MMMM Do YYYY h:mm a")}
+            </div>
           </div>
         );
       });

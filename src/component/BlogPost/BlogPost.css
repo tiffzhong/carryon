@@ -1,9 +1,6 @@
-.single-blogpost-background {
-  background-color: rgb(240, 240, 240);
-}
 .blogpost-images-container1 {
   margin-top: 20px;
-  width: 50%;
+  width: 70%;
   margin-bottom: 40px;
 }
 .blogpost-images-container1 img {
@@ -11,30 +8,44 @@
   height: 100%;
 }
 
-/* .single-blogpost-banner {
-  background-color: white;
-  background-size: cover;
-  z-index: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 50px 0px;
-  width: 100%;
-  font-size: 45px;
-} */
-
+.single-blogpost-container h6 {
+  text-transform: uppercase;
+}
+.single-blogpost-container h1 {
+  text-transform: uppercase;
+  font-size: 50px;
+  font-weight: bold;
+}
 .single-blogpost-container {
+  font-family: "Arimo", sans-serif;
+  background-color: rgb(240, 240, 240);
   padding-top: 80px;
   margin-right: 20px;
-  width: 90%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   flex-direction: column;
 }
-
+.blurb-container {
+  padding-top: 10px;
+  width: 65%;
+}
+.itinerary-container {
+  padding-top: 10px;
+  width: 65%;
+  padding-bottom: 20px;
+}
 .slick-image-container-again {
   display: flex;
   width: 100%;
+}
+
+.blog-post-edit-button {
+  font-size: 28px;
+}
+.go-back-arrow {
+  align-self: center;
+  /* padding-left: 20px; */
 }

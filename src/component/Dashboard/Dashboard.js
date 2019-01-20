@@ -83,7 +83,9 @@ class Dashboard extends Component {
             </div>
             <div className="create-new">
               <Link to="/new">
-                <button>New Post</button>
+                <button>
+                  New Post <i class="fas fa-plus" />
+                </button>
               </Link>
             </div>
             {/* <div className="search-bar">
@@ -91,14 +93,20 @@ class Dashboard extends Component {
               <button>Search</button>
             </div> */}
             <div className="title-of-feed-container">
-              <h3>Your Trips</h3>
+              <h3>
+                <i class="fas fa-plane" /> Your Posts
+              </h3>
               <div className="your-trips">{allOfMyBlogposts}</div>
-              <h3>Explore Posts</h3>
+              <h3>
+                <i class="fas fa-plane" /> Explore Trips
+              </h3>
               <div className="your-feed">{displayBlogPosts}</div>
-            </div>
-            <h3>On the News</h3>
-            <div className="your-news">
-              <News />
+              <h3>
+                <i class="fas fa-plane" /> On the News
+              </h3>
+              <div className="your-news">
+                <News />
+              </div>
             </div>
           </>
         ) : (
