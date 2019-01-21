@@ -7,6 +7,7 @@ import ProfileModal from "./ProfileModal";
 import BlogPostDisplay from "../BlogPostDisplay/BlogPostDisplay";
 import twitter from "./twitter.png";
 import instagram from "./insta.png";
+import earth from "../../earth.gif";
 class Profile extends Component {
   constructor(props) {
     super(props);
@@ -93,6 +94,7 @@ class Profile extends Component {
     let displayMyBlogPosts =
       allBlogposts.length > 0 &&
       allBlogposts.filter(myBlogpost => {
+        console.log(myBlogpost, "myBlogposteh");
         return myBlogpost.auth0_id == this.props.user.auth0_id;
       });
 
@@ -117,7 +119,11 @@ class Profile extends Component {
               </div>
 
               <div className="profile-left-side">
-                <img src={this.state.picture} alt="provided by auth0" />
+                {this.state.picture ? (
+                  <img src={this.state.picture} alt="photo" />
+                ) : (
+                  <img src={earth} alt="photo" />
+                )}
                 <div className="image-and-city">
                   <p>{this.state.name}</p>
                   <span onClick={this.showModal}>
@@ -139,11 +145,10 @@ class Profile extends Component {
               </div>
               <div className="social-media-icons">
                 <div className="twitter">
-                  {/* <span onClick={this.showModal}> */}
                   <a
                     href={
                       this.state.twitter
-                        ? this.state.twitter
+                        ? `www.twitter.com/${this.state.twitter}`
                         : "www.twitter.com"
                     }
                     target="_blank"
@@ -151,14 +156,13 @@ class Profile extends Component {
                   >
                     <img src={twitter} alt="" />
                   </a>
-                  {/* </span> */}
                 </div>
                 <div className="instagram">
                   {/* <span onClick={this.showModal}> */}
                   <a
                     href={
                       this.state.instagram
-                        ? this.state.instagram
+                        ? `www.instagram.com/${this.state.instagram}`
                         : "www.instagram.com"
                     }
                     target="_blank"
@@ -184,13 +188,6 @@ class Profile extends Component {
             </div>
           ) : (
             <div>Please log in</div>
-            // <div className="profile-picture">
-            //   <img src={this.state.picture} alt="provided by auth0" />
-            //   <h1>{this.state.name}</h1>
-            //   <h5>About Me: {this.state.about}</h5>
-            //   <h6>Twitter: {this.state.twitter}</h6>
-            //   <h6>instagram: {this.state.instagram}</h6>
-            // </div>
           )}
         </div>
         <div className="ab-container">

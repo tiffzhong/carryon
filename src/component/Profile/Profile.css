@@ -232,10 +232,13 @@ span {
   display: none;
 }
 .ab-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   font-family: "Arimo", sans-serif;
   padding: 10px;
   width: 100%;
-  padding: 0 200px;
   font-size: 13px;
   font-weight: bold;
 }

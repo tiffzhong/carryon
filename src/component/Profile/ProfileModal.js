@@ -83,7 +83,7 @@ class ProfileModal extends Component {
               type="text"
             />
             <br />
-            <span>Twitter:</span>
+            <span>Twitter (Username Only):</span>
             <br />
             <input
               placeholder="Add Twitter"
@@ -93,7 +93,7 @@ class ProfileModal extends Component {
               value={this.state.twitter}
             />
             <br />
-            <span> Instagram:</span>
+            <span> Instagram (Username Only):</span>
             <br />
             <input
               placeholder="Add Instagram"

@@ -4,8 +4,8 @@ import "../Dashboard/Dashboard.css";
 const Error404 = props => {
   return (
     <div className="sign-in-page">
-      To see this page, <br />
-      Please Register or Login (...or Shop) <i class="far fa-smile-wink" />⤴
+      Sorry this Page Doesn't Exist! <br />
+      Please Redirect Yourself <i class="far fa-smile-wink" />⤴
     </div>
   );
 };
