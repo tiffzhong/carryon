@@ -53,10 +53,7 @@ class BlogPostDisplay extends Component {
           </div>
 
           <div className="bottom-line-tag">
-            <div className="display-user">
-              <Link to={`/profile/${id}`}>{name ? name : "loading"}</Link>
-            </div>{" "}
-            •{" "}
+            <div className="display-user">{name ? name : "loading"}</div> •{" "}
             <div className="display-date">
               {date ? moment(date).format("MMMM Do YYYY") : "loading"}
             </div>

@@ -34,7 +34,7 @@ class Twilio extends Component {
           onChange={this.onHandleChange}
           placeholder="Phone Number"
         />
-        *no spaces, dashes, or parentheses please!*
+        *no spaces, dashes, or parentheses, please!
         <button
           onClick={() => {
             this.sendText();

@@ -39,7 +39,7 @@ class NewsLetterModalContent extends Component {
               value={this.state.email}
               onChange={event => this.handleChange(event)}
             />
-            *you will receive an email confirmation!*
+            *you will receive an email confirmation!
             <button
               className="inside-button"
               onClick={() => {

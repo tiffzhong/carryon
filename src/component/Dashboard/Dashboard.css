@@ -109,6 +109,10 @@
 .news-display-title {
   font-size: 14px;
 }
+.news-display-title a {
+  text-decoration: none;
+  color: #2d3fb2;
+}
 .news-display-author {
   /* letter-spacing: 1px; */
   font-size: 12px;
