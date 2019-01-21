@@ -1,4 +1,4 @@
-import React, { Component, useCallback } from "react";
+import React, { Component } from "react";
 import axios from "axios";
 import moment from "moment";
 class News extends Component {
@@ -33,7 +33,7 @@ class News extends Component {
         return (
           <div className="news-api">
             <div className="display-image">
-              <img src={article.urlToImage} key={article.author} />
+              <img src={article.urlToImage} alt="" key={article.author} />
             </div>
             <div className="news-display-title">
               {" "}

@@ -35,7 +35,7 @@ class BlogPostDisplay extends Component {
   render() {
     let { date, title, image_url, name, id, user, user_id } = this.props;
 
-    let { deleteBlogPost, auth } = this.props;
+    let { auth } = this.props;
 
     const firstImage = image_url.map(imageOne => {
       return <img src={imageOne} alt="imageone" />;

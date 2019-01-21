@@ -7,6 +7,11 @@ const dotenv = require("dotenv");
 const connect = require("connect-pg-simple");
 dotenv.config();
 
+const client = require("twilio")(
+  process.env.TWILIO_ACCOUT_SID,
+  process.env.TWILIO_AUTH_TOKEN
+);
+
 //Controllers
 const authController = require("./controllers/authController");
 const profileController = require("./controllers/profileController");
@@ -16,6 +21,8 @@ const clientController = require("./controllers/clientController");
 const productsController = require("./controllers/productsController");
 const cartController = require("./controllers/cartController");
 const stripeController = require("./controllers/stripeController");
+// const twilioController = require("./controllers/twilioController");
+
 const app = express();
 app.use(bodyParser.json());
 
@@ -84,6 +91,24 @@ app.delete("/api/user/cart/:product_id", cartController.removeFromCart);
 
 //Stripe
 app.post("/save-stripe-token", stripeController.payment);
+
+//Twilio
+app.post("/api/messages", (req, res) => {
+  // console.log(req, "what is req");
+  client.messages
+    .create({
+      from: process.env.TWILIO_PHONE_NUMBER,
+      to: req.body.to,
+      body: req.body.body
+    })
+    .then(() => {
+      res.send("success");
+    })
+    .catch(err => {
+      console.log(err, "error in twilio");
+      res.send(err);
+    });
+});
 
 const PORT = 4000;
 app.listen(PORT, () => {

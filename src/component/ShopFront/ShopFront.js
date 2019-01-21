@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import "./ShopFront.css";
-import { Link } from "react-router-dom";
+
 import { connect } from "react-redux";
 import { getAllProducts } from "../../ducks/shopReducer";
 import ShopProductDisplay from "../ShopProductDisplay/ShopProductDisplay";
-import NewsLetterModal from "../NewsLetterModal/NewsLetterModal";
+
 import axios from "axios";
 class ShopFront extends Component {
   constructor() {

@@ -1,0 +1,19 @@
+.twilio {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+.twilio input {
+  width: 100%;
+}
+.twilio button {
+  background-color: #2d3fb2;
+  border: none;
+  color: white;
+  height: auto;
+  width: 250px;
+  font-size: 15px;
+  border-radius: 25px;
+}

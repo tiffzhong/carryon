@@ -1,14 +1,17 @@
 import React, { Component } from "react";
 import "./NewsLetterModal.css";
 import axios from "axios";
+import Twilio from "../Twilio/Twilio";
 class NewsLetterModalContent extends Component {
   constructor() {
     super();
 
     this.state = {
-      email: ""
+      email: "",
+      phone: null
     };
   }
+
   newsletter = () => {
     const { email } = this.state;
     axios
@@ -36,6 +39,7 @@ class NewsLetterModalContent extends Component {
               value={this.state.email}
               onChange={event => this.handleChange(event)}
             />
+            *you will receive an email confirmation!*
             <button
               className="inside-button"
               onClick={() => {
@@ -43,8 +47,9 @@ class NewsLetterModalContent extends Component {
                 this.props.onHide();
               }}
             >
-              Submit!
+              Submit Email
             </button>
+            <Twilio />
           </div>
 
           <div className="x-button-modal">

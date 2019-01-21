@@ -52,7 +52,7 @@ class ProfileModal extends Component {
   };
 
   render() {
-    const { city, about, twitter, instagram } = this.props;
+    // const { city, about, twitter, instagram } = this.props;
     console.log(this.props, "let me see props");
     console.log(this.state, "let me see stateeeeee");
     const showHideClassName = this.props.display

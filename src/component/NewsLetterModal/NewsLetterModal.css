@@ -44,8 +44,8 @@
 .content-inside-modal {
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
-  margin: 10px;
 }
 .content-inside-modal input {
   font-size: 18px;
@@ -61,7 +61,7 @@
   border: none;
   color: white;
   /* height: 30px; */
-  width: 100px;
+  width: 250px;
   font-size: 15px;
   border-radius: 25px;
 }

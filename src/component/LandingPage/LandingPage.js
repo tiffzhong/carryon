@@ -1,18 +1,12 @@
-import React, { Component } from "react";
+import React from "react";
 import Banner from "../Banner/Banner";
 
-class LandingPage extends Component {
-  constructor() {
-    super();
-  }
-
-  render() {
-    return (
-      <div className="landing-page-container">
-        <Banner />
-      </div>
-    );
-  }
+function LandingPage(props) {
+  return (
+    <div className="landing-page-container">
+      <Banner />
+    </div>
+  );
 }
 
 export default LandingPage;

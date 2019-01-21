@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./NewsLetterModal.css";
 import NewsLetterModalContent from "./NewsLetterModalContent";
+
 class NewsLetterModal extends Component {
   constructor() {
     super();
