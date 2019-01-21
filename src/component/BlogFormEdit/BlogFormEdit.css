@@ -2,6 +2,7 @@
   padding-top: 50px;
   z-index: 0;
   background-image: url("./thai.jpg");
+
   color: white;
   font-size: 45px;
   background-size: cover;
@@ -49,6 +50,7 @@
 }
 
 .edit-blogform input {
+  font-family: "Arimo", sans-serif;
   padding: 10px;
   border: 1px solid rgb(146, 146, 146);
   margin: 10px;
@@ -56,6 +58,7 @@
   width: 100%;
 }
 .edit-blogform textarea {
+  font-family: "Arimo", sans-serif;
   width: 100%;
   border: 1px solid rgb(146, 146, 146);
   padding: 10px;

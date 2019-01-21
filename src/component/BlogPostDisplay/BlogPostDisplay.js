@@ -43,35 +43,44 @@ class BlogPostDisplay extends Component {
     return (
       <>
         <div className="display-container">
-          <div className="display-image">
-            <Link to={`/post/${id}`}>
-              {firstImage[0] ? firstImage[0] : "loading"}
-            </Link>
-          </div>
-          <div className="display-title">
-            <Link to={`/post/${id}`}>{title ? title : "loading"}</Link>
-          </div>
-
-          <div className="bottom-line-tag">
-            <div className="display-user">{name ? name : "loading"}</div> •{" "}
-            <div className="display-date">
-              {date ? moment(date).format("MMMM Do YYYY") : "loading"}
-            </div>
-          </div>
-
-          {user.auth0_id === auth ? (
-            <div className="buttons-container1">
-              <a className="delete-button" onClick={() => this.clicked(id)}>
-                <i class="far fa-trash-alt" />
-              </a>
-
-              <Link to={`/blogpost/${id}`}>
-                <p className="edit-button">
-                  <i class="far fa-edit" />
-                </p>
+          <div className="thepost-container">
+            <div className="display-image">
+              {/* div "container" */}
+              <Link to={`/post/${id}`}>
+                {firstImage[0] ? firstImage[0] : "loading"}
               </Link>
             </div>
-          ) : null}
+
+            {/* p "title"  */}
+            <div className="display-title">
+              <Link to={`/post/${id}`}>{title ? title : "loading"}</Link>
+            </div>
+
+            <div className="bottom-line-tag">
+              <Link to={`/post/${id}`}>
+                <div className="display-user">{name ? name : "loading"}</div>
+                <div className="display-date">
+                  {date ? moment(date).format("MMMM Do YYYY") : "loading"}
+                </div>
+              </Link>
+            </div>
+
+            {/* div "overlay" */}
+            <div className="overlay" />
+            {/* div "button"  */}
+            {user.auth0_id === auth ? (
+              <div className="buttons-container1">
+                <a className="delete-button" onClick={() => this.clicked(id)}>
+                  <i class="far fa-trash-alt" />
+                </a>
+                <Link to={`/blogpost/${id}`}>
+                  <a className="edit-button">
+                    <i class="far fa-edit" />
+                  </a>
+                </Link>
+              </div>
+            ) : null}
+          </div>
         </div>
       </>
     );

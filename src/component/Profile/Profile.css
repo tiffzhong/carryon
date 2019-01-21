@@ -94,13 +94,14 @@
   display: flex;
   justify-content: center;
   flex-direction: row;
-  padding-left: 200px;
-  margin: 5px auto;
+  margin: 5px 0;
 }
 
 .huge-container .social-media-icons {
   display: flex;
-  padding: 0;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
   /* width: 20%; */
   /* flex-direction: row; */
 }
@@ -111,8 +112,7 @@
   display: flex;
   justify-content: center;
   flex-direction: row;
-  padding-right: 200px;
-  margin: 5px auto;
+  margin: 5px 2px;
 }
 span {
   border: none;

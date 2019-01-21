@@ -22,7 +22,8 @@ class Profile extends Component {
       quote: [],
       id: null,
       display: false,
-      posts: []
+      posts: [],
+      authy_zero: ""
     };
   }
 
@@ -60,7 +61,7 @@ class Profile extends Component {
 
   setProfile = id => {
     axios.get(`/api/profile/${this.props.match.params.id}`).then(res => {
-      console.log("setprofile response data", res.data);
+      console.log("sHARROOOOOAROSKLJ", res.data);
       this.setState({
         id: res.data.id,
         name: res.data.name,
@@ -68,7 +69,8 @@ class Profile extends Component {
         city: res.data.city,
         about: res.data.about,
         twitter: res.data.twitter,
-        instagram: res.data.instagram
+        instagram: res.data.instagram,
+        authy_zero: res.data.auth0_id
       });
     });
   };
@@ -90,12 +92,13 @@ class Profile extends Component {
     );
 
     console.log(this.props.allBlogposts, "display PROPSSSSSS");
+    console.log(this.props.user, "is it here");
     let { allBlogposts } = this.props;
     let displayMyBlogPosts =
       allBlogposts.length > 0 &&
       allBlogposts.filter(myBlogpost => {
         console.log(myBlogpost, "myBlogposteh");
-        return myBlogpost.auth0_id == this.props.user.auth0_id;
+        return myBlogpost.auth0_id == this.state.authy_zero;
       });
 
     let allOfMyBlogposts =

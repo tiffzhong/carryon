@@ -9,6 +9,7 @@ header {
   position: fixed;
   text-transform: uppercase;
   padding: 0px 50px;
+  z-index: 1000;
 }
 
 header > div {

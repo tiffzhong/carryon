@@ -1,4 +1,5 @@
 .the-entire-dashboard {
+  width: 100%;
   background-color: rgb(240, 240, 240);
   font-family: "Arimo", sans-serif;
 }
@@ -28,14 +29,14 @@
 .create-new {
   display: flex;
   justify-content: center;
-  align-items: center;
   width: 100%;
-  padding: 5px 0 0 0;
-  margin: 5px 0 0 0;
-  height: 30px;
+  padding: 15px auto;
+  margin: 5px;
+  height: 40px;
 }
 .create-new button {
-  background-color: #7fb25b;
+  background-color: #2d3fb2;
+  color: white;
   font-weight: bold;
   font-size: 18px;
   border-radius: 5%;
@@ -62,12 +63,15 @@
   padding-left: 2px;
 } */
 .title-of-feed-container h3 {
-  font-size: 30px;
+  font-size: 28px;
   font-weight: bold;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 20px 0 0 90px;
+  width: 100%;
+  background-color: #6acc25;
+  margin-top: 20px;
+  padding: 10px;
 }
 
 .your-feed {
@@ -75,7 +79,7 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  padding: 20px;
+  padding: 0;
   font-weight: bold;
   font-size: 30px;
 }
@@ -85,36 +89,46 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  padding: 20px;
+  padding: 0;
   font-weight: bold;
   font-size: 30px;
 }
 
-/* .your-news {
+.your-news {
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
-  padding: 20px;
-  font-weight: bold;
-  font-size: 30px;
-} */
-.news-api {
+  padding: 10px 0;
+}
+.holding-all-news {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   flex-direction: column;
+  padding: 5px;
+}
+.your-news .news-display-image img {
+  display: flex;
+  width: 150px;
+  height: 100px;
   padding: 10px;
 }
-.news-display-title {
-  font-size: 14px;
+.news-news-news {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+.your-news .news-display-title {
+  font-size: 14px;
+  width: 100%;
+}
+
 .news-display-title a {
   text-decoration: none;
   color: #2d3fb2;
 }
 .news-display-author {
-  /* letter-spacing: 1px; */
   font-size: 12px;
   text-transform: uppercase;
   padding: 3px;
@@ -130,19 +144,21 @@
   padding-bottom: 100px;
 }
 
-.BLAH {
-  display: flex;
-  padding: 20px;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  margin: 10px;
-  font-weight: bold;
-  font-size: 30px;
-}
-
 @media (max-width: 650px) {
   .sign-in-page {
     font-size: 25px;
+  }
+}
+
+@media (max-width: 360px) {
+  .your-feed {
+    width: 100%;
+  }
+
+  .your-trips {
+    width: 100%;
+  }
+  .news-api {
+    width: 100%;
   }
 }
