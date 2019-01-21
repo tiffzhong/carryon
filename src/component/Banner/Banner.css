@@ -1,6 +1,6 @@
 .banner-container {
   font-family: "Arimo", sans-serif;
-  padding: 150px auto;
+  /* padding: 150px auto; */
   height: 100vh;
   background-image: url("./plane.jpg");
   z-index: 0;

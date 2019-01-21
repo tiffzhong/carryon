@@ -151,11 +151,10 @@ class Profile extends Component {
                   <a
                     href={
                       this.state.twitter
-                        ? `www.twitter.com/${this.state.twitter}`
+                        ? `http://www.twitter.com/${this.state.twitter}`
                         : "www.twitter.com"
                     }
                     target="_blank"
-                    rel="twitter"
                   >
                     <img src={twitter} alt="" />
                   </a>
@@ -165,7 +164,7 @@ class Profile extends Component {
                   <a
                     href={
                       this.state.instagram
-                        ? `www.instagram.com/${this.state.instagram}`
+                        ? `http://www.instagram.com/${this.state.instagram}`
                         : "www.instagram.com"
                     }
                     target="_blank"
@@ -190,7 +189,7 @@ class Profile extends Component {
               </div>
             </div>
           ) : (
-            <div>Please log in</div>
+            <div className="sign-in-page">Please Register/Log in!! ⤻</div>
           )}
         </div>
         <div className="ab-container">

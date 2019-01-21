@@ -3,9 +3,7 @@
   font-family: "Roboto", sans-serif;
   justify-content: center;
   align-items: center;
-
-  margin: 5px;
-  padding: 5px;
+  padding: 1px;
 }
 .thepost-container {
   position: relative;
@@ -165,5 +163,21 @@
     width: 450px;
     height: 350px;
     overflow: hidden;
+  }
+}
+
+@media (max-width: 450px) {
+  .thepost-container .buttons-container1 {
+    opacity: 1;
+  }
+  .delete-button {
+    top: 5px;
+    right: 12px;
+    position: absolute;
+  }
+  .edit-button {
+    top: 5px;
+    right: 53px;
+    position: absolute;
   }
 }
