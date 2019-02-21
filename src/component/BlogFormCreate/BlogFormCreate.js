@@ -25,14 +25,10 @@ const thumbsContainer = {
 
 const thumb = {
   display: "inline-flex",
-  // borderRadius: 2,
-  // border: "1px solid #eaeaea",
   marginBottom: 5,
   marginRight: 5,
   width: 120,
   height: 120
-  // padding: 5
-  // boxSizing: "border-box"
 };
 const Button = styled.button`
   width: 20px;
@@ -82,7 +78,7 @@ class BlogFormCreate extends Component {
   }
 
   onDrop = files => {
-    if (this.state.files.length == 0 || this.state.files.length) {
+    if (this.state.files.length === 0 || this.state.files.length) {
       // Copy Files array in state
       var copy = this.state.files.slice();
       var otherFiles = files.map(file =>
@@ -126,12 +122,10 @@ class BlogFormCreate extends Component {
         publicId: newPublicId,
         files: newFile
       });
-      console.log(response, "res from THE CLOUDDDDD");
     });
   };
 
   handleImageUpload(files) {
-    console.log(files, "files uploading");
     const eachFileUrl = files.forEach(file => {
       let upload = request
         .post(CLOUDINARY_UPLOAD_URL)
@@ -145,10 +139,7 @@ class BlogFormCreate extends Component {
         );
 
       upload.end((err, response) => {
-        console.log("SHOW RESPONSE FOR UPLOAD", response);
-
         if (err) {
-          console.log("error w upload", err);
         }
         if (response.body) {
           let image_url = this.state.image_url.concat(),
@@ -175,30 +166,18 @@ class BlogFormCreate extends Component {
   }
 
   render() {
-    // console.log("state", this.state);
     const { date, title, image_url, blurb, itinerary } = this.state;
     const { createBlogPost, user } = this.props;
     const { files } = this.state;
-
-    // const thumbs = [];]
 
     let thumbs = files.map((file, i) => (
       <div style={thumb} key={i}>
         <div style={thumbInner}>
           <Button onClick={() => this.clear(i)}>X</Button>
-          <img src={file.preview} style={img} />
+          <img src={file.preview} style={img} alt="" />
         </div>
       </div>
     ));
-    //   return (
-    //     <div className="thumb">
-    //       <img src={file.preview} width={200} alt="preview" id={i} />
-    //       <button className="thumb-button" onClick={() => this.clear(i)}>
-    //         X
-    //       </button>
-    //     </div>
-    //   );
-    // });
 
     return (
       <div className="entire-create-blogform-container">

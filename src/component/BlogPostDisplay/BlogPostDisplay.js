@@ -16,7 +16,6 @@ class BlogPostDisplay extends Component {
     this.clicked = this.clicked.bind(this);
   }
   clicked(id) {
-    console.log("something");
     confirmAlert({
       title: " ",
       message: "Are you sure you want to delete your post?",
@@ -33,7 +32,7 @@ class BlogPostDisplay extends Component {
     });
   }
   render() {
-    let { date, title, image_url, name, id, user, user_id } = this.props;
+    let { date, title, image_url, name, id, user } = this.props;
 
     let { auth } = this.props;
 
@@ -65,16 +64,19 @@ class BlogPostDisplay extends Component {
               </Link>
             </div>
 
-            {/* div "overlay" */}
             <div className="overlay" />
-            {/* div "button"  */}
+
             {user.auth0_id === auth ? (
               <div className="buttons-container1">
-                <a className="delete-button" onClick={() => this.clicked(id)}>
+                <a
+                  href=""
+                  className="delete-button"
+                  onClick={() => this.clicked(id)}
+                >
                   <i class="far fa-trash-alt" />
                 </a>
                 <Link to={`/blogpost/${id}`}>
-                  <a className="edit-button">
+                  <a href="" className="edit-button">
                     <i class="far fa-edit" />
                   </a>
                 </Link>

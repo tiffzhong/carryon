@@ -29,7 +29,7 @@ class ShopFront extends Component {
   };
 
   render() {
-    console.log(this.props, "this.props in shop front");
+    // console.log(this.props, "this.props in shop front");
     let { products } = this.props;
     let displayAllProducts = products.map(productItem => {
       return <ShopProductDisplay {...productItem} />;

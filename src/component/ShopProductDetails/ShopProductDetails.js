@@ -20,7 +20,7 @@ class ShopProductDetails extends Component {
     axios
       .get(`/api/product/${this.props.match.params.product_id}`)
       .then(res => {
-        console.log("res.data", res.data);
+        // console.log("res.data", res.data);
         this.setState({
           product: res.data,
           image: res.data.product_picture

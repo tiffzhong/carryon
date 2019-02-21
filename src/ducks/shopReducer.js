@@ -133,7 +133,7 @@ export function getOneProduct(product_id) {
 // }
 
 export function getCart() {
-  console.log("get cart is running from cart component");
+  // console.log("get cart is running from cart component");
   return {
     type: GET_CART,
     payload: axios
@@ -151,15 +151,15 @@ export function addToCart(
   image,
   total
 ) {
-  console.log(
-    "all the paarrams",
-    product_id,
-    product_name,
-    product_price,
-    quantity,
-    image,
-    total
-  );
+  // console.log(
+  //   "all the paarrams",
+  //   product_id,
+  //   product_name,
+  //   product_price,
+  //   quantity,
+  //   image,
+  //   total
+  // );
   return {
     type: ADD_TO_CART,
     payload: axios
@@ -176,7 +176,7 @@ export function addToCart(
   };
 }
 export function updateCart(product_id, quantity) {
-  console.log("quantity", quantity);
+  // console.log("quantity", quantity);
   return {
     type: UPDATE_CART,
     payload: axios

@@ -8,6 +8,7 @@ import BlogPostDisplay from "../BlogPostDisplay/BlogPostDisplay";
 import twitter from "./twitter.png";
 import instagram from "./insta.png";
 import earth from "../../earth.gif";
+
 class Profile extends Component {
   constructor(props) {
     super(props);
@@ -61,7 +62,6 @@ class Profile extends Component {
 
   setProfile = id => {
     axios.get(`/api/profile/${this.props.match.params.id}`).then(res => {
-      console.log("sHARROOOOOAROSKLJ", res.data);
       this.setState({
         id: res.data.id,
         name: res.data.name,
@@ -76,7 +76,6 @@ class Profile extends Component {
   };
 
   render() {
-    console.log(this.state, "STATEUREURUERUERE");
     const { user } = this.props;
 
     const profileInformation = (
@@ -91,14 +90,11 @@ class Profile extends Component {
       />
     );
 
-    console.log(this.props.allBlogposts, "display PROPSSSSSS");
-    console.log(this.props.user, "is it here");
     let { allBlogposts } = this.props;
     let displayMyBlogPosts =
       allBlogposts.length > 0 &&
       allBlogposts.filter(myBlogpost => {
-        console.log(myBlogpost, "myBlogposteh");
-        return myBlogpost.auth0_id == this.state.authy_zero;
+        return myBlogpost.auth0_id === this.state.authy_zero;
       });
 
     let allOfMyBlogposts =
@@ -123,9 +119,9 @@ class Profile extends Component {
 
               <div className="profile-left-side">
                 {this.state.picture ? (
-                  <img src={this.state.picture} alt="photo" />
+                  <img src={this.state.picture} alt="auth0pic" />
                 ) : (
-                  <img src={earth} alt="photo" />
+                  <img src={earth} alt="earth" />
                 )}
                 <div className="image-and-city">
                   <p>{this.state.name}</p>
@@ -156,7 +152,7 @@ class Profile extends Component {
                     }
                     target="_blank"
                   >
-                    <img src={twitter} alt="" />
+                    <img src={twitter} alt="twitter" />
                   </a>
                 </div>
                 <div className="instagram">
@@ -170,7 +166,7 @@ class Profile extends Component {
                     target="_blank"
                     rel="instagram"
                   >
-                    <img src={instagram} alt="" />
+                    <img src={instagram} alt="insta" />
                   </a>
 
                   {/* <img src={instagram} />+

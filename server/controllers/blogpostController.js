@@ -27,7 +27,7 @@ module.exports = {
   getBlogPost: (req, res) => {
     const database = req.app.get("db");
     let { id } = req.params;
-    console.log("showmeiD", id);
+
     database
       .get_blogpost(id)
       .then(blogpost => {
@@ -61,15 +61,6 @@ module.exports = {
     const database = req.app.get("db");
     let { date, title, image_url, blurb, itinerary } = req.body;
     let { id } = req.params;
-    console.log(
-      date,
-      title,
-      image_url,
-      blurb,
-      itinerary,
-      id,
-      "$$$$$$$$$$$$$$$$$$$$$$$$$$"
-    );
 
     database
       .update_blogpost([id, date, title, `{${image_url}}`, blurb, itinerary])

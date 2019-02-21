@@ -29,7 +29,6 @@ class Dashboard extends Component {
     });
   };
   render() {
-    console.log(this.props.user, "USER");
     ///GETTING MY BLOGPOSTS ONLY!!!
     let { allBlogposts } = this.props;
     let displayMyBlogPosts =
@@ -58,7 +57,6 @@ class Dashboard extends Component {
     let displayBlogPosts =
       allBlogposts.length > 0 &&
       allBlogposts.map(blogpost => {
-        console.log("blogpost letmwlekjalksdf", blogpost);
         return (
           <div className="your-feed-blogposts">
             <BlogPostDisplay {...blogpost} id={blogpost.id} />

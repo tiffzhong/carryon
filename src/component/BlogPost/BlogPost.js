@@ -49,23 +49,15 @@ class BlogPost extends Component {
         .catch(error => console.log("error in getting 1", error));
     }
   }
-  // redirectToDashboard() {
-  //   window.location.pathname = "/dashboard";
-  // }
+
   render() {
-    // console.log(this.state, "STATE");
-    // console.log(this.props.blogpost.auth0_id, "PROPS");
-    // console.log(this.state.auth0_id, "STATE");
-    console.log(this.props.user, "does user show ID?");
-    console.log(this.props, "Trying to see Props");
     let { date, title, image_url, blurb, itinerary, name } = this.state;
-    let { history, user, deleteBlogPost } = this.props;
+    let { history, user } = this.props;
     // const allImages =
     //   image_url &&
     //   image_url.map(imageId => {
     //     return <img src={imageId} alt="imageid" />;
     //   });
-    console.log(this.state.user, "see DIDIDID");
 
     return (
       <>

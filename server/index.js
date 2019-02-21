@@ -22,6 +22,7 @@ const productsController = require("./controllers/productsController");
 const cartController = require("./controllers/cartController");
 const stripeController = require("./controllers/stripeController");
 // const twilioController = require("./controllers/twilioController");
+const commentController = require("./controllers/commentController");
 
 const app = express();
 app.use(bodyParser.json());
@@ -50,6 +51,7 @@ app.use(
   })
 );
 
+//Endpoints
 //Nodemailer
 app.post("/api/email/newsletter", clientController.sendNewsLetter);
 
@@ -70,6 +72,12 @@ app.post("/api/blogpost", blogpostContoller.createBlogPost);
 app.delete("/api/blogpost/:id", blogpostContoller.deleteBlogPost);
 app.put("/api/blogpost/:id", blogpostContoller.updateBlogPost);
 app.post("/api/image/blogpost", blogpostContoller.deletePictureWhenCreate);
+
+//Comments
+app.get("api/comments", commentController.getComments);
+app.post("api/comment", commentController.createComment);
+app.put("api/comment/:comment_id", commentController.editComment);
+app.delete("api/comment/:comment_id", commentController.deleteComment);
 
 //Admin
 app.post("/admin/register", adminController.register);
@@ -94,7 +102,6 @@ app.post("/save-stripe-token", stripeController.payment);
 
 //Twilio
 app.post("/api/messages", (req, res) => {
-  // console.log(req, "what is req");
   client.messages
     .create({
       from: process.env.TWILIO_PHONE_NUMBER,

@@ -10,7 +10,7 @@ export default class BlogPostSlick extends Component {
       slidesToShow: 1,
       slidesToScroll: 1
     };
-    console.log(this.props.images, "allimages");
+
     let image = this.props.images.map((slickImage, i) => {
       return (
         <div className="slick-image-container-again">

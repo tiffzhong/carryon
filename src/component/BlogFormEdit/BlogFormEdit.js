@@ -73,8 +73,6 @@ class BlogFormEdit extends Component {
       axios
         .get(`/api/blogpost/${this.props.match.params.postid}`)
         .then(res => {
-          console.log("res.data", res.data);
-          //red.data returns an array of one
           return this.props.getOne(res.data);
         })
         .then(() => {
@@ -132,12 +130,10 @@ class BlogFormEdit extends Component {
         publicId: newPublicId,
         files: newFile
       });
-      console.log(response, "res from THE CLOUDDDDD");
     });
   };
 
   handleImageUpload(files) {
-    console.log(files, "files uploading");
     const eachFileUrl = files.forEach(file => {
       let upload = request
         .post(CLOUDINARY_UPLOAD_URL)
@@ -151,7 +147,6 @@ class BlogFormEdit extends Component {
         );
 
       upload.end((err, response) => {
-        console.log("SHOW RESPONSE FOR UPLOAD", response);
         if (err) {
           console.log("error w upload", err);
         }
@@ -179,10 +174,6 @@ class BlogFormEdit extends Component {
   }
 
   render() {
-    console.log("this.props", this.props.blogpost);
-    console.log("this.state", this.state);
-    // console.log("match", this.props.match.params);
-    // console.log("props", this.props);
     const { id } = this.props.blogpost;
     const { editBlogPost } = this.props;
 

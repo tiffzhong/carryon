@@ -36,7 +36,7 @@ id serial primary key,
 username varchar unique,
 password varchar);
 
--- USERS
+-- USERS (LOG IN)
 create table if not exists users (
 id SERIAL primary key,
 name varchar(50) not null,
@@ -172,3 +172,20 @@ update users set name = 'Thomas Thongsan' where name = 'thomas24@aim.com';
 update blogposts set name = 'Tommy H.' where name = 'thuynh629@gmail.com';
 
 delete from blogposts where title = 'TEST TITLE';
+
+
+
+---
+drop table if exists blogpost_comments
+
+create table blogpost_comments (
+comment_id serial primary key,
+user_id int references users(id),
+comment_body text,
+blogpost_id int references blogposts(id)
+);
+
+select * from blogpost_comments;
+
+
+select * from blogposts

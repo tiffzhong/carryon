@@ -51,16 +51,16 @@ class ShoppingCart extends Component {
   }
 
   render() {
-    let { order } = this.state;
+    // let { order } = this.state;
     let { cart, total } = this.props;
-    console.log(cart, "cart from props");
-    console.log(total, "total from props");
-    console.log(order, "teh ordereh");
+    // console.log(cart, "cart from props");
+    // console.log(total, "total from props");
+    // console.log(order, "teh ordereh");
 
     let cartItem =
       cart.length > 0 &&
       cart.map(item => {
-        console.log(item, "items in cart");
+        // console.log(item, "items in cart");
         return (
           <div className="items-container">
             <div className="delete-img-name-container">

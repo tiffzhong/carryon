@@ -19,7 +19,6 @@ class News extends Component {
         "https://newsapi.org/v2/top-headlines?sources=abc-news&pageSize=3&apiKey=26f494317e574b859f9dd860351daa3f"
       )
       .then(res => {
-        console.log(res.data.articles, "res.data from api");
         this.setState({
           articles: res.data.articles
           // articles: res.data.articles.splice(0, 3)
@@ -31,7 +30,6 @@ class News extends Component {
     const news =
       articles.length > 0 &&
       articles.map(article => {
-        console.log(article, "%%%%");
         return (
           <div class="news-news-news">
             <div className="news-display-image">

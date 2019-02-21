@@ -30,7 +30,6 @@ class ProfileModal extends Component {
   //     .catch(error => error, "error in createprofile");
   // };
   editProfile = (user_id, city, about, twitter, instagram) => {
-    console.log(this.props.user_id, "userid");
     axios
       .put(`/api/profile/${this.props.user_id}`, {
         city: this.state.city,
@@ -53,8 +52,7 @@ class ProfileModal extends Component {
 
   render() {
     // const { city, about, twitter, instagram } = this.props;
-    console.log(this.props, "let me see props");
-    console.log(this.state, "let me see stateeeeee");
+
     const showHideClassName = this.props.display
       ? "modal display-block"
       : "modal display-none";
