@@ -6,7 +6,6 @@ header {
   left: 0;
   right: 0;
   border: none;
-  position: fixed;
   text-transform: uppercase;
   padding: 0px 50px;
   z-index: 1000;
