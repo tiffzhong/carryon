@@ -1,6 +1,7 @@
 ## CarryOn - Personal Project
 
 Hosted <a href="https://www.carryontravel.us/" alt="https://www.carryontravel.us/">here</a>
+
 A hybrid travel blog/e-commerce website allowing users to read and post personal travel experiences, create and view personal profiles, and purchase Carry On-logo merchandise.
 
 Tech Used: ReactJS, Redux, Node.js, Express, Massive, PostgreSQL, Auth0, Bcrypt, NewsAPI, Cloudinary, Stripe, Nodemailer, and Twilio. Fully Responsive design on desktop & mobile. Hosted on Digital Ocean VM
