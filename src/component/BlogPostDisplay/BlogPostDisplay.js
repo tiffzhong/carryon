@@ -13,24 +13,26 @@ class BlogPostDisplay extends Component {
     this.state = {
       confirmDelete: false
     };
-    this.clicked = this.clicked.bind(this);
   }
-  clicked(id) {
-    confirmAlert({
-      title: " ",
-      message: "Are you sure you want to delete your post?",
-      buttons: [
-        {
-          label: "Yes",
-          onClick: () => this.props.deleteBlogPost(id)
-        },
-        {
-          label: "No",
-          onClick: () => console.log("Clicked No")
-        }
-      ]
-    });
-  }
+  // clicked = id => {
+  //   confirmAlert({
+  //     // title: " ",
+  //     message: "Are you sure you want to delete your post?",
+  //     buttons: [
+  //       {
+  //         label: "Yes",
+  //         onClick: () => this.props.deleteBlogPost(id)
+  //       },
+  //       {
+  //         label: "No",
+  //         onClick: () => console.log("Clicked No")
+  //       }
+  //     ]
+  //   });
+  // };
+  clicked = id => {
+    this.props.deleteBlogPost(id);
+  };
   render() {
     let { date, title, image_url, name, id, user } = this.props;
 

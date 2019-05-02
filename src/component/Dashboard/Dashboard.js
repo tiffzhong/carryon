@@ -64,14 +64,6 @@ class Dashboard extends Component {
         );
       });
 
-    // return (
-    //   <div className="sign-in-page">
-    //     To see your Dashboard, <br />
-    //     Please Register or Sign In (...or Shop){" "}
-    //     <i class="far fa-smile-wink" />⤴
-    //   </div>
-    // );
-
     return (
       <div className="the-entire-dashboard">
         {this.props.user ? (
