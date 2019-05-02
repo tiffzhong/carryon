@@ -2,7 +2,6 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const session = require("express-session");
 const massive = require("massive");
-
 const dotenv = require("dotenv");
 const connect = require("connect-pg-simple");
 dotenv.config();
@@ -122,7 +121,7 @@ app.listen(PORT, () => {
   console.log(`Sever listening on PORT ${PORT}`);
 });
 
-const path = require("path");
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../build/index.html"));
-});
+// const path = require("path");
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "../build/index.html"));
+// });
