@@ -1,1 +1,0 @@
-select * from blogpost_comments;

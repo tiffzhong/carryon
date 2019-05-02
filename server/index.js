@@ -74,10 +74,10 @@ app.put("/api/blogpost/:id", blogpostContoller.updateBlogPost);
 app.post("/api/image/blogpost", blogpostContoller.deletePictureWhenCreate);
 
 //Comments
-app.get("api/comments", commentController.getComments);
-app.post("api/comment", commentController.createComment);
-app.put("api/comment/:comment_id", commentController.editComment);
-app.delete("api/comment/:comment_id", commentController.deleteComment);
+// app.get("api/comments", commentController.getComments);
+// app.post("api/comment", commentController.createComment);
+// app.put("api/comment/:comment_id", commentController.editComment);
+// app.delete("api/comment/:comment_id", commentController.deleteComment);
 
 //Admin
 app.post("/admin/register", adminController.register);
