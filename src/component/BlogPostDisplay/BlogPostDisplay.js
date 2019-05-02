@@ -4,8 +4,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getAllBlogposts, deleteBlogPost } from "../../ducks/blogpostReducer";
 import moment from "moment";
-import { confirmAlert } from "react-confirm-alert";
-// import "react-confirm-alert/src/react-confirm-alert.css";
+
 class BlogPostDisplay extends Component {
   constructor(props) {
     super(props);
@@ -14,22 +13,7 @@ class BlogPostDisplay extends Component {
       confirmDelete: false
     };
   }
-  // clicked = id => {
-  //   confirmAlert({
-  //     // title: " ",
-  //     message: "Are you sure you want to delete your post?",
-  //     buttons: [
-  //       {
-  //         label: "Yes",
-  //         onClick: () => this.props.deleteBlogPost(id)
-  //       },
-  //       {
-  //         label: "No",
-  //         onClick: () => console.log("Clicked No")
-  //       }
-  //     ]
-  //   });
-  // };
+
   clicked = id => {
     this.props.deleteBlogPost(id);
   };

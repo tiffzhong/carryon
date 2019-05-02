@@ -17,9 +17,6 @@ class Dashboard extends Component {
   componentDidMount() {
     this.grabUser();
   }
-  // redirectToLandingPage() {
-  //   window.location.pathname = "/";
-  // }
 
   grabUser = () => {
     this.props.getAllBlogposts().then(post => {
@@ -29,7 +26,7 @@ class Dashboard extends Component {
     });
   };
   render() {
-    ///GETTING MY BLOGPOSTS ONLY!!!
+    ///GETTING MY BLOGPOSTS ONLY
     let { allBlogposts } = this.props;
     let displayMyBlogPosts =
       allBlogposts.length > 0 &&
@@ -78,10 +75,7 @@ class Dashboard extends Component {
                 </button>
               </Link>
             </div>
-            {/* <div className="search-bar">
-              <input placeholder="search destinations" />
-              <button>Search</button>
-            </div> */}
+
             <div className="title-of-feed-container">
               <h3>
                 <i class="fas fa-plane" /> Your Posts
