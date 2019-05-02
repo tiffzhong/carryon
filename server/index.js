@@ -22,7 +22,7 @@ const productsController = require("./controllers/productsController");
 const cartController = require("./controllers/cartController");
 const stripeController = require("./controllers/stripeController");
 // const twilioController = require("./controllers/twilioController");
-const commentController = require("./controllers/commentController");
+// const commentController = require("./controllers/commentController");
 
 const app = express();
 app.use(bodyParser.json());
