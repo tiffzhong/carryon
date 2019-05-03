@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./NewsLetterModal.css";
 import axios from "axios";
-import Twilio from "../Twilio/Twilio";
+// import Twilio from "../Twilio/Twilio";
 class NewsLetterModalContent extends Component {
   constructor() {
     super();
@@ -49,7 +49,6 @@ class NewsLetterModalContent extends Component {
             >
               Submit Email
             </button>
-            <Twilio />
           </div>
 
           <div className="x-button-modal">

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./NewsLetterModal.css";
 import NewsLetterModalContent from "./NewsLetterModalContent";
-import Twilio from "../Twilio/Twilio";
+// import Twilio from "../Twilio/Twilio";
 class NewsLetterModal extends Component {
   constructor() {
     super();
