@@ -116,7 +116,7 @@ app.post("/save-stripe-token", stripeController.payment);
 //     });
 // });
 
-const PORT = 1010;
+const PORT = 7070;
 app.listen(PORT, () => {
   console.log(`Sever listening on PORT ${PORT}`);
 });
