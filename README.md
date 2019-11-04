@@ -1,6 +1,4 @@
 ## CarryOn - Personal Project
-Hosted <a href="https://www.carryontravel.us/" alt="https://www.carryontravel.us/">here</a>
-
 
 A hybrid travel blog/e-commerce website allowing users to read and post personal travel experiences, create and view personal profiles, and purchase Carry On-logo merchandise.
 
